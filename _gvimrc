@@ -1,0 +1,25 @@
+" フォント指定
+set guifont=MS_Gothic:h9
+
+" ツールバーを消す
+set guioptions& guioptions-=T
+
+" ウィンドウサイズ(1024x768)
+set columns=150
+set lines=51
+
+" {{{ 色設定
+  syntax on
+  set background=dark
+  colorscheme desert
+
+  " 不可視文字を目立たなくする
+  highlight NonText    guifg=darkgray guibg=NONE gui=NONE
+  highlight SpecialKey guifg=darkgray guibg=NONE gui=NONE
+" }}}
+
+" {{{ メニューの文字化け回避
+  source $VIMRUNTIME/delmenu.vim
+  set langmenu=ja_jp.utf-8
+  source $VIMRUNTIME/menu.vim
+" }}}
