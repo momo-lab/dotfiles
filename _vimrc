@@ -131,7 +131,7 @@ filetype indent on
       catch
       endtry
     endif
-    if save_cwd != getcwd()
+   if save_cwd != getcwd()
       echo "Change Directory to " . getcwd()
     endif
   endfunction
@@ -187,10 +187,12 @@ filetype indent on
   " 前回のUnite結果を再表示
   nnoremap <silent> [unite]<Space> :<C-u>UniteResume<CR>
 
-  " カレントディレクトリのファイルを表示
   call unite#custom#source('file', 'matchers', 'matcher_fuzzy')
   call unite#custom#source('file_mru', 'matchers', 'matcher_fuzzy')
   call unite#custom#source('bookmark', 'matchers', 'matcher_fuzzy')
+  call unite#custom#source('buffer', 'matchers', 'matcher_fuzzy')
+
+  " カレントディレクトリのファイルを表示
   nnoremap <silent> [unite]c :<C-u>UniteWithCurrentDir
     \ -buffer-name=carrent_files
     \ buffer file file_mru bookmark<CR>
