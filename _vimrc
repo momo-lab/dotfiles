@@ -117,12 +117,19 @@ filetype indent on
   " 以下の優先順でカレントファイル変更時にディレクトリ移動する
   " * カレントファイルのルートディレクトリ
   " * カレントファイルのディレクトリ
+  let g:rooter_manual_only = 1
   let g:rooter_use_lcd = 1
   function! s:MyChangeToRootDirectory()
     let save_cwd = getcwd()
-    exe ":Rooter"
+    try
+      execute ":Rooter"
+    catch
+    endtry
     if save_cwd == getcwd()
-      lcd %:p:h
+      try
+        lcd %:p:h
+      catch
+      endtry
     endif
     if save_cwd != getcwd()
       echo "Change Directory to " . getcwd()
