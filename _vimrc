@@ -1,49 +1,19 @@
-"  Header
+" Header {{{
   " vim: foldmethod=marker
   " [前提]
   " * vimprocが導入されていること
   " * C/Migemoが導入されていること
   " -> 要は香り屋前提…
-" 
-"  プラグイン読込(NeoBundle)
-set nocompatible
-filetype plugin indent off
 
-if has('vim_starting')
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
-  if has('win32') || has('win64')
-    set runtimepath^=~/.vim/
+  if has('vim_starting') && has('reltime')
+    let g:startuptime = reltime()
+    augroup vimrc-startuptime
+      autocmd! VimEnter * let g:startuptime = reltime(g:startuptime) | redraw
+      \ | echomsg 'startuptime: ' . reltimestr(g:startuptime)
+    augroup END
   endif
-endif
-
-call neobundle#rc(expand('~/.vim/bundle/'))
-let g:neobundle_default_git_protocol='http'
-
-NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundle 'surround.vim'
-NeoBundle 'kana/vim-smartinput'
-NeoBundle 'kana/vim-smartword'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'gregsexton/gitv'
-"NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'osyo-manga/unite-qfixhowm'
-NeoBundle 'tsukkee/unite-help'
-NeoBundle 'kmnk/vim-unite-giti'
-NeoBundle 'fuenor/qfixhowm.git'
-NeoBundle 'airblade/vim-rooter'
-NeoBundle 'fuenor/im_control.vim'
-NeoBundle 'Shougo/vimshell'
-NeoBundle 'rking/ag.vim'
-NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'kana/vim-submode'
-NeoBundle 'deris/vim-rengbang'
-
-filetype plugin on
-filetype indent on
-" 
-"  全体設定
+" }}}
+" 全体設定 {{{
   " エンコーディング指定
   set encoding=utf-8
   set fileencoding=utf-8
@@ -72,8 +42,8 @@ filetype indent on
   " join時の空白の付与方法を変更(前後がマルチバイトなら空白なし)
   set formatoptions& formatoptions+=B
 
-" 
-"  バッファ設定
+" }}}
+" バッファ設定 {{{
   " 行番号を表示
   set number
 
@@ -92,7 +62,7 @@ filetype indent on
     set ambiwidth=double
   endif
 
-  "  キーマップ
+  " キーマップ {{{
     " ViViっぽく
     " redoをUに
     nnoremap U <C-r>
@@ -104,16 +74,41 @@ filetype indent on
 
     nnoremap q <Nop>
     nnoremap Q q
-  " 
-" 
-"  ウィンドウ設定
+  " }}}
+" }}}
+" ウィンドウ設定 {{{
   " ウィンドウ分割時は右側、下側に足す
   set splitright
   set splitbelow
-" 
-"  タブ設定
-" 
-"  プラグイン設定: vim-rooter
+" }}}
+
+" プラグイン読込(NeoBundle)
+
+set nocompatible
+filetype plugin indent off
+
+if has('vim_starting')
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
+  if has('win32') || has('win64')
+    set runtimepath^=~/.vim/
+  endif
+endif
+
+call neobundle#rc(expand('~/.vim/bundle/'))
+let g:neobundle_default_git_protocol='http'
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+NeoBundle 'surround.vim'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'gregsexton/gitv'
+NeoBundle 'fuenor/im_control.vim'
+NeoBundle 'Shougo/vimshell'
+NeoBundle 'rking/ag.vim'
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'deris/vim-rengbang'
+
+NeoBundle 'airblade/vim-rooter' " {{{
   " 以下の優先順でカレントファイル変更時にディレクトリ移動する
   " * カレントファイルのルートディレクトリ
   " * カレントファイルのディレクトリ
@@ -139,17 +134,13 @@ filetype indent on
     autocmd!
     autocmd BufEnter * :call s:MyChangeToRootDirectory()
   augroup END
-" 
-"  プラグイン設定: QFixHowm
-  let QFixHowm_Key = ','
-  let howm_dir = '$HOME/howm'
-  let howm_filename = '%Y/%m/%d-%H%M%S.howm'
-  let howm_fileencoding = 'utf-8'
-  let howm_fileformat = 'dos'
-  let QFixHowm_ListCloseOnJump = 1 " なぜか効果なし…(T-T)
-  let QFixHowm_MenuPreview = 0
-" 
-"  プラグイン設定: Unite.vim
+" }}}
+
+NeoBundle 'Shougo/unite.vim' " {{{
+  NeoBundle 'osyo-manga/unite-qfixhowm'
+  NeoBundle 'tsukkee/unite-help'
+  NeoBundle 'kmnk/vim-unite-giti'
+
   let unite_split_rule = 'botright'
   let g:unite_enable_start_insert = 1
   let g:unite_enable_short_source_names = 1
@@ -163,7 +154,7 @@ filetype indent on
     let g:unite_source_grep_max_candidates = 200
   endif
 
-  "  Uniteのキーマップ
+  " Uniteのキーマップ {{{
   autocmd FileType unite call s:unite_my_settings()
   function! s:unite_my_settings()
     " <ESC>連打で終了
@@ -179,7 +170,7 @@ filetype indent on
     nmap <buffer> I       <Plug>(unite_append_end)<Plug>(unite_delete_backward_line)
     nmap <buffer> <C-u>   <Plug>(unite_append_end)<Plug>(unite_delete_backward_line)
   endfunction
-  " 
+  " }}}
 
   nnoremap [unite] <Nop>
   nmap <Space> [unite]
@@ -202,6 +193,16 @@ filetype indent on
     \ -buffer-name=buffer_files
     \ buffer file file_mru bookmark<CR>
 
+  " カレントディレクトリでgrep
+  nnoremap <silent> [unite]g :<C-u>Unite
+    \ -buffer-name=grep
+    \ grep:.<CR>
+
+  " ディレクトリを指定してgrep
+  nnoremap <silent> [unite]G :<C-u>Unite
+    \ -buffer-name=grep
+    \ grep<CR>
+
   " QFixHowmのリストを表示
   call unite#custom#source('qfixhowm', 'matchers', 'matcher_migemo')
   nnoremap <silent> [unite], :<C-u>Unite
@@ -210,14 +211,22 @@ filetype indent on
     \ qfixhowm/new qfixhowm:nocache<CR>
 
   " メニュー表示
+  let vimrc = expand("$HOME/dotfiles/_vimrc")
+  if !filereadable(vimrc)
+    let vimrc = expand("$MYVIMRC")
+  endif
+  let gvimrc = expand("$HOME/dotfiles/_gvimrc")
+  if !filereadable(gvimrc)
+    let gvimrc = expand("$MYGVIMRC")
+  endif
   let g:unite_source_menu_menus = {
   \   "shortcut": {
   \     "description": "Unite Menu",
   \     "command_candidates": [
-  \       ["edit .vimrc" , "tabedit $MYVIMRC"],
-  \       ["load .vimrc",  "source $MYVIMRC"],
-  \       ["edit .gvimrc", "tabedit $MYGVIMRC"],
-  \       ["load .gvimrc",  "source $MYGVIMRC"],
+  \       ["edit .vimrc [" . vimrc . "]", "tabedit " . vimrc],
+  \       ["load .vimrc [" . vimrc . "]", "source " . vimrc],
+  \       ["edit .gvimrc [" . gvimrc . "]", "tabedit " . gvimrc],
+  \       ["load .gvimrc [" . gvimrc . "]", "source " . gvimrc],
   \     ],
   \   },
   \ }
@@ -228,18 +237,19 @@ filetype indent on
   call unite#custom#source('help', 'matchers', 'matcher_fuzzy')
   nnoremap <silent> [unite]h :<C-u>Unite
     \ help<CR>
-" 
-" smartword.vim {{{
-"map w <Plug>(smartword-w)
-"map b <Plug>(smartword-b)
-"map e <Plug>(smartword-e)
-"map ge <Plug>(smartword-ge)
-"noremap ,w w
-"noremap ,b b
-"noremap ,e e
-"noremap ,ge ge
 " }}}
-" submode.vim {{{
+
+NeoBundle 'fuenor/qfixhowm.git' " {{{
+  let QFixHowm_Key = ','
+  let howm_dir = '$HOME/howm'
+  let howm_filename = '%Y/%m/%d-%H%M%S.howm'
+  let howm_fileencoding = 'utf-8'
+  let howm_fileformat = 'dos'
+  let QFixHowm_ListCloseOnJump = 1 " なぜか効果なし…(T-T)
+  let QFixHowm_MenuPreview = 0
+" }}}
+
+NeoBundle 'kana/vim-submode' " {{{
 let g:submode_keep_leaving_key = 1
 
 " タブの切り替え
@@ -258,3 +268,6 @@ call submode#map('winsize', 'n', '', '<', '<C-w><')
 call submode#map('winsize', 'n', '', '+', '<C-w>+')
 call submode#map('winsize', 'n', '', '-', '<C-w>-')
 " }}}
+
+filetype plugin indent on
+
