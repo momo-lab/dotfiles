@@ -1,85 +1,96 @@
 " Header {{{
-  " vim: foldmethod=marker
-  " [前提]
-  " * vimprocが導入されていること
-  " * C/Migemoが導入されていること
-  " -> 要は香り屋前提…
+" vim: foldmethod=marker
+" [前提]
+" * vimprocが導入されていること
+" * C/Migemoが導入されていること
+" -> 要は香り屋前提…
 
-  if has('vim_starting') && has('reltime')
-    let g:startuptime = reltime()
-    augroup vimrc-startuptime
-      autocmd! VimEnter * let g:startuptime = reltime(g:startuptime) | redraw
-      \ | echomsg 'startuptime: ' . reltimestr(g:startuptime)
-    augroup END
+if has('vim_starting') && has('reltime')
+  let g:startuptime = reltime()
+  augroup vimrc-startuptime
+    autocmd! VimEnter * let g:startuptime = reltime(g:startuptime) | redraw
+    \ | echomsg 'startuptime: ' . reltimestr(g:startuptime)
+  augroup END
+endif
+" }}}
+" エンコーディング指定 {{{
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=ucs-bom,utf-8,iso-2022-jp,euc-jp,cp932
+set fileformat=unix
+set fileformats=unix,dos,mac
+" }}}
+" ステータス行の表示と指定 {{{
+set laststatus=2
+set statusline=%<%f\ %m%r%h%w
+set statusline+=%{'['.(&fenc!=''?&fenc:&enc).']['.&fileformat.']'}
+set statusline+=%=%l/%L,%c%V%8P
+" }}}
+" backup/swpファイル設定 {{{
+set nobackup
+set noswapfile
+"set backupdir=$TMP
+"set directory=$TMP
+" }}}
+
+" backspaceの挙動変更
+set backspace=indent,eol,start
+
+" Yankしたらクリップボードへ
+set clipboard& clipboard+=unnamed
+
+" join時の空白の付与方法を変更(前後がマルチバイトなら空白なし)
+set formatoptions& formatoptions+=B
+
+" 行番号を表示
+set number
+
+" タブ文字は半角スペース2つ
+set tabstop=2
+set shiftwidth=2
+set autoindent
+set expandtab
+
+" 記号を入力するとカーソル位置がずれる問題の解消
+if exists("&ambiwidth")
+  set ambiwidth=double
+endif
+
+" ウィンドウ分割時は右側、下側に足す
+set splitright
+set splitbelow
+
+" 不可視文字を可視化 {{{
+set list
+function! s:ChangeFileFormat()
+  " TODO 「:set ff=xxx」したら自動でこの関数を呼びたいが…
+  if &fileformat == "dos"
+    set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
+  elseif &fileformat == "unix"
+    set listchars=tab:»-,trail:-,eol:⇂,extends:»,precedes:«,nbsp:%
+  elseif &fileformat == "mac"
+    set listchars=tab:»-,trail:-,eol:↼,extends:»,precedes:«,nbsp:%
   endif
+endfunction
+call s:ChangeFileFormat()
+augroup vimrc
+  autocmd!
+  autocmd BufEnter * :call s:ChangeFileFormat()
+augroup END
 " }}}
-" 全体設定 {{{
-  " エンコーディング指定
-  set encoding=utf-8
-  set fileencoding=utf-8
-  set fileencodings=ucs-bom,utf-8,iso-2022-jp,euc-jp,cp932
-  set fileformat=unix
-  set fileformats=unix,dos,mac
 
-  " ステータス行の表示と指定
-  set laststatus=2
-  set statusline=%<%f\ %m%r%h%w
-  set statusline+=%{'['.(&fenc!=''?&fenc:&enc).']['.&fileformat.']'}
-  set statusline+=%=%l/%L,%c%V%8P
+" キーマップ {{{
+  " ViViっぽく
+  " redoをUに
+  nnoremap U <C-r>
+  " vvで単語選択
+  nnoremap vv viw
 
-  " backup/swpファイルの作成先を指定
-  set nobackup
-  set noswapfile
-  "set backupdir=$TMP
-  "set directory=$TMP
+  " 折り畳み
+  nnoremap zz za
 
-  " backspaceの挙動変更
-  set backspace=indent,eol,start
-
-  " Yankしたらクリップボードへ
-  set clipboard& clipboard+=unnamed
-
-  " join時の空白の付与方法を変更(前後がマルチバイトなら空白なし)
-  set formatoptions& formatoptions+=B
-
-" }}}
-" バッファ設定 {{{
-  " 行番号を表示
-  set number
-
-  " タブ文字は半角スペース2つ
-  set tabstop=2
-  set shiftwidth=2
-  set autoindent
-  set expandtab
-
-  " 不可視文字を可視化
-  set list
-  set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
-
-  " 記号を入力するとカーソル位置がずれる問題の解消
-  if exists("&ambiwidth")
-    set ambiwidth=double
-  endif
-
-  " キーマップ {{{
-    " ViViっぽく
-    " redoをUに
-    nnoremap U <C-r>
-    " vvで単語選択
-    nnoremap vv viw
-
-    " 折り畳み
-    nnoremap zz za
-
-    nnoremap q <Nop>
-    nnoremap Q q
-  " }}}
-" }}}
-" ウィンドウ設定 {{{
-  " ウィンドウ分割時は右側、下側に足す
-  set splitright
-  set splitbelow
+  nnoremap q <Nop>
+  nnoremap Q q
 " }}}
 
 " プラグイン読込(NeoBundle)
