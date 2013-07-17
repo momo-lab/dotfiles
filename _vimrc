@@ -196,11 +196,13 @@ NeoBundle 'Shougo/unite.vim' " {{{
   " カレントディレクトリでgrep
   nnoremap <silent> [unite]g :<C-u>Unite
     \ -buffer-name=grep
+    \ -no-empty
     \ grep:.<CR>
 
   " ディレクトリを指定してgrep
   nnoremap <silent> [unite]G :<C-u>Unite
     \ -buffer-name=grep
+    \ -no-empty
     \ grep<CR>
 
   " QFixHowmのリストを表示
