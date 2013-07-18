@@ -1,25 +1,20 @@
-" $B%U%)%s%H;XDj(B
+" フォント設定
 set guifont=MS_Gothic:h9
 
-" $B%D!<%k%P!<$r>C$9(B
-set guioptions& guioptions-=T
+" ツールバー＆メニューを非表示
+set guioptions& guioptions-=m guioptions-=T
 
-" $B%&%#%s%I%&%5%$%:(B(1024x768)
+" ウィンドウサイズ
 set columns=150
 set lines=51
 
-" {{{ $B?'@_Dj(B
+" カラー設定 {{{
   syntax on
   set background=dark
   colorscheme desert
 
-  " $BIT2D;kJ8;z$rL\N)$?$J$/$9$k(B
+  " 空白文字を目立たなくする
   highlight NonText    guifg=darkgray guibg=NONE gui=NONE
   highlight SpecialKey guifg=darkgray guibg=NONE gui=NONE
 " }}}
 
-" {{{ $B%a%K%e!<$NJ8;z2=$12sHr(B
-  source $VIMRUNTIME/delmenu.vim
-  set langmenu=ja_jp.utf-8
-  source $VIMRUNTIME/menu.vim
-" }}}
