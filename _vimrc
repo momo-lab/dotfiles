@@ -113,7 +113,6 @@ NeoBundle 'surround.vim'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'gregsexton/gitv'
 NeoBundle 'fuenor/im_control.vim'
-NeoBundle 'Shougo/vimshell'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
@@ -260,6 +259,11 @@ NeoBundle 'fuenor/qfixhowm.git' " {{{
   let howm_fileformat = 'dos'
   let QFixHowm_ListCloseOnJump = 1 " なぜか効果なし…(T-T)
   let QFixHowm_MenuPreview = 0
+" }}}
+
+NeoBundle 'Shougo/vimshell' " {{{
+  let g:vimshell_prompt_expr = 'fnamemodify(getcwd(), ":~")."> "'
+  let g:vimshell_prompt_pattern = '^\f\+> '
 " }}}
 
 NeoBundle 'kana/vim-submode' " {{{
