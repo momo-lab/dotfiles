@@ -73,7 +73,7 @@ function! s:ChangeFileFormat()
   endif
 endfunction
 call s:ChangeFileFormat()
-augroup vimrc
+augroup vimrc-changefileformat
   autocmd!
   autocmd BufEnter * :call s:ChangeFileFormat()
 augroup END
@@ -185,42 +185,31 @@ NeoBundle 'Shougo/unite.vim' " {{{
   nnoremap [unite] <Nop>
   nmap <Space> [unite]
 
-  " 前回のUnite結果を再表示
-  nnoremap <silent> [unite]<Space> :<C-u>UniteResume<CR>
-
+  " 検索方法を指定
   call unite#custom#source('file', 'matchers', 'matcher_fuzzy')
   call unite#custom#source('file_mru', 'matchers', 'matcher_fuzzy')
   call unite#custom#source('bookmark', 'matchers', 'matcher_fuzzy')
   call unite#custom#source('buffer', 'matchers', 'matcher_fuzzy')
+  call unite#custom#source('qfixhowm', 'matchers', 'matcher_migemo')
+  call unite#custom#source('help', 'matchers', 'matcher_fuzzy')
+
+  " 前回のUnite結果を再表示
+  nnoremap <silent> [unite]<Space> :<C-u>UniteResume<CR>
 
   " カレントディレクトリのファイルを表示
-  nnoremap <silent> [unite]c :<C-u>UniteWithCurrentDir
-    \ -buffer-name=carrent_files
-    \ buffer file file_mru bookmark<CR>
+  nnoremap <silent> [unite]c :<C-u>UniteWithCurrentDir -buffer-name=carrent_files file file_mru bookmark<CR>
 
   " カレントバッファのディレクトリのファイルを表示
-  nnoremap <silent> [unite]b :<C-u>UniteWithBufferDir
-    \ -buffer-name=buffer_files
-    \ buffer file file_mru bookmark<CR>
+  nnoremap <silent> [unite]b :<C-u>UniteWithBufferDir -buffer-name=buffer_files file file_mru bookmark<CR>
 
   " カレントディレクトリでgrep
-  nnoremap <silent> [unite]g :<C-u>Unite
-    \ -buffer-name=grep
-    \ -no-empty
-    \ grep:.<CR>
+  nnoremap <silent> [unite]g :<C-u>Unite -buffer-name=grep -no-empty grep:.<CR>
 
   " ディレクトリを指定してgrep
-  nnoremap <silent> [unite]G :<C-u>Unite
-    \ -buffer-name=grep
-    \ -no-empty
-    \ grep<CR>
+  nnoremap <silent> [unite]G :<C-u>Unite -buffer-name=grep -no-empty grep<CR>
 
   " QFixHowmのリストを表示
-  call unite#custom#source('qfixhowm', 'matchers', 'matcher_migemo')
-  nnoremap <silent> [unite], :<C-u>Unite
-    \ -buffer-name=howm
-    \ -hide-source-names
-    \ qfixhowm/new qfixhowm:nocache<CR>
+  nnoremap <silent> [unite], :<C-u>Unite -buffer-name=howm -hide-source-names qfixhowm/new qfixhowm:nocache<CR>
 
   " メニュー表示
   let vimrc = expand("$HOME/dotfiles/_vimrc")
@@ -242,13 +231,10 @@ NeoBundle 'Shougo/unite.vim' " {{{
   \     ],
   \   },
   \ }
-  nnoremap <silent> [unite]m :<C-u>Unite
-    \ menu:shortcut<CR>
+  nnoremap <silent> [unite]m :<C-u>Unite menu:shortcut<CR>
 
   " ヘルプ表示
-  call unite#custom#source('help', 'matchers', 'matcher_fuzzy')
-  nnoremap <silent> [unite]h :<C-u>Unite
-    \ help<CR>
+  nnoremap <silent> [unite]h :<C-u>Unite help<CR>
 " }}}
 
 NeoBundle 'fuenor/qfixhowm.git' " {{{
