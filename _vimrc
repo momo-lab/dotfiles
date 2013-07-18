@@ -63,6 +63,12 @@ set splitbelow
 " ウィンドウタイトルにファイル名を表示
 set title
 
+" ヘルプは q で閉じる
+augroup vimrc-close
+  autocmd!
+  autocmd FileType help nnoremap <buffer> q <C-w>c
+augroup END
+
 " 不可視文字を可視化 {{{
 set list
 function! s:ChangeFileFormat()
