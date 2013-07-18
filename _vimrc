@@ -60,6 +60,9 @@ endif
 set splitright
 set splitbelow
 
+" ウィンドウタイトルにファイル名を表示
+set title
+
 " 不可視文字を可視化 {{{
 set list
 function! s:ChangeFileFormat()
