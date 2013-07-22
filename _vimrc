@@ -127,6 +127,11 @@ NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'deris/vim-rengbang'
 
+NeoBundle 'vcscommand.vim' " {{{
+  " デフォルトのキーマップだとvim-rooterと競合するので変更
+  let VCSCommandMapPrefix = "<Leader>v"
+" }}}
+
 NeoBundle 'airblade/vim-rooter' " {{{
   " 以下の優先順でカレントファイル変更時にディレクトリ移動する
   " * カレントファイルのルートディレクトリ
