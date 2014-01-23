@@ -74,17 +74,22 @@ set list
 function! s:ChangeFileFormat()
   " TODO 「:set ff=xxx」したら自動でこの関数を呼びたいが…
   if &fileformat == "dos"
-    set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
+    set listchars=tab:»-,trail:~,eol:↲,extends:»,precedes:«,nbsp:%
   elseif &fileformat == "unix"
-    set listchars=tab:»-,trail:-,eol:⇂,extends:»,precedes:«,nbsp:%
+    set listchars=tab:»-,trail:~,eol:⇂,extends:»,precedes:«,nbsp:%
   elseif &fileformat == "mac"
-    set listchars=tab:»-,trail:-,eol:↼,extends:»,precedes:«,nbsp:%
+    set listchars=tab:»-,trail:~,eol:↼,extends:»,precedes:«,nbsp:%
   endif
 endfunction
+function! InvisibleHighlight()
+  syntax match ZenkakuSpaceChar "　" display containedin=ALL
+  hi ZenkakuSpaceChar gui=underline guibg=DarkCyan
+endfunction
 call s:ChangeFileFormat()
-augroup vimrc-changefileformat
-  autocmd!
+augroup vimrc-invisible
+  autocmd! vimrc-invisible
   autocmd BufEnter * :call s:ChangeFileFormat()
+  autocmd ColorScheme,BufNew,BufRead * call InvisibleHighlight()
 augroup END
 " }}}
 
