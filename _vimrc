@@ -108,13 +108,13 @@ set nocompatible
 filetype plugin indent off
 
 if has('vim_starting')
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
+  set runtimepath+=~/vimfiles/bundle/neobundle.vim/
   if has('win32') || has('win64')
-    set runtimepath^=~/.vim/
+    set runtimepath^=~/vimfiles/
   endif
 endif
 
-call neobundle#rc(expand('~/.vim/bundle/'))
+call neobundle#rc(expand('~/vimfiles/bundle/'))
 let g:neobundle_default_git_protocol='http'
 NeoBundleFetch 'Shougo/neobundle.vim'
 
