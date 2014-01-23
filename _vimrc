@@ -171,6 +171,7 @@ NeoBundle 'Shougo/unite.vim' " {{{
 
   " unite-grepのバックエンドをagに切り替える
   " http://qiita.com/items/c8962f9325a5433dc50d
+  let g:unite_source_grep_encoding = 'utf-8'
   if executable('ag')
     let g:unite_source_grep_command = 'ag'
     let g:unite_source_grep_default_opts = '--nocolor --nogroup'
