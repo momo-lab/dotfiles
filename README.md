@@ -9,16 +9,19 @@ INSTALL
 
 * git submoduleの初期化
 
-    > git submodule init
-    > git submodule update
+```
+> git submodule init
+> git submodule update
+```
 
 * .gitconfig_localの作成
 以下のような .gitconfig_local を作成する。
 もともと、git configで追加していたユーザ毎の設定なんかをここに書くこと。
 
-    [user]
-      email = momotaro.n@gmail.com
-      name = momotaro
-    [github]
-      user = momo-lab
-
+```
+[user]
+  email = momotaro.n@gmail.com
+  name = momotaro
+[github]
+  user = momo-lab
+```
