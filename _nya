@@ -37,6 +37,14 @@ function nyaos.prompt(p)
 end
 "
 
+# uruを使えるようにする
+uru{
+  uru.bat %*
+  if exist "%USERPROFILE%\.uru\uru_lackee.bat" then
+    source "%USERPROFILE%\.uru\uru_lackee.bat" 2> nul
+  endif
+}
+
 # gitで「WARNING: terminal is not fully functional」が出る問題対応
 set TERM=msys
 
