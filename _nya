@@ -1,0 +1,11 @@
+# nyaos.exe の設定
+
+# 言語設定
+set LANG=ja_JP.UTF-8
+
+# プロンプト
+
+# 以下エイリアス
+alias ll=ls -l
+alias la=ls -a
+
