@@ -1,11 +1,9 @@
-# nyaos.exe В╠Р▌Тш
+# nyaos.exe уБошинхоЪ
 
-# М╛МъР▌Тш
+# шиАшкЮшинхоЪ
 set LANG=ja_JP.UTF-8
 
-# ГvГНГУГvГg
-
-# И╚Й║ГGГCГКГAГX
+# ф╗еф╕ЛуВиуВдуГкуВвуВ╣
 alias ll=ls -l
 alias la=ls -a
 
