@@ -2,17 +2,29 @@
 SETLOCAL
 CD %HOME%
 
-CALL :MAKE_LINK vimfiles vimfiles /D
-CALL :MAKE_LINK _vimrc _vimrc
-CALL :MAKE_LINK _gvimrc _gvimrc
-CALL :MAKE_LINK .gitconfig .gitconfig
+FOR /F "usebackq" %%I IN (`dir /b %~dp0`) DO CALL :MAKE_LINK %%I
 
 PAUSE
 GOTO :EOF
 
 :MAKE_LINK
-  IF EXIST %HOME%\%2\con RMDIR /Q %HOME%\%2
-  IF EXIST %HOME%\%2 DEL /Q %HOME%\%2
+  SET FILENAME=%~nx1
+  SET SRCPATH=%~dp0%FILENAME%
+  SET LINKPATH=%HOME%\%FILENAME%
+
+  REM %HOME%にリンクを張る必要がないファイルを除外
+  IF "%FILENAME%" == "install.bat" GOTO :EOF
+  IF "%FILENAME%" == "README.md"   GOTO :EOF
+  IF "%FILENAME%" == ".git"        GOTO :EOF
+  IF "%FILENAME%" == ".gitmodules" GOTO :EOF
+
+  REM すでにあるリンクを削除
+  IF EXIST %LINKPATH%\ RMDIR /Q %LINKPATH%
+  IF EXIST %LINKPATH%     DEL /Q %LINKPATH%
   IF ERRORLEVEL 1 GOTO :EOF
-  MKLINK %3 %HOME%\%2 %~dp0\%1
+
+  REM リンク作成
+  SET MKLINK_OPT=
+  IF EXIST %SRCPATH%\ SET MKLINK_OPT=/D
+  MKLINK %MKLINK_OPT% %LINKPATH% %SRCPATH%
 GOTO :EOF
