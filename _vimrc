@@ -148,7 +148,7 @@ endif
   NeoBundle 'Shougo/neosnippet'
   NeoBundle 'deris/vim-rengbang'
   NeoBundle 'mattn/webapi-vim'
-  NeoBundle 'mattn/gist-vim'
+  NeoBundle 'momo-lab/gist-vim'
   NeoBundle 'kien/ctrlp.vim'
   NeoBundle 'fuenor/qfixgrep'
   " }}}
