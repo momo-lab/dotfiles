@@ -3,6 +3,19 @@
 # 言語設定
 set LANG=ja_JP.UTF-8
 
+# プロンプト
+lua_e "
+  function nyaos.prompt(p)
+    local b = '$e[32;40;1m'
+    local e = '$$ $e[37;1m'
+    local user = os.getenv('USERNAME')
+    local machine = os.getenv('USERDOMAIN')
+    local home = os.getenv('USERPROFILE')
+    local pwd = string.gsub(nyaos.eval('pwd'), home, '~')
+    return true, b .. user .. '@' .. machine .. ':' .. pwd .. e
+  end
+"
+
 # 以下エイリアス
 alias ll=ls -l
 alias la=ls -a
