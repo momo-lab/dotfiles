@@ -11,7 +11,7 @@ function nyaos.prompt(p)
 
   local b = '$e[37;1m'
   local e = '$e[37;1m$G '
-  local host = os.getenv('USERDOMAIN')
+  local host = os.getenv('COMPUTERNAME')
   host = '$e[32;40;1m' .. host .. '$e[37;1m'
   local home = os.getenv('USERPROFILE')
   local pwd = string.gsub(current, home, '~')
