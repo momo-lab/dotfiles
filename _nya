@@ -37,6 +37,9 @@ function nyaos.prompt(p)
 end
 "
 
+# gitで「WARNING: terminal is not fully functional」が出る問題対応
+set TERM=msys
+
 # 以下エイリアス
 alias ll=ls -l
 alias la=ls -a
