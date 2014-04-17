@@ -17,22 +17,28 @@ function nyaos.prompt(p)
   local pwd = string.gsub(current, home, '~')
   prompt = b .. host .. ':' .. pwd ..  e
 
-  if nyaos.access(current .. '/.svn/entries', 0) then
-    local svn_url = string.match(nyaos.eval('svn info --xml'), '<url>(.*)</url>', 1)
-    return true, '$e[36;40;1mSVN[' .. svn_url .. ']' .. prompt
-  else
-    local git_path = current
-    repeat
-      if nyaos.access(git_path .. '/.git', 0) then
-        local git_branch = string.match(nyaos.eval('git branch'), '* (%S*)', 1)
-        if git_branch then
-          return true, '$e[33;40;1mGIT[' .. git_branch .. ']' .. prompt
-        end
-        break
-      end
-      git_path = string.match(git_path, '^(.+)\\', 1)
-    until not git_path
+  function get_type(path)
+    if not path then
+      return ''
+    elseif nyaos.access(path .. '/.git', 0) then
+      return 'GIT'
+    elseif nyaos.access(path .. '/.svn', 0) then
+      return 'SVN'
+    else
+      return get_type(string.match(path, '^(.+)\\', 1))
+    end
   end
+  local type = get_type(current)
+  if type == 'GIT' then
+    local git_branch = string.match(nyaos.eval('git branch'), '* (%S*)', 1)
+    if git_branch then
+      prompt = '$e[33;40;1mGIT[' .. git_branch .. ']' .. prompt
+    end
+  elseif type == 'SVN' then
+    local svn_url = string.match(nyaos.eval('svn info --xml'), '<root>(.*)</root>', 1)
+    prompt = '$e[36;40;1mSVN[' .. svn_url .. ']' .. prompt
+  end
+
   return true, prompt
 end
 "
