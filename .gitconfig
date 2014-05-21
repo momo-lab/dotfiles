@@ -11,6 +11,7 @@
 	ui = auto
 [core]
 	editor = vim
+	autocrlf = false
 [include]
     path = .gitconfig_local
 [pull]
