@@ -164,23 +164,16 @@ endif
 
   NeoBundle 'airblade/vim-rooter' " {{{
     " 以下の優先順でカレントファイル変更時にディレクトリ移動する
-    " * カレントファイルのルートディレクトリ
     " * カレントファイルのディレクトリ
     let g:rooter_manual_only = 1
     let g:rooter_use_lcd = 1
     function! s:MyChangeToRootDirectory()
       let save_cwd = getcwd()
       try
-        execute ":Rooter"
+        lcd %:p:h
       catch
       endtry
-      if save_cwd == getcwd()
-        try
-          lcd %:p:h
-        catch
-        endtry
-      endif
-     if save_cwd != getcwd()
+      if save_cwd != getcwd()
         echo "Change Directory to " . getcwd()
       endif
     endfunction
