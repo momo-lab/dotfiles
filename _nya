@@ -25,7 +25,7 @@ function nyaos.prompt(p)
         return '$e[33;40;1m(' .. git_branch .. ')$e[37;1m'
       end
     elseif nyaos.access(path .. '/.svn', 0) then
-      local svn_xml = nyaos.eval('svn info --xml')
+      local svn_xml = nyaos.eval('svn info --xml ' .. path)
       local svn_root = string.match(svn_xml, '<root>(.*)</root>', 1)
       local svn_url = string.match(svn_xml, '<url>(.*)</url>', 1)
       svn_url = string.gsub(svn_url, svn_root, '')
@@ -36,7 +36,7 @@ function nyaos.prompt(p)
   end
   local vcs = get_vcs_prompt(current)
 
-  prompt = b .. '[' .. host .. ':' .. pwd .. vcs .. ']' .. e
+  prompt = b .. '[' .. host .. ':' .. pwd .. ']' .. vcs .. e
   return true, prompt
 end
 "
