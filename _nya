@@ -10,38 +10,33 @@ function nyaos.prompt(p)
   local current = nyaos.eval('__pwd__')
 
   local b = '$e[37;1m'
-  local e = '$e[37;1m$G '
+  local e = '$e[37;1m\n$G '
   local host = os.getenv('COMPUTERNAME')
   host = '$e[32;40;1m' .. host .. '$e[37;1m'
   local home = os.getenv('USERPROFILE')
   local pwd = string.gsub(current, home, '~')
-  prompt = b .. host .. ':' .. pwd ..  e
 
-  function get_type(path)
+  function get_vcs_prompt(path)
     if not path then
       return ''
     elseif nyaos.access(path .. '/.git', 0) then
-      return 'GIT'
+      local git_branch = string.match(nyaos.eval('git branch'), '* (%S*)', 1)
+      if git_branch then
+        return '$e[33;40;1m(' .. git_branch .. ')$e[37;1m'
+      end
     elseif nyaos.access(path .. '/.svn', 0) then
-      return 'SVN'
+      local svn_xml = nyaos.eval('svn info --xml')
+      local svn_root = string.match(svn_xml, '<root>(.*)</root>', 1)
+      local svn_url = string.match(svn_xml, '<url>(.*)</url>', 1)
+      svn_url = string.gsub(svn_url, svn_root, '')
+      return '$e[36;40;1m(' .. svn_url .. ')$e[37;1m'
     else
-      return get_type(string.match(path, '^(.+)\\', 1))
+      return get_vcs_prompt(string.match(path, '^(.+)\\', 1))
     end
   end
-  local type = get_type(current)
-  if type == 'GIT' then
-    local git_branch = string.match(nyaos.eval('git branch'), '* (%S*)', 1)
-    if git_branch then
-      prompt = '$e[33;40;1mGIT[' .. git_branch .. ']' .. prompt
-    end
-  elseif type == 'SVN' then
-    local svn_xml = nyaos.eval('svn info --xml')
-    local svn_root = string.match(svn_xml, '<root>(.*)</root>', 1)
-    local svn_url = string.match(svn_xml, '<url>(.*)</url>', 1)
-    svn_url = string.gsub(svn_url, svn_root, '')
-    prompt = '$e[36;40;1mSVN[' .. svn_url .. ']' .. prompt
-  end
+  local vcs = get_vcs_prompt(current)
 
+  prompt = b .. '[' .. host .. ':' .. pwd .. vcs .. ']' .. e
   return true, prompt
 end
 "
