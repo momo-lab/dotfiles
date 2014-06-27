@@ -35,7 +35,10 @@ function nyaos.prompt(p)
       prompt = '$e[33;40;1mGIT[' .. git_branch .. ']' .. prompt
     end
   elseif type == 'SVN' then
-    local svn_url = string.match(nyaos.eval('svn info --xml'), '<root>(.*)</root>', 1)
+    local svn_xml = nyaos.eval('svn info --xml')
+    local svn_root = string.match(svn_xml, '<root>(.*)</root>', 1)
+    local svn_url = string.match(svn_xml, '<url>(.*)</url>', 1)
+    svn_url = string.gsub(svn_url, svn_root, '')
     prompt = '$e[36;40;1mSVN[' .. svn_url .. ']' .. prompt
   end
 
