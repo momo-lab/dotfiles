@@ -320,6 +320,13 @@ endif
     let g:vimfiler_as_default_explorer = 1
   "}}}
 
+  NeoBundle 'rhysd/clever-f.vim' "{{{
+    let g:clever_f_across_no_line = 1
+    let g:clever_f_smart_case = 1
+    let g:clever_f_use_migemo = 1
+    "let g:clever_f_fix_key_direction = 1
+  "}}}
+
   filetype plugin indent on
 "}}}
 
