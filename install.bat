@@ -1,5 +1,7 @@
 @ECHO OFF
 SETLOCAL
+
+IF "%HOME%" == "" SET HOME=%HOMEDRIVE%%HOMEPATH%
 CD %HOME%
 
 FOR /F "usebackq" %%I IN (`dir /b %~dp0`) DO CALL :MAKE_LINK %%I
