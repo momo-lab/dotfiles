@@ -1,0 +1,17 @@
+[alias]
+  tree = log --graph --oneline --decorate
+  tr = log --graph --oneline --decorate
+  btree = log --graph --oneline --decorate --simplify-by-decoration --all
+  btr = log --graph --oneline --decorate --simplify-by-decoration --all
+  st = status
+  ci = commit
+  cim = commit -m
+  co = checkout
+[color]
+  ui = auto
+[core]
+  autocrlf = false
+[include]
+  path = .gitconfig_local
+[pull]
+  rebase = true
