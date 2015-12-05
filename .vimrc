@@ -32,15 +32,13 @@ set expandtab
 " Yankしたらクリップボードへ
 set clipboard& clipboard+=unnamed
 
-" ViViっぽくする {{{
+" ViViっぽくする
 " redoをUに
 nnoremap U <C-r>
 " vvで単語選択
 nnoremap vv viw
-
 " 折り畳み
 nnoremap zz za
-" }}}
 
 call plug#begin('~/.vim/plugged')
 
