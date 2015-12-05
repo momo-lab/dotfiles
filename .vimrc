@@ -40,10 +40,12 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'ctrlpvim/ctrlp.vim'
 
+" ステータスライン強化
 Plug 'itchyny/lightline.vim'
-let g:lightline = {
-    \ 'colorscheme': 'wombat'
-    \ }
+Plug 'itchyny/lightline-powerful'
+"let g:lightline = {
+"    \ 'colorscheme': 'wombat'
+"    \ }
 
 call plug#end()
 
