@@ -22,8 +22,9 @@ set number
 function! s:setlocaltab(index)
   exec "setlocal tabstop=" . a:index . " shiftwidth=" . a:index . " softtabstop=" . a:index
 endfunction
-augroup vimrc
-  autocmd! FileType vim call s:setlocaltab(2)
+augroup vimrc_tab
+  autocmd!
+  autocmd FileType vim call s:setlocaltab(2)
 augroup END
 set tabstop=4 shiftwidth=4 softtabstop=4
 set autoindent
@@ -52,9 +53,6 @@ Plug 'airblade/vim-gitgutter'
 " ステータスライン強化
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/lightline-powerful'
-"let g:lightline = {
-"    \ 'colorscheme': 'wombat'
-"    \ }
 
 call plug#end()
 
