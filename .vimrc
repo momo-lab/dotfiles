@@ -36,6 +36,12 @@ set clipboard& clipboard+=unnamed
 " ウィンドウタイトルにファイル名を表示
 set title
 
+" ヘルプは q で閉じる
+augroup vimrc_close
+  autocmd!
+  autocmd FileType help nnoremap <buffer> q <C-w>c
+augroup END
+
 " ViViっぽくする
 " redoをUに
 nnoremap U <C-r>
