@@ -38,6 +38,7 @@ nnoremap zz za
 
 call plug#begin('~/.vim/plugged')
 
+" CtrlP
 Plug 'ctrlpvim/ctrlp.vim'
 
 " ステータスライン強化
