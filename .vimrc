@@ -41,6 +41,10 @@ call plug#begin('~/.vim/plugged')
 " CtrlP
 Plug 'ctrlpvim/ctrlp.vim'
 
+" Git 用
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+
 " ステータスライン強化
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/lightline-powerful'
