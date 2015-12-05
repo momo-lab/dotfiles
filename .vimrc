@@ -33,6 +33,9 @@ set expandtab
 " Yankしたらクリップボードへ
 set clipboard& clipboard+=unnamed
 
+" ウィンドウタイトルにファイル名を表示
+set title
+
 " ViViっぽくする
 " redoをUに
 nnoremap U <C-r>
