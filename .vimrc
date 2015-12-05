@@ -36,6 +36,9 @@ set clipboard& clipboard+=unnamed
 " ウィンドウタイトルにファイル名を表示
 set title
 
+" ESCのビープ音を消す
+set visualbell t_vb=
+
 " ヘルプは q で閉じる
 augroup vimrc_close
   autocmd!
