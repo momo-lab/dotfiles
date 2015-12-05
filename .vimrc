@@ -18,8 +18,14 @@ set noswapfile
 " 行番号を表示
 set number
 
-" タブ文字は半角スペース2つ
-set tabstop=2 shiftwidth=2 softtabstop=2
+" タブ
+function! s:setlocaltab(index)
+  exec "setlocal tabstop=" . a:index . " shiftwidth=" . a:index . " softtabstop=" . a:index
+endfunction
+augroup vimrc
+  autocmd! FileType vim call s:setlocaltab(2)
+augroup END
+set tabstop=4 shiftwidth=4 softtabstop=4
 set autoindent
 set expandtab
 
