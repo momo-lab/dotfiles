@@ -56,8 +56,10 @@ call plug#begin('~/.vim/plugged')
 Plug 'ctrlpvim/ctrlp.vim'
 
 " Git 用
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'     " :Gwrite, :Gdiff, :GcommitなどGで始まるコマンドを提供
+                              " 現在のバッファに対するgit操作を行う
+Plug 'airblade/vim-gitgutter' " gitの差分を左端に表示する
+Plug 'cohama/agit.vim'        " :Agitでgitのログを見る
 
 " ステータスライン強化
 Plug 'itchyny/lightline.vim'
