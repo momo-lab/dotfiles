@@ -11,6 +11,7 @@ set laststatus=2
 set t_Co=256                        " カラー設定
 set nobackup                        " backupファイルを作らない
 set noswapfile                      " swapファイルを作らない
+set hidden                          " 保存していないファイルがあってもファイルを開く
 set number                          " 行番号を表示
 set title                           " ウィンドウタイトルにファイル名を表示
 set clipboard& clipboard+=unnamed   " Yankしたらクリップボードへ
