@@ -17,6 +17,10 @@ set title                           " ウィンドウタイトルにファイル
 set clipboard& clipboard+=unnamed   " Yankしたらクリップボードへ
 set visualbell t_vb=                " ESCのビープ音を消す
 
+" 不可視文字
+set list
+set listchars=tab:▸\ ,eol:↲,extends:❯,precedes:❮
+
 " タブ
 function! s:setlocaltab(index)
   exec "setlocal tabstop=" . a:index . " shiftwidth=" . a:index . " softtabstop=" . a:index
