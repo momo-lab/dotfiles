@@ -1,6 +1,3 @@
-" カラー設定
-set t_Co=256
-
 " エンコーディング指定
 set encoding=utf-8
 set fileencoding=utf-8
@@ -11,12 +8,13 @@ set fileformats=unix,dos,mac
 " ステータス行
 set laststatus=2
 
-" backup / swp を作らない
-set nobackup
-set noswapfile
-
-" 行番号を表示
-set number
+set t_Co=256                        " カラー設定
+set nobackup                        " backupファイルを作らない
+set noswapfile                      " swapファイルを作らない
+set number                          " 行番号を表示
+set title                           " ウィンドウタイトルにファイル名を表示
+set clipboard& clipboard+=unnamed   " Yankしたらクリップボードへ
+set visualbell t_vb=                " ESCのビープ音を消す
 
 " タブ
 function! s:setlocaltab(index)
@@ -29,15 +27,6 @@ augroup END
 set tabstop=4 shiftwidth=4 softtabstop=4
 set autoindent
 set expandtab
-
-" Yankしたらクリップボードへ
-set clipboard& clipboard+=unnamed
-
-" ウィンドウタイトルにファイル名を表示
-set title
-
-" ESCのビープ音を消す
-set visualbell t_vb=
 
 " ヘルプは q で閉じる
 augroup vimrc_close
