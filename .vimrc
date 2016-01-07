@@ -52,6 +52,9 @@ nnoremap zz za
 
 call plug#begin('~/.vim/plugged')
 
+" カラースキーマ
+Plug 'w0ng/vim-hybrid'
+
 " CtrlP
 Plug 'ctrlpvim/ctrlp.vim'
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
@@ -70,6 +73,9 @@ Plug 'itchyny/lightline.vim'
 Plug 'itchyny/lightline-powerful'
 
 call plug#end()
+
+" カラースキーマ
+colorscheme hybrid
 
 " .vimrcを開く
 nnoremap <F6> :<C-u>tabedit $MYVIMRC<CR>
