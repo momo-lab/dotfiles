@@ -65,6 +65,10 @@ Plug 'tpope/vim-fugitive'     " :Gwrite, :Gdiff, :GcommitなどGで始まるコ�
 Plug 'airblade/vim-gitgutter' " gitの差分を左端に表示する
 Plug 'cohama/agit.vim'        " :Agitでgitのログを見る
 
+" HTML 用
+Plug 'mattn/emmet-vim'
+let g:user_emmet_leader_key = '<c-y>'
+
 " CoffeeScript 用
 Plug 'kchmck/vim-coffee-script' " CoffeeScript用syntax highlight
 
