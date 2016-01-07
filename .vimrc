@@ -8,6 +8,7 @@ set fileformats=unix,dos,mac
 " ステータス行
 set laststatus=2
 
+set background=dark                 " 背景は黒ベース
 set t_Co=256                        " カラー設定
 set nobackup                        " backupファイルを作らない
 set noswapfile                      " swapファイルを作らない
