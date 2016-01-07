@@ -4,7 +4,7 @@
   btree = log --graph --oneline --decorate --simplify-by-decoration --all
   btr = log --graph --oneline --decorate --simplify-by-decoration --all
   st = status
-  ci = commit
+  ci = commit -v
   cim = commit -m
   co = checkout
 [color]
