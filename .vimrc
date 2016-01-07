@@ -70,5 +70,5 @@ Plug 'itchyny/lightline-powerful'
 call plug#end()
 
 " .vimrcを開く
-nnoremap <F5> :<C-u>tabedit $MYVIMRC<CR>
-nnoremap <F6> :<C-u>source $MYVIMRC<CR>
+nnoremap <F6> :<C-u>tabedit $MYVIMRC<CR>
+nnoremap <F5> :<C-u>source $MYVIMRC<CR>
