@@ -59,6 +59,9 @@ Plug 'tpope/vim-fugitive'     " :Gwrite, :Gdiff, :GcommitなどGで始まるコ�
 Plug 'airblade/vim-gitgutter' " gitの差分を左端に表示する
 Plug 'cohama/agit.vim'        " :Agitでgitのログを見る
 
+" CoffeeScript 用
+Plug 'kchmck/vim-coffee-script' " CoffeeScript用syntax highlight
+
 " ステータスライン強化
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/lightline-powerful'
