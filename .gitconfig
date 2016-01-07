@@ -10,7 +10,7 @@
 [color]
   ui = auto
 [core]
-  autocrlf = false
+  autocrlf = true
 [include]
   path = .gitconfig_local
 [pull]
