@@ -29,6 +29,8 @@ endfunction
 augroup vimrc_tab
   autocmd!
   autocmd FileType vim call s:setlocaltab(2)
+  autocmd FileType coffee call s:setlocaltab(2)
+  autocmd FileType html call s:setlocaltab(2)
 augroup END
 set tabstop=4 shiftwidth=4 softtabstop=4
 set autoindent
