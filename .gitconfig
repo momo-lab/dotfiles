@@ -11,6 +11,7 @@
   ui = auto
 [core]
   autocrlf = input
+    editor = vim
 [include]
   path = .gitconfig_local
 [pull]
