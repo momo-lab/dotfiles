@@ -10,7 +10,7 @@
 [color]
   ui = auto
 [core]
-  autocrlf = input
+  autocrlf = false
     editor = vim
 [include]
   path = .gitconfig_local
