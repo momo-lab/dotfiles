@@ -2,18 +2,16 @@
 
 # initialize
 dotfiles_initialize() {
-    echo "Initialize vim plugins."
-    vim +PlugInstall +qall
-
-    echo "Initialize zsh"
-    init/zsh.sh
+    echo "Initialize."
+    for file in init/*.sh; do
+        $file
+    done
 }
 
 # deploy
 dotfiles_deploy() {
     echo "Deploy dotfiles."
-    for file in .??*
-    do
+    for file in .??*; do
         [[ "$file" == ".git" ]] && continue
 
         ln -sfnv $(cd $(dirname $file) && pwd)/$(basename $file) $HOME/$file

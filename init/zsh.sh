@@ -1,5 +1,7 @@
 #!/usr/bin/env zsh
 
+echo "Initialize zsh & prezto"
+
 PREZTODIR=${ZDOTDIR:-$HOME}/.zprezto
 PREZTOURL=https://github.com/sorin-ionescu/prezto.git
 
