@@ -76,7 +76,7 @@ if has('vim_starting')
   if !isdirectory(s:vim_plug_path)
     echo 'install vim-plug...'
     call system('mkdir -p '. s:vim_plug_path)
-    call system('git clone ' . s:vim_plug_url . ' ' . s:vim_plug_path . '/autoload')
+    call system('git clone --depth 1 ' . s:vim_plug_url . ' ' . s:vim_plug_path . '/autoload')
   endif
 endif
 
