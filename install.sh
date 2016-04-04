@@ -4,6 +4,9 @@
 dotfiles_initialize() {
     echo "Initialize vim plugins."
     vim +PlugInstall +qall
+
+    echo "Initialize zsh"
+    init/zsh.sh
 }
 
 # deploy
