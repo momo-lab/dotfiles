@@ -1,4 +1,4 @@
-#/bin/sh
+#!/bin/bash
 
 # initialize
 dotfiles_initialize() {
