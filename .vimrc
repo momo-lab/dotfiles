@@ -16,6 +16,10 @@ set fileformats=unix,dos,mac
 
 " ステータス行
 set laststatus=2
+" gvimなら常にタブ表示
+if has('gui')
+  set showtabline=2
+endif
 
 set background=dark                 " 背景は黒ベース
 set t_Co=256                        " カラー設定
@@ -31,7 +35,7 @@ set visualbell t_vb=                " ESCのビープ音を消す
 set list
 set listchars=tab:▸\ ,eol:↲,extends:❯,precedes:❮
 
-" タブ
+" インデント
 function! s:setlocaltab(index)
   exec "setlocal tabstop=" . a:index . " shiftwidth=" . a:index . " softtabstop=" . a:index
 endfunction
@@ -138,9 +142,11 @@ Plug 'itchyny/lightline-powerful'
 call plug#end()
 
 " カラースキーマ
+let g:mycolorscheme = 'desert'
 if s:has_plugin('vim-hybrid')
-  colorscheme hybrid
+  let g:mycolorscheme = 'hybrid'
 endif
+exec "colorscheme " . g:mycolorscheme
 
 " .vimrcを開く
 nnoremap <F6> :<C-u>tabedit $MYVIMRC<CR>
