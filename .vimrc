@@ -1,14 +1,16 @@
 " 各種パス
-let s:is_windows = has('win16') || has('win32') || has('win64')
+let s:is_windows = has('win32') || has('win64')
+let $DOTVIM = expand('~/.vim')
+set rtp&
 if s:is_windows
-  let $DOTVIM = expand('~/vimfiles')
-  set wildignore=*\\node_modules\\*,*\\.DS_Store,*\\.git\\*,*\\.svn\\*
-else
-  let $DOTVIM = expand('~/.vim')
-  set wildignore=*/node_modules/*,*/.DS_Store,*/.git/*,*/.svn/*
+  " $HOME/vimfilesを$HOME/.vimに変更
+  let s:rtp = substitute(&rtp,
+        \ substitute(expand($HOME).'/vimfiles', '\\', '\\\\', 'g'),
+        \ substitute(expand($HOME).'/.vim', '\\', '\\\\', 'g'),
+        \ 'g')
+  exec 'set rtp='.s:rtp
 endif
-let $PLUGDIR = $DOTVIM . "/plugged"
-"
+
 " エンコーディング指定
 set encoding=utf-8
 set fileencoding=utf-8
@@ -33,6 +35,13 @@ set title                           " ウィンドウタイトルにファイル
 set clipboard& clipboard+=unnamed   " Yankしたらクリップボードへ
 set visualbell t_vb=                " ESCのビープ音を消す
 
+" 除外ファイル指定
+if s:is_windows
+  set wildignore=*\\node_modules\\*,*\\.DS_Store,*\\.git\\*,*\\.svn\\*
+else
+  set wildignore=*/node_modules/*,*/.DS_Store,*/.git/*,*/.svn/*
+endif
+"
 " undo
 let s:undodir = $DOTVIM . "/undo"
 if !isdirectory(s:undodir)
@@ -79,10 +88,11 @@ function! s:has_plugin(name)
 endfunction
 
 "vim-plugの準備
+let $PLUGDIR = $DOTVIM . "/plugged"
 let s:vim_plug_url = 'https://github.com/junegunn/vim-plug.git'
 let s:vim_plug_path = $PLUGDIR . '/vim-plug'
 if has('vim_starting')
-  exec 'set rtp& rtp+=' . s:vim_plug_path
+  exec 'set rtp+=' . s:vim_plug_path
   if !isdirectory(s:vim_plug_path)
     echo 'install vim-plug...'
     call system('mkdir -p '. s:vim_plug_path)
