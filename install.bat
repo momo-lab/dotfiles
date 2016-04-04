@@ -27,7 +27,6 @@ GOTO :EOF
   IF "%FILENAME%" == ".git" GOTO :EOF
 
   SET SRCPATH=%~dp0%FILENAME%
-  IF "%FILENAME%" == ".vimrc" SET FILENAME="_vimrc"
   SET LINKPATH=%HOME%\%FILENAME%
 
   REM すでにあるリンクを削除
