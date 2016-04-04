@@ -14,5 +14,7 @@
     editor = vim
 [include]
   path = .gitconfig_local
+[push]
+    default = simple
 [pull]
   rebase = true
