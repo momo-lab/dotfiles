@@ -1,3 +1,12 @@
+" 各種パス
+let s:is_windows = has('win16') || has('win32') || has('win64')
+if s:is_windows
+  let $DOTVIM = expand('~/vimfiles')
+else
+  let $DOTVIM = expand('~/.vim')
+endif
+let $PLUGDIR = $DOTVIM . "/plugged"
+"
 " エンコーディング指定
 set encoding=utf-8
 set fileencoding=utf-8
@@ -50,7 +59,28 @@ nnoremap vv viw
 " 折り畳み
 nnoremap zz za
 
-call plug#begin('~/.vim/plugged')
+"プラグインの存在チェック
+function! s:has_plugin(name)
+  return has_key(g:plugs, a:name) ? isdirectory(g:plugs[a:name].dir) : 0
+endfunction
+
+"vim-plugの準備
+let s:vim_plug_url = 'https://github.com/junegunn/vim-plug.git'
+let s:vim_plug_path = $PLUGDIR . '/vim-plug'
+if has('vim_starting')
+  exec 'set rtp& rtp+=' . s:vim_plug_path
+  if !isdirectory(s:vim_plug_path)
+    echo 'install vim-plug...'
+    call system('mkdir -p '. s:vim_plug_path)
+    call system('git clone ' . s:vim_plug_url . ' ' . s:vim_plug_path . '/autoload')
+  endif
+endif
+
+call plug#begin($PLUGDIR)
+
+" vim-plug
+Plug 'junegunn/vim-plug',
+  \ {'dir': $PLUGDIR . '/vim-plug/autoload'}
 
 " カラースキーマ
 Plug 'w0ng/vim-hybrid'
@@ -107,7 +137,9 @@ Plug 'itchyny/lightline-powerful'
 call plug#end()
 
 " カラースキーマ
-colorscheme hybrid
+if s:has_plugin('vim-hybrid')
+  colorscheme hybrid
+endif
 
 " .vimrcを開く
 nnoremap <F6> :<C-u>tabedit $MYVIMRC<CR>
