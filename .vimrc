@@ -31,6 +31,14 @@ set title                           " ウィンドウタイトルにファイル
 set clipboard& clipboard+=unnamed   " Yankしたらクリップボードへ
 set visualbell t_vb=                " ESCのビープ音を消す
 
+" undo
+let s:undodir = $DOTVIM . "/undo"
+if !isdirectory(s:undodir)
+  call system('mkdir -p '. s:undodir)
+endif
+set undofile
+exec "set undodir=" . s:undodir
+
 " 不可視文字
 set list
 set listchars=tab:▸\ ,eol:↲,extends:❯,precedes:❮
