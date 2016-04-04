@@ -41,7 +41,7 @@ if s:is_windows
 else
   set wildignore=*/node_modules/*,*/.DS_Store,*/.git/*,*/.svn/*
 endif
-"
+
 " undo
 let s:undodir = $DOTVIM . "/undo"
 if !isdirectory(s:undodir)
@@ -87,24 +87,7 @@ function! s:has_plugin(name)
   return has_key(g:plugs, a:name) ? isdirectory(g:plugs[a:name].dir) : 0
 endfunction
 
-"vim-plugの準備
-let $PLUGDIR = $DOTVIM . "/plugged"
-let s:vim_plug_url = 'https://github.com/junegunn/vim-plug.git'
-let s:vim_plug_path = $PLUGDIR . '/vim-plug'
-if has('vim_starting')
-  exec 'set rtp+=' . s:vim_plug_path
-  if !isdirectory(s:vim_plug_path)
-    echo 'install vim-plug...'
-    call system('mkdir -p '. s:vim_plug_path)
-    call system('git clone --depth 1 ' . s:vim_plug_url . ' ' . s:vim_plug_path . '/autoload')
-  endif
-endif
-
-call plug#begin($PLUGDIR)
-
-" vim-plug
-Plug 'junegunn/vim-plug',
-  \ {'dir': $PLUGDIR . '/vim-plug/autoload'}
+call plug#begin($DOTVIM.'/plugged')
 
 " カラースキーマ
 Plug 'w0ng/vim-hybrid'
