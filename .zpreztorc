@@ -165,20 +165,3 @@ zstyle ':prezto:module:ruby:chruby' auto-switch 'yes'
 
 # Integrate with iTerm2.
 # zstyle ':prezto:module:tmux:iterm' integrate 'yes'
-
-# Setting peco
-function peco-history-selection {
-    BUFFER=`history -n 1 | tac | awk '!a[$0]++' | peco`
-    CURSOR=$#BUFFER
-    zle reset-prompt
-}
-zle -N peco-history-selection
-bindkey '^R' peco-history-selection
-
-function ptv {
-  filepath="$(echo $(pt "$@" | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " \047" $1 "\047"}'))"
-  if [ "$filepath" != "" ]; then
-    eval $(echo "vim $filepath")
-  fi
-}
-
