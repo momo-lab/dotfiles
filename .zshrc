@@ -14,7 +14,7 @@ fi
 
 # Setting peco
 function peco-history-selection {
-    BUFFER=`history -n 1 | tac | awk '!a[$0]++' | peco`
+    BUFFER=`history -n 1 | tac | awk '!a[$0]++' | peco --query "$LBUFFER"`
     CURSOR=$#BUFFER
     zle reset-prompt
 }
