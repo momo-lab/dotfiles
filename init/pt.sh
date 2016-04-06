@@ -1,18 +1,19 @@
 #!/bin/bash
 
 INSTALL_DIR=~/bin
-PT_VERSION=v2.1.1
-PT_PATH=pt_linux_amd64
-PT_URL=https://github.com/monochromegane/the_platinum_searcher/releases/download/${PT_VERSION}/${PT_PATH}.tar.gz
+VERSION=v2.1.1
+FILENAME=pt_linux_amd64
+URL=https://github.com/monochromegane/the_platinum_searcher/releases/download/${VERSION}/${FILENAME}.tar.gz
+COMMAND_NAME=pt
 WORKDIR=$(mktemp -d --tmpdir=.)
 
 echo "Install platinum searcher." >&2
 
 cd $WORKDIR
-curl -LO $PT_URL
-tar xzf ${PT_PATH}.tar.gz
+curl -LO $URL
+tar vxzf ${FILENAME}.tar.gz
 mkdir -p $INSTALL_DIR
-cp ${PT_PATH}/pt $INSTALL_DIR
+cp -v ${FILENAME}/${COMMAND_NAME} $INSTALL_DIR
 cd -
 rm -rf $WORKDIR
 
