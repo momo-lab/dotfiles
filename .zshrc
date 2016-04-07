@@ -7,6 +7,8 @@ source ~/.zplug/init.zsh || { git clone -b v2 https://github.com/b4b4r07/zplug ~
 zplug "zsh-users/zsh-syntax-highlighting"
 # up/downで履歴選択時、入力済みの内容にマッチする履歴を選ぶようにする
 zplug "zsh-users/zsh-history-substring-search"
+# 入力補完
+zplug "zsh-users/zsh-completions"
 # 選択的インタフェースなやつ
 zplug "junegunn/fzf-bin", as:command, from:gh-r, as:command, rename-to:fzf
 # grepのすごいやつ
@@ -24,10 +26,30 @@ zplug check || zplug install
 # load plugins
 zplug load
 
+
 # History
 HISTFILE=~/.zsh_history
 HISTSIZE=100000
 SAVEHIST=100000
+
+
+# Completions
+autoload -Uz compinit; compinit -i
+
+# Group matches and describe.
+zstyle ':completion:*:*:*:*:*' menu select
+zstyle ':completion:*:matches' group 'yes'
+zstyle ':completion:*:options' description 'yes'
+zstyle ':completion:*:options' auto-description '%d'
+zstyle ':completion:*:corrections' format ' %F{green}-- %d (errors: %e) --%f'
+zstyle ':completion:*:descriptions' format ' %F{yellow}-- %d --%f'
+zstyle ':completion:*:messages' format ' %F{purple} -- %d --%f'
+zstyle ':completion:*:warnings' format ' %F{red}-- no matches found --%f'
+zstyle ':completion:*:default' list-prompt '%S%M matches%s'
+zstyle ':completion:*' format ' %F{yellow}-- %d --%f'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' verbose yes
+
 
 # Prompt
 #autoload -U colors; colors
@@ -64,6 +86,7 @@ bindkey -M emacs '^K' history-substring-search-up
 bindkey -M emacs '^J' history-substring-search-down
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
+
 
 # Aliases
 alias ls="ls --color=auto -F"
