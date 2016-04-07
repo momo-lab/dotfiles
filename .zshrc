@@ -94,3 +94,20 @@ alias ls="ls --color=auto -F"
 alias ll="ls -l"
 alias lla="ls -la"
 
+
+# .zshrcを編集しやすくするテスト
+function __load_zshrc() {
+  echo
+  source ~/.zshrc
+  zle reset-prompt
+}
+zle -N __load_zshrc
+bindkey "^[[15~" __load_zshrc # F5キー
+# FIXME:viコマンドがうまく動いてくれない。。。
+#function __edit_zshrc() {
+#  vi ~/.zshrc
+#  zle reset-prompt
+#}
+#zle -N __edit_zshrc
+#bindkey "^[[17~" __edit_zshrc # F6キー
+
