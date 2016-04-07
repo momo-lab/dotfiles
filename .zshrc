@@ -3,6 +3,10 @@
 # Clone zplug:v2 if not found
 source ~/.zplug/init.zsh || { git clone -b v2 https://github.com/b4b4r07/zplug ~/.zplug && source ~/.zplug/init.zsh }
 
+# zplugsを初期化しないとプラグインを多重読み込みしちゃう
+unset zplugs
+typeset -g -A zplugs
+
 # 入力した文字の色を変える
 zplug "zsh-users/zsh-syntax-highlighting"
 # up/downで履歴選択時、入力済みの内容にマッチする履歴を選ぶようにする
