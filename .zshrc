@@ -22,9 +22,6 @@ zplug "b4b4r07/enhancd", use:enhancd.sh
 # gitのルートに移動
 zplug "mollifier/cd-gitroot"
 
-# テーマ
-#zplug "sindresorhus/pure"
-
 # install any uninstalled plugins
 zplug check || zplug install
 # load plugins
