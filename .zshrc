@@ -1,30 +1,72 @@
-#
-# Executes commands at the start of an interactive session.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
+# Clone zplug:v1 if not found
+#source ~/.zplug/zplug || { curl -fLo ~/.zplug/zplug --create-dirs git.io/zplug && source ~/.zplug/zplug }
+# Clone zplug:v2 if not found
+source ~/.zplug/init.zsh || { git clone -b v2 https://github.com/b4b4r07/zplug ~/.zplug && source ~/.zplug/init.zsh }
 
-# Source Prezto.
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-fi
+# 入力した文字の色を変える
+zplug "zsh-users/zsh-syntax-highlighting"
+# up/downで履歴選択時、入力済みの内容にマッチする履歴を選ぶようにする
+zplug "zsh-users/zsh-history-substring-search"
+# 選択的インタフェースなやつ
+zplug "junegunn/fzf-bin", as:command, from:gh-r, as:command, rename-to:fzf
+# grepのすごいやつ
+zplug "monochromegane/the_platinum_searcher", as:command, from:gh-r, rename-to:pt
+# cdを便利にするやつ
+zplug "b4b4r07/enhancd", use:enhancd.sh
+# gitのルートに移動
+zplug "mollifier/cd-gitroot"
 
-# Customize to your needs...
+# テーマ
+#zplug "sindresorhus/pure"
 
-# Setting peco
-function peco-history-selection {
-    BUFFER=`history -n 1 | tac | awk '!a[$0]++' | peco --query "$LBUFFER"`
-    CURSOR=$#BUFFER
-    zle reset-prompt
+# install any uninstalled plugins
+zplug check || zplug install
+# load plugins
+zplug load
+
+# History
+HISTFILE=~/.zsh_history
+HISTSIZE=100000
+SAVEHIST=100000
+
+# Prompt
+#autoload -U colors; colors
+#PROMPT="%{${fg[cyan]}%}%d%{${reset_color}%}%# "
+autoload -Uz vcs_info
+autoload -Uz add-zsh-hook
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' stagedstr '%F{green}+%f'
+zstyle ':vcs_info:git:*' unstagedstr '%F{yellow}!%f'
+zstyle ':vcs_info:*' formats '[%s:%b%c%u]'
+zstyle ':vcs_info:*' actionformats '[%s:%b%c%u|%F{cyan}%a%f]'
+function _update_vcs_info_msg() {
+  LANG=en_US.UTF-8 vcs_info
+  PROMPT="%~ ${vcs_info_msg_0_}%# "
+  RPROMPT=
 }
-zle -N peco-history-selection
-bindkey '^R' peco-history-selection
-
-function ptv {
-  filepath="$(echo $(pt "$@" | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " \047" $1 "\047"}'))"
-  if [ "$filepath" != "" ]; then
-    eval $(echo "vim $filepath")
+function _update_rbenv_msg() {
+  ver=$(rbenv local 2> /dev/null)
+  if [[ "$ver" != "" ]]; then
+    RPROMPT="[ruby $ver]"
   fi
 }
+add-zsh-hook precmd _update_vcs_info_msg
+add-zsh-hook precmd _update_rbenv_msg
+
+
+# Setting zsh-history-substring-search
+zmodload zsh/terminfo
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+bindkey -M emacs '^K' history-substring-search-up
+bindkey -M emacs '^J' history-substring-search-down
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
+
+# Aliases
+alias ls="ls --color=auto -F"
+alias ll="ls -l"
+alias lla="ls -la"
 
