@@ -86,6 +86,9 @@ nnoremap zz za
 function! s:has_plugin(name)
   return has_key(g:plugs, a:name) ? isdirectory(g:plugs[a:name].dir) : 0
 endfunction
+" プラグイン起動用プレフィクス(Plugin's Prefixでpp)
+nnoremap [pp] <Nop>
+nmap <Space> [pp]
 
 call plug#begin($DOTVIM.'/plugged')
 
@@ -101,6 +104,18 @@ Plug 'tpope/vim-fugitive'     " :Gwrite, :Gdiff, :GcommitなどGで始まるコ�
                               " 現在のバッファに対するgit操作を行う
 Plug 'airblade/vim-gitgutter' " gitの差分を左端に表示する
 Plug 'cohama/agit.vim'        " :Agitでgitのログを見る
+
+" Gist 用
+Plug 'lambdalisue/vim-gista'
+Plug 'lambdalisue/vim-gista-ctrlp'
+let g:gista#command#list#default_opener = 'botright 15 split'
+let g:gista#command#post#default_public = 0
+nnoremap <silent> [pp]s :<C-u>Gista list<CR>
+nnoremap <silent> [pp]S :<C-u>CtrlPGista<CR>
+autocmd FileType gista-list call s:gista_list_mappings()
+function! s:gista_list_mappings()
+  nmap <buffer> <ESC> <Plug>(gista-quit)
+endfunction
 
 " HTML 用
 Plug 'mattn/emmet-vim'
