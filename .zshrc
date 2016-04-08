@@ -13,14 +13,15 @@ zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-history-substring-search"
 # 入力補完
 zplug "zsh-users/zsh-completions"
-# 選択的インタフェースなやつ
-zplug "junegunn/fzf-bin", as:command, from:gh-r, as:command, rename-to:fzf
-# grepのすごいやつ
-zplug "monochromegane/the_platinum_searcher", as:command, from:gh-r, rename-to:pt
 # cdを便利にするやつ
 zplug "b4b4r07/enhancd", use:enhancd.sh
 # gitのルートに移動
 zplug "mollifier/cd-gitroot"
+
+# 選択的インタフェースなやつ
+zplug "junegunn/fzf-bin", as:command, from:gh-r, as:command, rename-to:fzf
+# grepのすごいやつ
+zplug "monochromegane/the_platinum_searcher", as:command, from:gh-r, rename-to:pt
 
 # install any uninstalled plugins
 zplug check || zplug install
