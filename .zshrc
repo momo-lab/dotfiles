@@ -1,3 +1,6 @@
+# Color
+export TERM=xterm-256color
+
 # Clone zplug:v1 if not found
 #source ~/.zplug/zplug || { curl -fLo ~/.zplug/zplug --create-dirs git.io/zplug && source ~/.zplug/zplug }
 # Clone zplug:v2 if not found
