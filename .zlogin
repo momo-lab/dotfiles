@@ -16,3 +16,8 @@ fi
 
 ### Added by $HOME/bin
 export PATH="$HOME/bin:$PATH"
+
+### tmux起動
+if [[ -x "$(which tmux)" && -z $TMUX ]]; then
+  tmux -2 attach || tmux -2 new-session
+fi
