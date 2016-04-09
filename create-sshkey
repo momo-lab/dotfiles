@@ -1,0 +1,24 @@
+#!/bin/bash
+
+host=$1
+if [[ "$host" == "" ]]; then
+    echo "usage: $0 <hostname>"
+    exit 1;
+fi
+
+ssh-keygen -f $HOME/.ssh/$host
+if [[ $? == 1 ]]; then
+    exit 1
+fi
+
+grep "Host $host" $HOME/.ssh/config > /dev/null
+if [[ $? == 1 ]]; then
+    echo "write $HOME/.ssh/config" >&2
+    echo "
+Host $host
+    Identityfile ~/.ssh/$host" >> $HOME/.ssh/config
+fi
+
+echo "--- Show Public Key ---" >&2
+cat $HOME/.ssh/$host.pub >&2
+
