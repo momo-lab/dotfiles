@@ -2,6 +2,6 @@
 
 _gl() {
     local repos
-    repos=($(ghq list --unique))
-    _values 'repositories' $repos
+    repos=($(ghq list | awk -F'/' '{print $NF "[" $0 "]"}'))
+    _values 'Repositories' $repos
 }
