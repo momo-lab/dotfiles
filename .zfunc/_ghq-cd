@@ -1,6 +1,6 @@
-#compdef gl
+#compdef ghq-cd
 
-_gl() {
+_ghq-cd() {
     local repos
     repos=($(ghq list | awk -F'/' '{print $NF "[" $0 "]"}'))
     _values 'Repositories' $repos
