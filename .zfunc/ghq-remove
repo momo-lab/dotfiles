@@ -1,0 +1,41 @@
+#vim:ft=zsh
+confirm() {
+  local line
+  read "line?$1 [yN]:"
+  case "$line" in
+    [Yy]*) return 0 ;;
+    *) return 1 ;;
+  esac
+}
+
+check_repos() {
+  local msg
+  local ret
+  # check uncommited files.
+  msg=$(git -c status.color=always status --short)
+  if [[ $? != 0 || -n "$msg" ]]; then
+    echo "\e[31mThis repository is dirty:\e[0m"
+    sed 's/^/    /' <<< "$msg"
+    ret=$((ret + 1))
+  fi
+  # check unpushed commits.
+  msg=$(git log --branches --not --remotes --oneline --graph --decorate --color=always)
+  if [[ $? != 0 || -n "$msg" ]]; then
+    echo "\e[31mThere are unpushed commits:\e[0m"
+    sed 's/^/    /' <<< "$msg"
+    ret=$((ret + 1))
+  fi
+  return $ret
+}
+
+for repo in $(ghq list | fzf -m); do
+  printf "\e[1;34m> %s\e[0m\n" "$repo"
+  (
+    repo=$(ghq root)/$repo
+    cd "$repo"
+    check_repos
+    if [[ $? = 0 ]] || confirm "Are you sure you want to remove it?"; then
+      rm -rf "$repo"
+    fi
+  )
+done
