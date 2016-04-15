@@ -1,0 +1,10 @@
+# vim: ft=zsh
+ghq_root=$(ghq root)
+for ghq_path in $(ghq list | grep -E "$*"); do
+  cd $ghq_root/$ghq_path
+  if [[ 0 -lt $(git status -s| wc -l) ]]; then
+    echo -n "$ghq_path> "
+    git -c status.color=always status -s -b | sed '2,$s/^/  /'
+  fi
+  cd - > /dev/null
+done
