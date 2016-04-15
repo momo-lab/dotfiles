@@ -28,6 +28,11 @@ zplug "motemen/ghq", as:command, from:gh-r
 # githubコマンド
 zplug "github/hub", as:command, from:gh-r
 
+# zload
+zplug 'mollifier/zload', as:plugin
+# FIXME なぜかfpathに追加されない…
+fpath=(~/.zplug/repos/mollifier/zload $fpath)
+
 # install any uninstalled plugins
 zplug check || zplug install
 # load plugins
