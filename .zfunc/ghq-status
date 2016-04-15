@@ -1,4 +1,5 @@
-# vim: ft=zsh
+#!/usr/bin/env zsh
+
 ghq_root=$(ghq root)
 for ghq_path in $(ghq list | grep -E "$*"); do
   (
