@@ -120,7 +120,7 @@ bindkey "^[[15~" __load_zshrc # F5キー
 
 # fzf連携
 function gl() {
-  local repo=$(ghq list | fzf --query "$*")
+  local repo=$(ghq list | fzf --query "$*" --select-1)
   if [[ "$repo" != "" ]]; then
     cd $(ghq root)/$repo
   fi
