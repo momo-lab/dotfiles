@@ -122,12 +122,8 @@ bindkey "^[[15~" __load_zshrc # F5キー
 #zle -N __edit_zshrc
 #bindkey "^[[17~" __edit_zshrc # F6キー
 
-
-# fzf連携
-function gl() {
-  local repo=$(ghq list | fzf --query "$*" --select-1)
-  if [[ "$repo" != "" ]]; then
-    cd $(ghq root)/$repo
-  fi
-}
-
+# 自作関数群読み込み
+fpath=(~/.zfunc $fpath)
+for func in ~/.zfunc/[^_]*(:t); do
+  autoload -Uz $func
+done

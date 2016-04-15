@@ -1,0 +1,7 @@
+#compdef gl
+
+_gl() {
+    local repos
+    repos=($(ghq list --unique))
+    _values 'repositories' $repos
+}

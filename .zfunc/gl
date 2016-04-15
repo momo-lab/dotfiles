@@ -1,0 +1,6 @@
+# ghqとfzf連携
+
+local repo=$(ghq list | fzf --query "$*" --select-1)
+if [[ "$repo" != "" ]]; then
+  cd $(ghq root)/$repo
+fi
