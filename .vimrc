@@ -161,6 +161,8 @@ let g:quickrun_config = {
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/lightline-powerful'
 
+Plug 'renumber.vim'
+
 call plug#end()
 
 " カラースキーマ
