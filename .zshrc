@@ -123,7 +123,7 @@ bindkey "^[[15~" __load_zshrc # F5キー
 #bindkey "^[[17~" __edit_zshrc # F6キー
 
 # 自作関数群読み込み
-fpath=(~/.zfunc $fpath)
+fpath=(~/.zfunc $fpath); compinit
 for func in ~/.zfunc/[^_]*(:t); do
   autoload -Uz $func
 done
