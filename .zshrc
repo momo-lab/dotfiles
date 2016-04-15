@@ -100,12 +100,6 @@ bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 
 
-# Aliases
-alias ls="ls --color=auto -F"
-alias ll="ls -l"
-alias lla="ls -la"
-
-
 # .zshrcを編集しやすくするテスト
 function __load_zshrc() {
   echo
@@ -127,3 +121,12 @@ fpath=(~/.zfunc $fpath); compinit
 for func in ~/.zfunc/[^_]*(:t); do
   autoload -Uz $func
 done
+
+# Aliases
+alias ls="ls --color=auto -F"
+alias ll="ls -l"
+alias lla="ls -la"
+
+alias gs="git status -sb; git log --branches --not --remotes --oneline --graph --decorate"
+alias gl="ghq-cd"
+
