@@ -16,8 +16,6 @@ zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-history-substring-search"
 # 入力補完
 zplug "zsh-users/zsh-completions"
-# cdを便利にするやつ
-zplug "b4b4r07/enhancd", use:enhancd.sh
 # gitのルートに移動
 zplug "mollifier/cd-gitroot"
 
