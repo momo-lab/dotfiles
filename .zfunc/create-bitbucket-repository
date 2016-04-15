@@ -1,0 +1,61 @@
+# Get user
+user=$(git config bitbucket.user)
+if [[ "$user" == "" ]]; then
+    echo "bitbucketのユーザ名を設定してください"
+    echo "  git config --global bitbucket.user <user name>"
+    return 1
+fi
+
+# Get repository name
+repo=$1
+if [[ "$repo" == "" ]]; then
+    if [[ -d "./.git" ]]; then
+        repo=$(dirname ${0:a})
+        repo=${repo:t}
+    else
+        echo "リポジトリ名を指定してください"
+        return 1
+    fi
+else
+    if [[ -d $repo ]]; then
+        echo "既にディレクトリが存在します"
+        return 1
+    fi
+fi
+
+# create repository
+echo "Create [$user/$repo] repository"
+sc=$(curl --request POST --user $user https://api.bitbucket.org/1.0/repositories/ --data name=$repo --data scm=git --data is_private=true -w '%{http_code}' -s -o /dev/null)
+if [[ "$sc" == "401" ]]; then
+    echo "認証失敗"
+    return 1
+elif [[ "$sc" == "400" ]]; then
+    echo "既にリポジトリが存在します"
+    return 1
+elif [[ "$sc" != "200" ]]; then
+    echo "リポジトリ作成エラー code=$sc"
+    return 1
+fi
+
+if [[ "$1" != "" ]]; then
+    # ghq get
+    ghq get git@bitbucket.org:$user/$repo.git
+    cd $(ghq root)/bitbucket.org/$user/$repo
+
+    # first commit
+    git commit --allow-empty -m "First commit."
+    git push --set-upstream origin master
+else
+    # git remote add
+    git remote add origin git@bitbucket.org:$user/$repo.git
+
+    # push all
+    git push --set-upstream origin master
+    git push origin --all
+
+    # ghq get
+    ghq get git@bitbucket.org:$user/$repo.git
+    cd $(ghq root)/bitbucket.org/$user/$repo
+fi
+
+
