@@ -6,7 +6,7 @@ for ghq_path in $(ghq list | grep -E "$*"); do
     cd $ghq_root/$ghq_path
 
     status_msg=$(git status --short)
-    [[ $? != 0 || 1 -lt $(wc -l <<< "$status_msg") ]]
+    [[ $? != 0 || -n "$status_msg" ]]
     status_ret=$?
 
     log_msg=$(git log --branches --not --remotes --oneline --graph --decorate --color=always)
