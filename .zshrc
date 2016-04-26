@@ -75,19 +75,19 @@ zstyle ':vcs_info:*' formats '[%s:%b%c%u]'
 zstyle ':vcs_info:*' actionformats '[%s:%b%c%u|%F{cyan}%a%f]'
 function _update_vcs_info_msg() {
   LANG=en_US.UTF-8 vcs_info
-  PROMPT="%~ ${vcs_info_msg_0_}%# "
-  RPROMPT=
+  PROMPT="%~%# "
+  RPROMPT="${vcs_info_msg_0_}"
 }
 function _update_rbenv_msg() {
   ver=$(rbenv local 2> /dev/null)
   if [[ "$ver" != "" ]]; then
-    RPROMPT="[ruby $ver]"
+    RPROMPT="${RPROMPT}[ruby $ver]"
   fi
 }
 function _update_pyenv_msg() {
   ver=$(pyenv local 2> /dev/null)
   if [[ "$ver" != "" ]]; then
-    RPROMPT="[python $ver]"
+    RPROMPT="${RPROMPT}[python $ver]"
   fi
 }
 add-zsh-hook precmd _update_vcs_info_msg
