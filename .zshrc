@@ -137,3 +137,5 @@ alias lla="ls -la"
 alias gs="git status -sb; git log --branches --not --remotes --oneline --graph --decorate"
 alias gl="ghq-cd"
 
+alias rb="bundruby"
+

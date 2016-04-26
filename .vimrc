@@ -155,7 +155,7 @@ let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 " Quickrun
 Plug 'thinca/vim-quickrun'
 let g:quickrun_config = {
-            \ 'ruby.bundle': { 'command': 'ruby', 'cmdopt': 'bundle exec', 'exec': '%o %c %s' }
+            \ 'ruby': { 'command': 'bundruby' }
             \ }
 
 " ステータスライン強化

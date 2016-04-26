@@ -24,6 +24,7 @@ fi
 
 ### Added by $HOME/bin
 export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/.myscript/bin:$PATH"
 
 ### tmux起動
 if [[ -x "$(which tmux)" && -z $TMUX ]]; then

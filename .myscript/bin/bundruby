@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# TODO: bundleの存在チェック
+
+bundle check 2>&1 > /dev/null
+case $? in
+    0)
+        if [[ $# == 0 ]]; then
+            bundle console
+        else
+            bundle exec ruby "$*"
+        fi
+        ;;
+    10)
+        if [[ $# == 0 ]]; then
+            irb
+        else
+            ruby "$*"
+        fi
+        ;;
+    *)
+        bundle check
+        ;;
+esac
