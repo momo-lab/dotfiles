@@ -14,6 +14,14 @@ if [[ -d "${HOME}/.rbenv/bin" ]]; then
   eval "$(rbenv init - --no-rehash zsh)"
 fi
 
+# Load pyenv automatically by adding
+# the following to ~/.zshrc:
+if [[ -d "${HOME}/.rbenv/bin" ]]; then
+  export PATH="${HOME}/.pyenv/bin:$PATH"
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
+fi
+
 ### Added by $HOME/bin
 export PATH="$HOME/bin:$PATH"
 

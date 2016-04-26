@@ -84,8 +84,15 @@ function _update_rbenv_msg() {
     RPROMPT="[ruby $ver]"
   fi
 }
+function _update_pyenv_msg() {
+  ver=$(pyenv local 2> /dev/null)
+  if [[ "$ver" != "" ]]; then
+    RPROMPT="[python $ver]"
+  fi
+}
 add-zsh-hook precmd _update_vcs_info_msg
 add-zsh-hook precmd _update_rbenv_msg
+add-zsh-hook precmd _update_pyenv_msg
 
 
 # Setting zsh-history-substring-search
