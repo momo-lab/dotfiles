@@ -64,8 +64,10 @@ augroup vimrc_tab
   autocmd FileType coffee call s:setlocaltab(2)
   autocmd FileType html call s:setlocaltab(2)
   autocmd FileType ruby call s:setlocaltab(2)
-  autocmd FileType ruby.bundle call s:setlocaltab(2)
+  autocmd FileType eruby call s:setlocaltab(2)
+  autocmd FileType scss call s:setlocaltab(2)
   autocmd FileType zsh call s:setlocaltab(2)
+  autocmd FileType yaml call s:setlocaltab(2)
 augroup END
 set tabstop=4 shiftwidth=4 softtabstop=4
 set autoindent
