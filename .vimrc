@@ -37,9 +37,9 @@ set visualbell t_vb=                " ESCのビープ音を消す
 
 " 除外ファイル指定
 if s:is_windows
-  set wildignore=*\\vendor\\bundle\\*,*\\node_modules\\*,*\\.DS_Store,*\\.git\\*,*\\.svn\\*
+  set wildignore=*\\vendor\\bundle\\*,*\\node_modules\\*,*\\.DS_Store,*\\.git\\*,*\\.svn\\*,*.cache
 else
-  set wildignore=*/vendor/bundle/*,*/node_modules/*,*/.DS_Store,*/.git/*,*/.svn/*
+  set wildignore=*/vendor/bundle/*,*/node_modules/*,*/.DS_Store,*/.git/*,*/.svn/*,*.cache
 endif
 
 " undo
