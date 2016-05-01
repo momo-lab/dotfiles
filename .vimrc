@@ -100,9 +100,46 @@ call plug#begin($DOTVIM.'/plugged')
 " カラースキーマ
 Plug 'w0ng/vim-hybrid'
 
-" CtrlP
-Plug 'ctrlpvim/ctrlp.vim'
-let g:ctrlp_show_hidden = 1
+" Unite.vim
+Plug 'Shougo/vimproc', { 'do': 'make' }
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/neomru.vim'
+let unite_split_rule = 'botright'
+let g:unite_enable_start_insert = 1
+let g:unite_enable_short_source_names = 1
+let g:unite_source_menu_menus = {}
+" unite-grepのバックエンドをptに切り替える
+" http://qiita.com/items/c8962f9325a5433dc50d
+let g:unite_source_grep_encoding = 'utf-8'
+if executable('pt')
+  let g:unite_source_grep_command = 'pt'
+  let g:unite_source_grep_default_opts = '/nocolor /nogroup'
+  let g:unite_source_grep_recursive_opt = ''
+  let g:unite_source_grep_max_candidates = 200
+endif
+autocmd FileType unite call s:unite_my_settings()
+function! s:unite_my_settings()
+  " <ESC>連打で終了
+  nmap <buffer> <ESC>   <Plug>(unite_exit)
+  imap <buffer> <ESC><ESC>   <Plug>(unite_exit)
+  " Ctrl+J/Kで選択
+  imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+  imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+  " 1ワード削除(インサートモードと同じ挙動になるようにする)
+  nmap <buffer> <C-w>   <Plug>(unite_delete_backspace_word)
+  " 既に入力されている文字を削除した状態で入力
+  nmap <buffer> I       <Plug>(unite_append_end)<Plug>(unite_delete_backward_line)
+  nmap <buffer> <C-u>   <Plug>(unite_append_end)<Plug>(unite_delete_backward_line)
+endfunction
+nnoremap [unite] <Nop>
+nmap <Space> [unite]
+" 前回のUnite結果を再表示
+nnoremap <silent> [unite]<Space> :<C-u>UniteResume<CR>
+" ソースを選択
+nnoremap <silent> [unite]s :<C-u>Unite source<CR>
+" カレントディレクトリ配下のファイルを表示
+nnoremap <silent> [unite]f :<C-u>Unite file_rec<CR>
+nnoremap <silent> <C-p> :<C-u>Unite file_rec<CR>
 
 " Git 用
 Plug 'tpope/vim-fugitive'     " :Gwrite, :Gdiff, :GcommitなどGで始まるコマンドを提供
