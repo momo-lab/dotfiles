@@ -16,7 +16,7 @@ fi
 
 # Load pyenv automatically by adding
 # the following to ~/.zshrc:
-if [[ -d "${HOME}/.rbenv/bin" ]]; then
+if [[ -d "${HOME}/.pyenv/bin" ]]; then
   export PATH="${HOME}/.pyenv/bin:$PATH"
   eval "$(pyenv init -)"
   eval "$(pyenv virtualenv-init -)"
