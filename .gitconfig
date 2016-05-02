@@ -24,3 +24,5 @@
   name = momotaro
 [github]
   user = momo-lab
+[bitbucket]
+  user = momo-lab
