@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/bin/bash
 confirm() {
   local line
   read "line?$1 [yN]:"
@@ -14,14 +14,14 @@ check_repos() {
   # check uncommited files.
   msg=$(git -c status.color=always status --short)
   if [[ $? != 0 || -n "$msg" ]]; then
-    echo "\e[31mThis repository is dirty:\e[0m"
+    echo -e "\e[31mThis repository is dirty:\e[0m"
     sed 's/^/    /' <<< "$msg"
     ret=$((ret + 1))
   fi
   # check unpushed commits.
   msg=$(git log --branches --not --remotes --oneline --graph --decorate --color=always)
   if [[ $? != 0 || -n "$msg" ]]; then
-    echo "\e[31mThere are unpushed commits:\e[0m"
+    echo -e "\e[31mThere are unpushed commits:\e[0m"
     sed 's/^/    /' <<< "$msg"
     ret=$((ret + 1))
   fi

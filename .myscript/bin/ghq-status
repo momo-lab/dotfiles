@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/bin/bash
 
 ghq_root=$(ghq root)
 for ghq_path in $(ghq list | grep -E "$*"); do
@@ -14,10 +14,10 @@ for ghq_path in $(ghq list | grep -E "$*"); do
     log_ret=$?
 
     if [[ $status_ret = 0 || $log_ret = 0 ]]; then
-      echo "\e[1;34m> $ghq_path\e[0m"
+      echo -e "\e[1;34m> $ghq_path\e[0m"
       git -c status.color=always status --branch --short
       if [[ $log_ret = 0 ]]; then
-        echo "$log_msg"
+        echo -e "$log_msg"
       fi
     fi
   )
