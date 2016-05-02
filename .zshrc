@@ -26,6 +26,8 @@ zplug "monochromegane/the_platinum_searcher", as:command, from:gh-r, rename-to:p
 # gitリポジトリ管理
 zplug "motemen/ghq", as:command, from:gh-r
 zplug "sona-tar/ghs", as:command, from:gh-r
+# ssh-keyをgithub/bitbucketに登録
+zplug "b4b4r07/ssh-keyreg", as:command, use:bin
 # githubコマンド
 zplug "github/hub", as:command, from:gh-r
 

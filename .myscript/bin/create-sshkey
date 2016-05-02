@@ -5,13 +5,26 @@ if [[ "$host" == "" ]]; then
   echo "usage: $0 <hostname>"
   exit 1;
 fi
+case "$host" in
+  "github")
+    host=github.com
+    ;;
+  "bitbucket")
+    host=bitbucket.org
+    ;;
+  "heroku")
+    host=heroku.com
+    ;;
+esac
 
-ssh-keygen -f $HOME/.ssh/$host
+keypath=$HOME/.ssh/$host
+config_file=$HOME/.ssh/config
+
+ssh-keygen -f $keypath
 if [[ $? == 1 ]]; then
   exit 1
 fi
 
-config_file="$HOME/.ssh/config"
 if [[ ! -f $config_file ]]; then
   touch $config_file
   chmod 600 $config_file
@@ -21,9 +34,23 @@ if [[ $? == 1 ]]; then
   echo "write $config_file" >&2
   echo "
 Host $host
-  Identityfile ~/.ssh/$host" >> $config_file
+  Identityfile $keypath" >> $config_file
 fi
 
-echo "--- Show Public Key ---" >&2
-cat $HOME/.ssh/$host.pub >&2
-
+case "$host" in
+  "github.com")
+    user=$(git config github.user)
+    ssh-keyreg -u $user -p $keypath.pub github
+    ;;
+  "bitbucket.org")
+    user=$(git config bitbucket.user)
+    ssh-keyreg -u $user -p $keypath.pub bitbucket
+    ;;
+  "heroku.com")
+    heroku keys:add $keypath.pub
+    ;;
+  *)
+    echo "--- Show Public Key ---" >&2
+    cat $keypath.pub >&2
+    ;;
+esac
