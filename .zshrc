@@ -2,7 +2,9 @@
 export TERM=xterm-256color
 
 # Clone zplug if not found
-source ~/.zplug/init.zsh || { curl -sL git.io/zplug | zsh }
+export ZPLUG_HOME=~/.zplug
+[[ ! -d ${ZPLUG_HOME} ]] && { curl -sL git.io/zplug | zsh }
+source ${ZPLUG_HOME}/init.zsh
 
 # zplugsを初期化しないとプラグインを多重読み込みしちゃう
 unset zplugs
