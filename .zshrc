@@ -25,6 +25,7 @@ zplug "junegunn/fzf-bin", as:command, from:gh-r, as:command, rename-to:fzf
 zplug "monochromegane/the_platinum_searcher", as:command, from:gh-r, rename-to:pt
 # gitリポジトリ管理
 zplug "motemen/ghq", as:command, from:gh-r
+zplug "sona-tar/ghs", as:command, from:gh-r
 # githubコマンド
 zplug "github/hub", as:command, from:gh-r
 
