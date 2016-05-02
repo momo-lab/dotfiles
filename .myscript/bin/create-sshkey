@@ -2,21 +2,26 @@
 
 host=$1
 if [[ "$host" == "" ]]; then
-    echo "usage: $0 <hostname>"
-    exit 1;
+  echo "usage: $0 <hostname>"
+  exit 1;
 fi
 
 ssh-keygen -f $HOME/.ssh/$host
 if [[ $? == 1 ]]; then
-    exit 1
+  exit 1
 fi
 
-grep "Host $host" $HOME/.ssh/config > /dev/null
+config_file="$HOME/.ssh/config"
+if [[ ! -f $config_file ]]; then
+  touch $config_file
+  chmod 600 $config_file
+fi
+grep "Host $host" $config_file > /dev/null
 if [[ $? == 1 ]]; then
-    echo "write $HOME/.ssh/config" >&2
-    echo "
+  echo "write $config_file" >&2
+  echo "
 Host $host
-    Identityfile ~/.ssh/$host" >> $HOME/.ssh/config
+  Identityfile ~/.ssh/$host" >> $config_file
 fi
 
 echo "--- Show Public Key ---" >&2
