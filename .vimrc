@@ -68,6 +68,7 @@ augroup vimrc_tab
   autocmd FileType scss call s:setlocaltab(2)
   autocmd FileType zsh call s:setlocaltab(2)
   autocmd FileType yaml call s:setlocaltab(2)
+  autocmd FileType gitconfig call s:setlocaltab(2)
 augroup END
 set tabstop=4 shiftwidth=4 softtabstop=4
 set autoindent
