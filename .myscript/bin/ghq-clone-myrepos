@@ -1,0 +1,62 @@
+#!/bin/bash
+
+# ユーザ名をgitconfigから取得
+function get_user() {
+  user=$(git config $1.user)
+  [[ -z $user ]] && user=$(git config user.name)
+  echo $user
+}
+
+# リポジトリ一覧を取得
+function get_repos() {
+  host=$1
+  case "$host" in
+    "github")
+      user=$(get_user $host)
+      curl -sL "https://api.github.com/users/$user/repos" \
+        | jq -r ".[] | \"$host\", \"$user/\(.name)\", .description"
+      ;;
+    "bitbucket")
+      user=$(get_user $host)
+      curl -sL -u ${user} "https://api.bitbucket.org/1.0/user/repositories" \
+        | jq -r ".[] | \"$host\", \"$user/\(.name)\", .description"
+      ;;
+    "heroku")
+      heroku apps:list --json \
+        | jq -r ".[] | \"$host\", .name, null"
+      ;;
+    *)
+      return 1
+      ;;
+  esac
+}
+
+# 自分のリポジトリ一覧を取得
+repos=`cat <(get_repos github) <(get_repos bitbucket) <(get_repos heroku)`
+
+# 最大文字長をカウント
+max_length=0
+while read host; read repo; read description; do
+  length=$(echo -n $repo | wc -m)
+  if [[ $max_length -lt $length ]]; then
+    max_length=$length
+  fi
+done <<DATA1
+$repos
+DATA1
+
+# 整形して、fzfで選択して、ghq import
+{
+  while read host; read repo; read description; do
+    if [[ "$description" == "null" ]]; then
+      description=""
+    fi
+    printf "%-${max_length}s\t%-10s%s\n" "$repo" "$host" "$description"
+  done <<DATA2
+$repos
+DATA2
+} | fzf -m --reverse | awk '
+  $2~/^github$/ { print "git@github.com:" $1 ".git" }
+  $2~/^bitbucket$/ { print "git@bitbucket.org:" $1 ".git" }
+  $2~/^heroku$/ { print "https://git.heroku.com/" $1 ".git" }
+' | ghq import
