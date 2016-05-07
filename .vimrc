@@ -107,7 +107,7 @@ Plug 'Shougo/vimproc', { 'do': 'make' }
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/neomru.vim'
 let unite_split_rule = 'botright'
-let g:unite_enable_start_insert = 1
+let g:unite_enable_start_insert = 0
 let g:unite_enable_short_source_names = 1
 let g:unite_source_menu_menus = {}
 " unite-grepのバックエンドをptに切り替える
@@ -115,7 +115,7 @@ let g:unite_source_menu_menus = {}
 let g:unite_source_grep_encoding = 'utf-8'
 if executable('pt')
   let g:unite_source_grep_command = 'pt'
-  let g:unite_source_grep_default_opts = '/nocolor /nogroup'
+  let g:unite_source_grep_default_opts = '--nocolor --nogroup'
   let g:unite_source_grep_recursive_opt = ''
   let g:unite_source_grep_max_candidates = 200
 endif
@@ -141,7 +141,9 @@ nnoremap <silent> [unite]<Space> :<C-u>UniteResume<CR>
 nnoremap <silent> [unite]s :<C-u>Unite source<CR>
 " カレントディレクトリ配下のファイルを表示
 nnoremap <silent> [unite]f :<C-u>Unite file_rec<CR>
-nnoremap <silent> <C-p> :<C-u>Unite file_rec<CR>
+nnoremap <silent> <C-p> :<C-u>Unite file_rec -start-insert<CR>
+" Grep
+nnoremap <silent> [unite]g :<C-u>Unite grep:. -no-empty<CR>
 
 " Git 用
 Plug 'tpope/vim-fugitive'     " :Gwrite, :Gdiff, :GcommitなどGで始まるコマンドを提供
