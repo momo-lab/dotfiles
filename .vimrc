@@ -145,6 +145,10 @@ nnoremap <silent> <C-p> :<C-u>Unite file_rec -start-insert<CR>
 " Grep
 nnoremap <silent> [unite]g :<C-u>Unite grep:. -no-empty<CR>
 
+" Vimfiler
+Plug 'Shougo/vimfiler.vim'
+let g:vimfiler_as_default_explorer = 1
+
 " Git 用
 Plug 'tpope/vim-fugitive'     " :Gwrite, :Gdiff, :GcommitなどGで始まるコマンドを提供
                               " 現在のバッファに対するgit操作を行う
