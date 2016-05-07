@@ -32,6 +32,8 @@ zplug "sona-tar/ghs", as:command, from:gh-r
 zplug "b4b4r07/ssh-keyreg", as:command, use:bin
 # githubコマンド
 zplug "github/hub", as:command, from:gh-r
+# ゴミ箱
+zplug "b4b4r07/zsh-gomi"
 
 # zload
 zplug 'mollifier/zload', as:plugin
