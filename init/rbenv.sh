@@ -11,4 +11,5 @@ if [[ ! -d ~/.rbenv ]]; then
   export PATH="${rbenv_home}/bin:$PATH"
   eval "$(rbenv init - --no-rehash zsh)"
   rbenv install-latest
+  rbenv global $(rbenv versions --bare)
 fi
