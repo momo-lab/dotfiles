@@ -1,9 +1,11 @@
 #!/bin/bash
 
+WORKDIR=$(cd $(dirname $0) && pwd)
+
 # initialize
 dotfiles_initialize() {
     echo "Initialize."
-    for file in init/*.sh; do
+    for file in $WORKDIR/init/*.sh; do
         $file
     done
 }
@@ -11,10 +13,11 @@ dotfiles_initialize() {
 # deploy
 dotfiles_deploy() {
     echo "Deploy dotfiles."
-    for file in .??*; do
+    for file in $WORKDIR/.??*; do
+        file=$(basename $file)
         [[ "$file" == ".git" ]] && continue
 
-        ln -sfnv $(cd $(dirname $file) && pwd)/$(basename $file) $HOME/$file
+        ln -sfnv $WORKDIR/$file $HOME/$file
     done
 }
 
