@@ -14,12 +14,12 @@ function get_repos() {
     "github")
       user=$(get_user $host)
       curl -sL "https://api.github.com/users/$user/repos" \
-        | jq -r ".[] | \"$host\", \"$user/\(.name)\", .description"
+        | jq -r ".[] | \"$host\", \"$user/\(.name)\", \"\(.description)\""
       ;;
     "bitbucket")
       user=$(get_user $host)
       curl -sL -u ${user} "https://api.bitbucket.org/1.0/user/repositories" \
-        | jq -r ".[] | \"$host\", \"$user/\(.name)\", .description"
+        | jq -r ".[] | \"$host\", \"$user/\(.name)\", \"\(.description | split(\"\n\")[0])\""
       ;;
     "heroku")
       heroku apps:list --json \
