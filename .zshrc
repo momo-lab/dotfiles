@@ -3,12 +3,8 @@ export TERM=xterm-256color
 
 # Clone zplug if not found
 export ZPLUG_HOME=~/.zplug
-[[ ! -d ${ZPLUG_HOME} ]] && { curl -sL git.io/zplug | zsh }
+[[ ! -d ${ZPLUG_HOME} ]] && { git clone https://github.com/zplug/zplug $ZPLUG_HOME }
 source ${ZPLUG_HOME}/init.zsh
-
-# zplugsを初期化しないとプラグインを多重読み込みしちゃう
-unset zplugs
-typeset -g -A zplugs
 
 # 入力した文字の色を変える
 zplug "zsh-users/zsh-syntax-highlighting"
