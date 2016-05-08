@@ -21,10 +21,6 @@ function get_repos() {
       curl -sL -u ${user} "https://api.bitbucket.org/1.0/user/repositories" \
         | jq -r ".[] | \"$host\", \"$user/\(.name)\", \"\(.description | split(\"\n\")[0])\""
       ;;
-    "heroku")
-      heroku apps:list --json \
-        | jq -r ".[] | \"$host\", .name, null"
-      ;;
     *)
       return 1
       ;;
@@ -32,7 +28,7 @@ function get_repos() {
 }
 
 # 自分のリポジトリ一覧を取得
-repos=`cat <(get_repos github) <(get_repos bitbucket) <(get_repos heroku)`
+repos=`cat <(get_repos github) <(get_repos bitbucket)`
 
 # 最大文字長をカウント
 max_length=0
@@ -58,5 +54,4 @@ DATA2
 } | fzf -m --reverse | awk '
   $2~/^github$/ { print "git@github.com:" $1 ".git" }
   $2~/^bitbucket$/ { print "git@bitbucket.org:" $1 ".git" }
-  $2~/^heroku$/ { print "https://git.heroku.com/" $1 ".git" }
 ' | ghq import
