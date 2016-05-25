@@ -141,7 +141,8 @@ nnoremap <silent> [unite]<Space> :<C-u>UniteResume<CR>
 nnoremap <silent> [unite]s :<C-u>Unite source<CR>
 " カレントディレクトリ配下のファイルを表示
 nnoremap <silent> [unite]f :<C-u>Unite file_rec<CR>
-nnoremap <silent> <C-p> :<C-u>Unite file_rec -start-insert<CR>
+" git管理のファイルを表示
+nnoremap <silent> <C-p> :<C-u>Unite file_rec/git -start-insert<CR>
 " Grep
 nnoremap <silent> [unite]g :<C-u>Unite grep:. -no-empty<CR>
 
