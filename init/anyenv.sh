@@ -14,6 +14,7 @@ if [[ ! -d ~/.anyenv/bin ]]; then
 
   # rbenv
   anyenv install rbenv
+  eval "$(anyenv init -)"
   anyenv plugin-install jf/rbenv-gemset
   anyenv plugin-install momo-lab/rbenv-install-latest
 fi
