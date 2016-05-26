@@ -132,13 +132,6 @@ for func in ~/.zfunc/[^_]*(:t); do
   autoload -Uz $func
 done
 
-# Aliases
-alias ls="ls --color=auto -F"
-alias ll="ls -l"
-alias lla="ls -la"
-
-alias gs="git status -sb; git stash list; git log --branches --not --remotes --oneline --graph --decorate"
-alias gl="ghq-cd"
-
-alias rb="bundruby"
+# shell共通のプロファイル
+source "${HOME}/.shell_profile"
 

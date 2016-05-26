@@ -1,0 +1,24 @@
+### Added by the Heroku Toolbelt
+if [[ -d "${HOME}/.heroku/bin" ]]; then
+  export PATH="${HOME}/.heroku/bin:$PATH"
+fi
+
+### Added by anyenv
+if [[ -d "${HOME}/.anyenv/bin" ]]; then
+  export PATH="${HOME}/.anyenv/bin:$PATH"
+  eval "$(anyenv init -)"
+fi
+
+### Added by $HOME/bin
+export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/.myscript/bin:$PATH"
+
+# Aliases
+alias ls="ls --color=auto -F"
+alias ll="ls -l"
+alias lla="ls -la"
+
+alias gs="git status -sb; git stash list; git log --branches --not --remotes --oneline --graph --decorate"
+alias gl="ghq-cd"
+
+alias rb="bundruby"
