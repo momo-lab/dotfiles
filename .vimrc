@@ -156,6 +156,11 @@ Plug 'tpope/vim-fugitive'     " :Gwrite, :Gdiff, :GcommitなどGで始まるコ�
 Plug 'airblade/vim-gitgutter' " gitの差分を左端に表示する
 Plug 'cohama/agit.vim'        " :Agitでgitのログを見る
 
+" GitHub用
+"Plug 'TKNGUE/github-issues.vim'
+Plug 'thinca/vim-github'
+let g:github#user='momo-lab'
+
 " Gist 用
 Plug 'lambdalisue/vim-gista'
 Plug 'lambdalisue/vim-gista-ctrlp'
