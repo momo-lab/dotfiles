@@ -163,11 +163,9 @@ let g:github#user='momo-lab'
 
 " Gist 用
 Plug 'lambdalisue/vim-gista'
-Plug 'lambdalisue/vim-gista-ctrlp'
+Plug 'lambdalisue/vim-gista-unite'
 let g:gista#command#list#default_opener = 'botright 15 split'
 let g:gista#command#post#default_public = 0
-nnoremap <silent> [pp]s :<C-u>Gista list<CR>
-nnoremap <silent> [pp]S :<C-u>CtrlPGista<CR>
 autocmd FileType gista-list call s:gista_list_mappings()
 function! s:gista_list_mappings()
   nmap <buffer> <ESC> <Plug>(gista-quit)
