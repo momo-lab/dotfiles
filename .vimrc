@@ -99,6 +99,10 @@ nmap <Space> [pp]
 
 call plug#begin($DOTVIM.'/plugged')
 
+" 日本語ヘルプ
+Plug 'vim-jp/vimdoc-ja'
+set helplang=ja
+
 " カラースキーマ
 Plug 'w0ng/vim-hybrid'
 
