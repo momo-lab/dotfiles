@@ -93,9 +93,6 @@ nnoremap zz za
 function! s:has_plugin(name)
   return has_key(g:plugs, a:name) ? isdirectory(g:plugs[a:name].dir) : 0
 endfunction
-" プラグイン起動用プレフィクス(Plugin's Prefixでpp)
-nnoremap [pp] <Nop>
-nmap <Space> [pp]
 
 call plug#begin($DOTVIM.'/plugged')
 
