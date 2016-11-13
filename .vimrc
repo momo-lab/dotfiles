@@ -216,6 +216,10 @@ Plug 'jaxbot/github-issues.vim'
 Plug 'momo-lab/github_auth.vim'
 let g:github_issues_no_omni = 1
 
+" Vim script開発用
+Plug 'vim-jp/vital.vim'
+Plug 'lambdalisue/vital-Web-API-GitHub'
+
 call plug#end()
 
 " カラースキーマ
