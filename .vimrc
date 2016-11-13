@@ -211,6 +211,11 @@ Plug 'itchyny/lightline-powerful'
 
 Plug 'renumber.vim'
 
+" Github issue操作
+Plug 'jaxbot/github-issues.vim'
+Plug 'momo-lab/github_auth.vim'
+let g:github_issues_no_omni = 1
+
 call plug#end()
 
 " カラースキーマ
