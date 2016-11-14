@@ -11,12 +11,12 @@
   ui = auto
 [core]
   autocrlf = false
-    editor = vim
+  editor = vim
   excludesfile = ~/.gitignore_global
 [include]
   path = .gitconfig_local
 [push]
-    default = simple
+  default = simple
 [pull]
   rebase = true
 [user]
