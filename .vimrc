@@ -264,6 +264,7 @@ command! -bar LightlineUpdate
       \ call lightline#update()
 
 Plug 'renumber.vim'
+Plug 'tpope/vim-surround'
 
 " Github issue操作
 Plug 'jaxbot/github-issues.vim'
