@@ -233,7 +233,35 @@ augroup END
 
 " ステータスライン強化
 Plug 'itchyny/lightline.vim'
-Plug 'itchyny/lightline-powerful'
+Plug 'itchyny/vim-gitbranch'
+let g:lightline = {
+      \ 'active': {
+      \   'left': [
+      \     ['mode', 'paste'],
+      \     ['readonly', 'filename', 'modified'],
+      \     ['gitbranch'],
+      \     ['anzu'],
+      \   ],
+      \   'right': [
+      \     ['rowinfo'],
+      \     ['fileformat', 'fileencoding', 'filetype'],
+      \   ],
+      \ },
+      \ 'inactive': {
+      \   'left':  [ ['filename', 'modified'] ],
+      \   'right': [ ['rowinfo'] ],
+      \ },
+      \ 'component': {
+      \   'anzu': '%{anzu#search_status()}',
+      \   'gitbranch': '%{gitbranch#name()}',
+      \   'rowinfo': '%4l/%L(%3p%%):%-3v',
+      \ },
+      \ 'subseparator': {'left': '', 'right': '|'},
+      \ }
+command! -bar LightlineUpdate
+      \ call lightline#init() |
+      \ call lightline#colorscheme() |
+      \ call lightline#update()
 
 Plug 'renumber.vim'
 
