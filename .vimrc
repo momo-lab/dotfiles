@@ -156,6 +156,8 @@ Plug 'tpope/vim-fugitive'     " :Gwrite, :Gdiff, :GcommitなどGで始まるコ�
                               " 現在のバッファに対するgit操作を行う
 Plug 'airblade/vim-gitgutter' " gitの差分を左端に表示する
 Plug 'cohama/agit.vim'        " :Agitでgitのログを見る
+command! Gci Gcommit -v
+command! Gcia Gcommit -av
 
 " Gist 用
 Plug 'lambdalisue/vim-gista'
