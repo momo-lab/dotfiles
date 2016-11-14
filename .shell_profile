@@ -9,6 +9,10 @@ if [[ -d "${HOME}/.anyenv/bin" ]]; then
   eval "$(anyenv init -)"
 fi
 
+# GOPATH
+export GOPATH="$HOME/.go"
+export PATH="$PATH:$GOROOT/bin:$GOPATH/bin"
+
 ### Added by $HOME/bin
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.myscript/bin:$PATH"
