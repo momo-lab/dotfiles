@@ -205,6 +205,32 @@ let g:quickrun_config = {
             \ 'ruby': { 'command': 'bundruby' }
             \ }
 
+" 検索関連
+Plug 'osyo-manga/vim-anzu'
+Plug 'haya14busa/vim-asterisk'
+Plug 'haya14busa/incsearch.vim'
+set ignorecase
+set smartcase
+set hlsearch
+let g:incsearch#auto_nohlsearch = 1
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+map n  <Plug>(incsearch-nohl-n)<Plug>(anzu-update-search-status)
+map N  <Plug>(incsearch-nohl-N)<Plug>(anzu-update-search-status)
+map *  <Plug>(incsearch-nohl0)<Plug>(asterisk-z*)<Plug>(anzu-update-search-status)
+map #  <Plug>(incsearch-nohl0)<Plug>(asterisk-z#)<Plug>(anzu-update-search-status)
+map g* <Plug>(incsearch-nohl0)<Plug>(asterisk-gz*)<Plug>(anzu-update-search-status)
+map g# <Plug>(incsearch-nohl0)<Plug>(asterisk-gz#)<Plug>(anzu-update-search-status)
+augroup vim-anzu
+  " カーソルが移動したとき(CursorMoved)、一定時間キー入力がないとき(CursorHold,CursorHoldI)、
+  " ウインドウを移動したとき(WinLeave)、タブを移動したとき(TabLeave)に
+  " 検索ヒット数の表示を消去する
+  autocmd!
+  autocmd CursorMoved,CursorHold,CursorHoldI,WinLeave,TabLeave *
+        \ call anzu#clear_search_status()
+augroup END
+
 " ステータスライン強化
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/lightline-powerful'
