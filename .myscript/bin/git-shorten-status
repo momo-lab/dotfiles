@@ -1,9 +1,20 @@
 #!/bin/bash
 
 function show_git_status() {
-  git status -s
-  git stash list
-  git log --branches --not --remotes --oneline --graph --decorate
+  if [ "$1" != "" ]; then
+    cd $1
+  fi
+  status=`
+    git -c color.ui=always status -s;
+    git -c color.ui=always stash list;
+    git -c color.ui=always log --branches --not --remotes --oneline --graph --decorate
+  `
+  if [ "$status" != "" ]; then
+    if [ "$1" != "" ]; then
+      echo ">>> $1 <<<"
+    fi
+    echo "$status"
+  fi
 }
 
 if [ $# == 0 ]; then
@@ -12,9 +23,7 @@ if [ $# == 0 ]; then
 fi
 
 while [ $# -gt 0 ]; do
-  echo $1
-  cd $1
-  show_git_status
+  show_git_status $1
   shift
 done
 
