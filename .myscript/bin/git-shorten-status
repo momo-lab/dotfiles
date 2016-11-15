@@ -1,0 +1,20 @@
+#!/bin/bash
+
+function show_git_status() {
+  git status -sb
+  git stash list
+  git log --branches --not --remotes --oneline --graph --decorate
+}
+
+if [ $# == 0 ]; then
+  show_git_status
+  exit
+fi
+
+while [ $# -gt 0 ]; do
+  echo $1
+  cd $1
+  show_git_status
+  shift
+done
+
