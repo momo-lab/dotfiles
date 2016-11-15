@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function show_git_status() {
-  git status -sb
+  git status -s
   git stash list
   git log --branches --not --remotes --oneline --graph --decorate
 }
