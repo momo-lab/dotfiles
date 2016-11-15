@@ -1,7 +1,8 @@
 #!/bin/bash
 confirm() {
   local line
-  read "line?$1 [yN]:"
+  echo -n "$1 [yN]:"; read line
+  echo $line
   case "$line" in
     [Yy]*) return 0 ;;
     *) return 1 ;;
