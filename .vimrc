@@ -21,7 +21,7 @@ set fileformats=unix,dos,mac
 " ステータス行
 set laststatus=2
 " gvimなら常にタブ表示
-if has('gui')
+if has('gui_running')
   set showtabline=2
 endif
 
