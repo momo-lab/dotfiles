@@ -25,7 +25,7 @@ zplug "stedolan/jq", as:command, from:gh-r
 zplug "motemen/ghq", as:command, from:gh-r
 zplug "sona-tar/ghs", as:command, from:gh-r
 # ssh-keyをgithub/bitbucketに登録
-zplug "b4b4r07/ssh-keyreg", as:command, use:bin
+zplug "b4b4r07/ssh-keyreg"
 # githubコマンド
 zplug "github/hub", as:command, from:gh-r
 # ゴミ箱
