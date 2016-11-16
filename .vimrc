@@ -207,6 +207,13 @@ let g:quickrun_config = {
             \ 'ruby': { 'command': 'bundruby' }
             \ }
 
+" コピペ関連
+Plug 'rtakasuke/yanktmp.vim' " ヤンク内容をファイルでやり取りする
+let g:yanktmp_file = '/tmp/yanktmp'
+map <silent> sy :call YanktmpYank()<CR>
+map <silent> sp :call YanktmpPaste_p()<CR>
+map <silent> sP :call YanktmpPaste_P()<CR>
+
 " 検索関連
 Plug 'osyo-manga/vim-anzu'
 Plug 'haya14busa/vim-asterisk'
