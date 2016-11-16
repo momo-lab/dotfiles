@@ -23,6 +23,7 @@ alias ll="ls -l"
 alias lla="ls -la"
 
 alias gs="git-shorten-status"
+alias gsall='gs `ghq list -p`'
 alias gl="ghq-cd"
 
 alias rb="bundruby"
