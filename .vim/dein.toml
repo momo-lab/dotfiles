@@ -107,10 +107,12 @@ hook_add = '''
 
 [[plugins]] # vimproc.vim
 repo = 'Shougo/vimproc.vim'
+lazy = 1
 build = 'make'
 
 [[plugins]] # Vimfiler
 repo = 'Shougo/vimfiler.vim'
+on_cmd = 'VimFiler'
 hook_add = '''
   let g:vimfiler_as_default_explorer = 1
 '''
@@ -151,6 +153,7 @@ hook_add = '''
 
 [[plugins]] # QuickRun
 repo = 'thinca/vim-quickrun'
+on_cmd = 'QuickRun'
 hook_add = '''
   let g:quickrun_config = {
               \ 'ruby': { 'command': 'bundruby' }
