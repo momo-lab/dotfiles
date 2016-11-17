@@ -160,6 +160,7 @@ hook_add = '''
 [[plugins]]
 repo = 'haya14busa/incsearch.vim'
 depends = ['vim-anzu', 'vim-asterisk', 'incsearch.vim']
+on_map = '<Plug>'
 hook_add = '''
   set ignorecase
   set smartcase
@@ -185,8 +186,10 @@ hook_add = '''
 '''
 [[plugins]]
 repo = 'osyo-manga/vim-anzu'
+lazy = 1
 [[plugins]]
 repo = 'haya14busa/vim-asterisk'
+lazy = 1
 
 [[plugins]] # ステータスライン強化
 repo = 'itchyny/lightline.vim'
