@@ -9,6 +9,8 @@
   co = checkout
   diffs = diff --staged
   diffc = diff --cached
+[diff]
+  compactionHeuristic = true
 [color]
   ui = auto
 [core]
