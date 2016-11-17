@@ -34,6 +34,7 @@ set number                          " 行番号を表示
 set title                           " ウィンドウタイトルにファイル名を表示
 set clipboard& clipboard+=unnamed   " Yankしたらクリップボードへ
 set visualbell t_vb=                " ESCのビープ音を消す
+set modeline                        " modeline(末尾のvim:ts=2みたいなやつ)を有効にする
 
 " 除外ファイル指定
 if s:is_windows
