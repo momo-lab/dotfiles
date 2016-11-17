@@ -132,6 +132,7 @@ repo = 'cohama/agit.vim'
 
 [[plugins]] # Gist操作
 repo = 'lambdalisue/vim-gista'
+on_cmd = 'Gista'
 hook_add = '''
   let g:gista#command#list#default_opener = 'botright 15 split'
   let g:gista#command#post#default_public = 0
@@ -143,6 +144,7 @@ hook_add = '''
 
 [[plugins]] # Gist操作(Uniteプラグイン)
 repo = 'lambdalisue/vim-gista-unite'
+depends = ['vim-gista']
 
 [[plugins]] # emmet-vim
 repo = 'mattn/emmet-vim'
