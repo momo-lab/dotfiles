@@ -19,7 +19,7 @@ function show_git_status() {
 }
 
 if [ $# == 0 ]; then
-  show_git_status
+  show_git_status `pwd`
   exit
 fi
 
