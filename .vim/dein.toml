@@ -112,7 +112,6 @@ build = 'make'
 
 [[plugins]] # Vimfiler
 repo = 'Shougo/vimfiler.vim'
-on_cmd = 'VimFiler'
 hook_add = '''
   let g:vimfiler_as_default_explorer = 1
 '''
