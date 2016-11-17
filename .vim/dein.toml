@@ -190,7 +190,7 @@ repo = 'haya14busa/vim-asterisk'
 
 [[plugins]] # ステータスライン強化
 repo = 'itchyny/lightline.vim'
-depends = ['vim-gitbranch']
+depends = ['vim-fugitive']
 hook_add = '''
   let g:lightline = {
         \ 'active': {
@@ -211,7 +211,7 @@ hook_add = '''
         \ },
         \ 'component': {
         \   'anzu': '%{anzu#search_status()}',
-        \   'gitbranch': '%{gitbranch#name()}',
+        \   'gitbranch': '%{fugitive#statusline()}',
         \   'rowinfo': '%4l/%L(%3p%%):%-3v',
         \ },
         \ 'subseparator': {'left': '', 'right': '|'},
@@ -221,9 +221,6 @@ hook_add = '''
         \ call lightline#colorscheme() |
         \ call lightline#update()
 '''
-
-[[plugins]]
-repo = 'itchyny/vim-gitbranch'
 
 [[plugins]]
 repo = 'renumber.vim'
