@@ -208,6 +208,8 @@ let g:quickrun_config = {
             \ 'ruby': { 'command': 'bundruby' }
             \ }
 
+Plug 'kana/vim-submode'
+
 " コピペ関連
 Plug 'rtakasuke/yanktmp.vim' " ヤンク内容をファイルでやり取りする
 let g:yanktmp_file = '/tmp/yanktmp'
@@ -286,6 +288,21 @@ Plug 'vim-jp/vital.vim'
 Plug 'lambdalisue/vital-Web-API-GitHub'
 
 call plug#end()
+
+" ウィンドウのサイズ変更をキーリピートできるようにする
+call submode#enter_with('winsize', 'n', '', '<C-w>>', '<C-w>>')
+call submode#enter_with('winsize', 'n', '', '<C-w><', '<C-w><')
+call submode#enter_with('winsize', 'n', '', '<C-w>+', '<C-w>+')
+call submode#enter_with('winsize', 'n', '', '<C-w>-', '<C-w>-')
+call submode#map('winsize', 'n', '', '>', '<C-w>>')
+call submode#map('winsize', 'n', '', '<', '<C-w><')
+call submode#map('winsize', 'n', '', '+', '<C-w>+')
+call submode#map('winsize', 'n', '', '-', '<C-w>-')
+" タブページの切り替えをキーリピートできるようにする
+call submode#enter_with('tabchange', 'n', '', 'gt', 'gt')
+call submode#enter_with('tabchange', 'n', '', 'gT', 'gT')
+call submode#map('tabchange', 'n', '', 't', 'gt')
+call submode#map('tabchange', 'n', '', 'T', 'gT')
 
 " カラースキーマ
 let g:mycolorscheme = 'desert'
