@@ -22,7 +22,7 @@ alias ls="ls --color=auto -F"
 alias ll="ls -l"
 alias lla="ls -la"
 
-alias gs="git-shorten-status"
+alias gs="git localinfo"
 alias gsall='gs `ghq list -p`'
 alias gl="ghq-cd"
 
