@@ -4,13 +4,15 @@
   btree = log --graph --oneline --decorate --simplify-by-decoration --all
   btr = log --graph --oneline --decorate --simplify-by-decoration --all
   st = status
-  ci = commit -v
+  ci = commit
   cim = commit -m
   co = checkout
   diffs = diff --staged
   diffc = diff --cached
 [diff]
   compactionHeuristic = true
+[commit]
+  verbose = true
 [color]
   ui = auto
 [core]

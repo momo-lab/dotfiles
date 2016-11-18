@@ -119,8 +119,8 @@ hook_add = '''
 [[plugins]] # :Gwrite, :Gdiff, :GcommitなどGで始まるコマンドを提供
 repo = 'tpope/vim-fugitive'
 hook_add = '''
-  command! Gci Gcommit -v
-  command! Gcia Gcommit -av
+  command! Gci Gcommit
+  command! Gcia Gcommit -a
 '''
 
 [[plugins]] # gitの差分を左端に表示する
