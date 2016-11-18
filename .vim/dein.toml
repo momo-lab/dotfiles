@@ -98,9 +98,13 @@ hook_add = '''
   " ソースを選択
   nnoremap <silent> [unite]s :<C-u>Unite source<CR>
   " カレントディレクトリ配下のファイルを表示
-  nnoremap <silent> [unite]f :<C-u>Unite file_rec<CR>
+  nnoremap <silent> [unite]f :<C-u>Unite
+        \ -start-insert -hide-source-names
+        \ file_rec file/new<CR>
   " git管理のファイルを表示
-  nnoremap <silent> <C-p> :<C-u>Unite file_rec/git -start-insert<CR>
+  nnoremap <silent> <C-p> :<C-u>Unite
+        \ -start-insert -hide-source-names
+        \ file_rec/git file/new<CR>
   " Grep
   nnoremap <silent> [unite]g :<C-u>Unite grep:. -no-empty<CR>
 '''
