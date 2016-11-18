@@ -104,7 +104,8 @@ hook_add = '''
   " git管理のファイルを表示
   nnoremap <silent> <C-p> :<C-u>Unite
         \ -start-insert -hide-source-names
-        \ file_rec/git file/new<CR>
+        \ file_rec/git:--cached:--others:--exclude-standard
+        \ file/new<CR>
   " Grep
   nnoremap <silent> [unite]g :<C-u>Unite grep:. -no-empty<CR>
 '''
