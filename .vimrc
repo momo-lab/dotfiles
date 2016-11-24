@@ -69,25 +69,33 @@ set list
 set listchars=tab:▸\ ,eol:↲,extends:❯,precedes:❮
 
 " インデント
-function! s:setlocaltab(index)
-  exec "setlocal tabstop=" . a:index . " shiftwidth=" . a:index . " softtabstop=" . a:index
-endfunction
-augroup vimrc_tab
-  autocmd!
-  autocmd FileType vim call s:setlocaltab(2)
-  autocmd FileType coffee call s:setlocaltab(2)
-  autocmd FileType html call s:setlocaltab(2)
-  autocmd FileType ruby call s:setlocaltab(2)
-  autocmd FileType eruby call s:setlocaltab(2)
-  autocmd FileType scss call s:setlocaltab(2)
-  autocmd FileType zsh call s:setlocaltab(2)
-  autocmd FileType yaml call s:setlocaltab(2)
-  autocmd FileType gitconfig call s:setlocaltab(2)
-  autocmd FileType sh call s:setlocaltab(2)
-augroup END
-set tabstop=4 shiftwidth=4 softtabstop=4
 set autoindent
+set smartindent
 set expandtab
+let s:tabstop = {
+      \ '*': 4,
+      \ 'vim': 2,
+      \ 'coffee': 2,
+      \ 'html': 2,
+      \ 'ruby': 2,
+      \ 'eruby': 2,
+      \ 'scss': 2,
+      \ 'zsh': 2,
+      \ 'yaml': 2,
+      \ 'gitconfig': 2,
+      \ 'sh': 2,
+      \ }
+function! s:settabstop()
+  let tabstop = s:tabstop['*']
+  if has_key(s:tabstop, &filetype)
+    let tabstop = s:tabstop[&filetype]
+  endif
+  exec "setlocal tabstop=" . tabstop . " shiftwidth=" . tabstop . " softtabstop=" . tabstop
+endfunction
+augroup vimrc_indent
+  autocmd!
+  autocmd BufRead,BufNewFile * call s:settabstop()
+augroup END
 
 " ヘルプは q で閉じる
 augroup vimrc_close
