@@ -11,7 +11,7 @@ function show_git_status() {
   `
   if [ "$status" != "" ]; then
     if [ "$path" != "" ]; then
-      branch=`git symbolic-ref --short HEAD`
+      branch=`cd $path; git symbolic-ref --short HEAD`
       echo -e "\e[92m$path\e[0m (\e[32m$branch\e[0m)"
     fi
     echo "$status"
