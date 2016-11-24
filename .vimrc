@@ -83,6 +83,7 @@ let s:tabstop = {
       \ 'scss': 2,
       \ 'zsh': 2,
       \ 'yaml': 2,
+      \ 'toml': 2,
       \ 'gitconfig': 2,
       \ 'sh': 2,
       \ }
