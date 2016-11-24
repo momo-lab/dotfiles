@@ -1,5 +1,6 @@
 " 各種パス設定 {{{
   let s:cache_home = empty($XDG_CACHE_HOME) ? expand('~/.cache') : $XDG_CACHE_HOME
+  let s:vimrc = resolve(expand($MYVIMRC))
 " }}}
 " dein settings {{{
   if &compatible
@@ -113,8 +114,8 @@ nnoremap zz za
 " }}}
 
 " .vimrcを開く
-nnoremap <F6> :<C-u>tabedit $MYVIMRC<CR>
-nnoremap <F5> :<C-u>source $MYVIMRC<CR>
+exec 'nnoremap <F6> :<C-u>tabedit ' . s:vimrc . '<CR>'
+exec 'nnoremap <F5> :<C-u>source ' . s:vimrc . '<CR>'
 
 let s:vimrc_secret=expand('$HOME/.vimrc_secret')
 if filereadable(s:vimrc_secret)
