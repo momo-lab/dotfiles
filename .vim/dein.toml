@@ -251,3 +251,16 @@ lazy = 1
 [[plugins]]
 repo = 'lambdalisue/vital-Web-API-GitHub'
 lazy = 1
+
+[[plugins]] # Google翻訳
+repo = 'normful/googletranslate-vim'
+depends = ['webapi-vim']
+on_cmd = ['GoogleTranslate', 'Trans']
+hook_add = '''
+  " g:googletranslate_apikey is required
+  let g:googletranslate_locale = 'ja'
+'''
+
+[[plugins]]
+repo = 'mattn/webapi-vim'
+lazy = 1
