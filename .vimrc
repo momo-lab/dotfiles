@@ -116,4 +116,9 @@ nnoremap zz za
 nnoremap <F6> :<C-u>tabedit $MYVIMRC<CR>
 nnoremap <F5> :<C-u>source $MYVIMRC<CR>
 
+let s:vimrc_secret=expand('$HOME/.vimrc_secret')
+if filereadable(s:vimrc_secret)
+  exec 'source ' . s:vimrc_secret
+endif
+
 " vim:fdm=marker:ts=2
