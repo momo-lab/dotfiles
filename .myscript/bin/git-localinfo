@@ -5,9 +5,11 @@ function show_git_status() {
   shift
   status=`
     cd $path
-    git -c color.ui=always status -s;
-    git -c color.ui=always stash list --oneline --decorate $*;
-    git -c color.ui=always log --branches --not --remotes --oneline --graph --decorate $*
+    if [ -n "$(git rev-parse --git-dir 2> /dev/null)" ]; then
+      git -c color.ui=always status -s;
+      git -c color.ui=always stash list --oneline --decorate $*;
+      git -c color.ui=always log --branches --not --remotes --oneline --graph --decorate $*
+    fi
   `
   if [ "$status" != "" ]; then
     if [ "$path" != "" ]; then
