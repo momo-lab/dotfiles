@@ -264,3 +264,10 @@ hook_add = '''
 [[plugins]]
 repo = 'mattn/webapi-vim'
 lazy = 1
+
+[[plugins]]
+repo = 'mbbill/undotree'
+on_cmd = ['UndotreeToggle']
+hook_add = '''
+  nnoremap <F4> :<C-u>UndotreeToggle<CR>
+'''
