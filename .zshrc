@@ -109,6 +109,61 @@ bindkey -M emacs '^J' history-substring-search-down
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 
+# 略語展開
+# http://qiita.com/matsu_chara/items/8372616f52934c657214
+setopt extended_glob
+typeset -A abbreviations
+# 値の1文字目でどのような展開をするか決定する。
+#  :で始まる場合 ... コマンドとして展開(1文字目じゃないと展開しない)
+#  @で始まる場合 ... 内容を実行した結果の値を展開
+#  それ以外 ........ そのままの値で展開
+abbreviations=(
+  # パイプ
+  "G"       " | grep"
+  "E"       " 2>&1 > /dev/null"
+  "N"       " > /dev/null"
+  # git
+  "g"       ":git"
+  "ga"      ":git add"
+  "gap"     ":git add -p"
+  "gc"      ":git commit"
+  "B"       "@git symbolic-ref --short HEAD"  # 現在のブランチ名
+)
+# エイリアスやグローバルエイリアスとしても設定
+() {
+  local key
+  for key in ${(k)abbreviations}; do
+    local value=${abbreviations[$key]}
+    local kind=${value[1,1]}
+    value=${value[2,-1]}
+    case $kind in
+      :) alias    $key=$value;;
+      @) alias -g $key="\$($value)";;
+      *) alias -g $key=$value;;
+    esac
+  done
+}
+magic-abbrev-expand() {
+  local MATCH
+  LBUFFER=${LBUFFER%%(#m)[_a-zA-Z0-9]#}
+  local abbr=${abbreviations[$MATCH]:- $MATCH}
+  local kind=${abbr[1,1]}
+  local newbuffer=${abbr[2,-1]}
+  if [[ $kind == "@" ]]; then
+    newbuffer=$(eval $newbuffer)
+  elif [[ $kind == ":" && $LBUFFER != "" ]]; then
+    newbuffer=$MATCH
+  fi
+  LBUFFER+=$newbuffer
+  zle self-insert
+}
+no-magic-abbrev-expand() {
+  LBUFFER+=' '
+}
+zle -N magic-abbrev-expand
+zle -N no-magic-abbrev-expand
+bindkey " " magic-abbrev-expand
+bindkey "^x " no-magic-abbrev-expand
 
 # .zshrcを編集しやすくするテスト
 function __load_zshrc() {
