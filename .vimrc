@@ -1,3 +1,10 @@
+" encoding/fileformat settings {{{
+  set encoding=utf-8
+  set fileencoding=utf-8
+  set fileencodings=ucs-bom,utf-8,iso-2022-jp,euc-jp,cp932
+  set fileformat=unix
+  set fileformats=unix,dos,mac
+" }}}
 " 各種パス設定 {{{
   let s:cache_home = empty($XDG_CACHE_HOME) ? expand('~/.cache') : $XDG_CACHE_HOME
   let s:vimrc = resolve(expand($MYVIMRC))
@@ -26,13 +33,6 @@
     call dein#install()
   endif
 " }}}
-
-" エンコーディング指定
-set encoding=utf-8
-set fileencoding=utf-8
-set fileencodings=ucs-bom,utf-8,iso-2022-jp,euc-jp,cp932
-set fileformat=unix
-set fileformats=unix,dos,mac
 
 syntax on                           " syntax on
 filetype plugin indent on           " ファイルタイプ毎のplugin, indent設定を読み込む
