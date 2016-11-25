@@ -27,3 +27,5 @@ alias gsall='gs `ghq list -p`'
 alias gl="ghq-cd"
 
 alias rb="bundruby"
+
+# vim:ft=sh
