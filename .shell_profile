@@ -17,6 +17,9 @@ export PATH="$PATH:$GOROOT/bin:$GOPATH/bin"
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.myscript/bin:$PATH"
 
+# default editor
+export EDITOR="vim"
+
 # Aliases
 alias ls="ls --color=auto -F"
 alias ll="ls -l"
