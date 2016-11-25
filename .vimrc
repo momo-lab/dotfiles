@@ -125,8 +125,7 @@ if filereadable(s:vimrc_secret)
 endif
 
 " translate-shellを使う
-" TODO パス指定の方法をどうにかしたい
-let s:trans_cmd = expand('$HOME/.zplug/repos/soimort/translate-shell/translate')
+let s:trans_cmd = 'trans'
 let s:trans_opt = '-b'
 exec 'command! -nargs=0 -range Trans <line1>,<line2>!' . s:trans_cmd . ' ' . s:trans_opt
 nnoremap <silent> <F3> :Trans<CR>

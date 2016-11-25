@@ -31,7 +31,9 @@ zplug "github/hub", as:command, from:gh-r
 # ゴミ箱
 zplug "b4b4r07/zsh-gomi"
 # Google翻訳
-zplug "soimort/translate-shell", at:stable
+zplug "soimort/translate-shell", \
+  at:stable, as:command, use:"build/*", \
+  hook-build:"make build &> /dev/null"
 
 # 短縮展開
 zplug "momo-lab/zsh-abbrev-alias"
