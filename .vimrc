@@ -34,7 +34,7 @@ set fileencodings=ucs-bom,utf-8,iso-2022-jp,euc-jp,cp932
 set fileformat=unix
 set fileformats=unix,dos,mac
 
-syntax on														" syntax on
+syntax on                           " syntax on
 set background=dark                 " 背景は黒ベース
 set t_Co=256                        " カラー設定
 set nobackup                        " backupファイルを作らない
