@@ -1,5 +1,6 @@
 " encoding/fileformat settings {{{
   set encoding=utf-8
+  scriptencoding utf-8
   set fileencoding=utf-8
   set fileencodings=ucs-bom,utf-8,iso-2022-jp,euc-jp,cp932
   set fileformat=unix
