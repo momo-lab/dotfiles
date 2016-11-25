@@ -253,13 +253,8 @@ repo = 'lambdalisue/vital-Web-API-GitHub'
 lazy = 1
 
 [[plugins]] # Google翻訳
-repo = 'normful/googletranslate-vim'
-depends = ['webapi-vim']
-on_cmd = ['GoogleTranslate', 'Trans']
-hook_add = '''
-  " g:googletranslate_apikey is required
-  let g:googletranslate_locale = 'ja'
-'''
+repo = 'daisuzu/translategoogle.vim'
+on_cmd = ['TranslateGoogle', 'TranslateGoogleCmd']
 
 [[plugins]]
 repo = 'mattn/webapi-vim'
@@ -271,3 +266,4 @@ on_cmd = ['UndotreeToggle']
 hook_add = '''
   nnoremap <F4> :<C-u>UndotreeToggle<CR>
 '''
+
