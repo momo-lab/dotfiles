@@ -35,6 +35,7 @@ set fileformat=unix
 set fileformats=unix,dos,mac
 
 syntax on                           " syntax on
+filetype plugin indent on           " ファイルタイプ毎のplugin, indent設定を読み込む
 set background=dark                 " 背景は黒ベース
 set t_Co=256                        " カラー設定
 set nobackup                        " backupファイルを作らない
