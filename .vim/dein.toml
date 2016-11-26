@@ -81,7 +81,7 @@ hook_add = '''
 # バッファ内検索 {{{
 [[plugins]]
 repo = 'haya14busa/incsearch.vim'
-depends = ['vim-anzu', 'vim-asterisk', 'incsearch.vim']
+depends = ['vim-anzu', 'vim-asterisk']
 on_map = '<Plug>'
 hook_add = '''
   set ignorecase
