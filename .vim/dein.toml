@@ -21,7 +21,10 @@ depends = ['context_filetype.vim']
 repo = 'Shougo/context_filetype.vim'
 
 [[plugins]] # TOML syntax
-repo = 'cespare/vim-toml'
+# ハイライトがおかしくなることがあるのでforkして修正したものを使用している。
+# PRした方がいいんだけど、常に先頭から解析するのが本当に良いのか微妙で躊躇している。
+repo = 'momo-lab/vim-toml'
+rev = 'fix_syntax_sync'
 on_ft = 'toml'
 
 [[plugins]] # yanktmp.vim
