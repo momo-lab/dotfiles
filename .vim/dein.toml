@@ -19,10 +19,13 @@ repo = 'ujihisa/unite-colorscheme'
 [[plugins]] # ハイライトをUniteで一覧表示
 repo = 'osyo-manga/unite-highlight'
 
-[[plugins]] # color scheme
+[[plugins]]
 repo = 'w0ng/vim-hybrid'
 hook_add = '''
-  colorscheme hybrid
+  augroup my_colorscheme
+    autocmd!
+    autocmd VimEnter * nested colorscheme hybrid
+  augroup END
 '''
 
 [[plugins]] # cursor位置のコンテキストによってfiletypeを切り替える
