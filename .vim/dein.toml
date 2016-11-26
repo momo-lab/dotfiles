@@ -25,6 +25,7 @@ depends = ['context_filetype.vim']
 
 [[plugins]] # cursor位置のファイルタイプ判定ライブラリ
 repo = 'Shougo/context_filetype.vim'
+lazy = 1
 
 # ======================================================================== }}}
 # ファイラ {{{
@@ -60,6 +61,7 @@ repo = 'tpope/vim-surround'
 # 編集 {{{
 [[plugins]] # ヤンクを共有する
 repo = 'rtakasuke/yanktmp.vim'
+on_func = ['YanktmpYank', 'YanktmpPaste_p', 'YanktmpPaste_P']
 hook_add = '''
   let g:yanktmp_file = '/tmp/yanktmp'
   map <silent> sy :call YanktmpYank()<CR>
@@ -69,6 +71,7 @@ hook_add = '''
 
 [[plugins]] # リナンバをする
 repo = 'renumber.vim'
+on_cmd = ['Renumber']
 
 [[plugins]] # undo内容をツリー形式で表示する
 repo = 'mbbill/undotree'
@@ -255,6 +258,7 @@ repo = 'airblade/vim-gitgutter'
 
 [[plugins]] # :Agitでgitのログを見る
 repo = 'cohama/agit.vim'
+on_cmd = ['Agit', 'AgitFile']
 
 # ======================================================================== }}}
 # for github {{{
@@ -279,6 +283,7 @@ hook_add = '''
 
 [[plugins]] # Gist操作(Uniteプラグイン)
 repo = 'lambdalisue/vim-gista-unite'
+lazy = 1
 depends = ['vim-gista']
 
 # ======================================================================== }}}
