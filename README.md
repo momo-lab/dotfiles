@@ -4,6 +4,13 @@ dotfiles
 Install
 -------
 
+webからとってきて直接実行するならこう
+
+    bash $(curl -sL http://dot.momo-lab.net)
+
+
+上記のことを手動でやるならこう
+
     cd ~
     git clone git@github.com:momo-lab/dotfiles.git
     cd dotfiles
