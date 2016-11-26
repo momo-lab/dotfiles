@@ -22,9 +22,14 @@ repo = 'osyo-manga/unite-highlight'
 [[plugins]]
 repo = 'w0ng/vim-hybrid'
 hook_add = '''
+  set cursorline
   augroup my_colorscheme
     autocmd!
     autocmd VimEnter * nested colorscheme hybrid
+    " 行番号を少し目立たせる(TODO guifgは未テスト)
+    autocmd ColorScheme * hi LineNr       ctermfg=245 ctermbg=236 guifg=#373b41
+    autocmd ColorScheme * hi CursorLineNr ctermfg=221 ctermbg=236 guifg=#f0c674
+    autocmd ColorScheme * hi clear CursorLine
   augroup END
 '''
 
