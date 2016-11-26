@@ -13,6 +13,12 @@ hook_add = '''
 
 # ======================================================================== }}}
 # カラースキーマ {{{
+[[plugins]] # カラースキーマをUniteで切り替える
+repo = 'ujihisa/unite-colorscheme'
+
+[[plugins]] # ハイライトをUniteで一覧表示
+repo = 'osyo-manga/unite-highlight'
+
 [[plugins]] # color scheme
 repo = 'w0ng/vim-hybrid'
 hook_add = '''
