@@ -27,6 +27,10 @@ apt-get とかで入れればよろし
 - vim
 - zsh
 
+Bash on Ubuntu on Windows の場合は以下も入れておくこと
+
+- make
+
 #### Windows
 - git for Windows <https://git-for-windows.github.io/>
 - Kaoriya版gvim <http://www.kaoriya.net/software/vim/> (Optional)
