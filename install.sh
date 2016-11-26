@@ -5,7 +5,7 @@ WORKDIR=$(cd $(dirname $0) && pwd)
 # initialize
 dotfiles_initialize() {
     echo "Initialize."
-    for file in $WORKDIR/init/*.sh; do
+    for file in $WORKDIR/etc/init/*.sh; do
         $file
     done
 }
