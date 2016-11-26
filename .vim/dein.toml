@@ -44,6 +44,14 @@ hook_add = '''
   map <silent> sP :call YanktmpPaste_P()<CR>
 '''
 
+[[plugins]] # コメントアウト
+# caw.vimはdot repeatするのに別のプラグインが必要なのでとりあえず使うのやめる
+#repo = 'tyru/caw.vim'
+repo = 'tomtom/tcomment_vim'
+hook_add = '''
+  let g:tcommentMapLeader1 = '<c-\>'
+'''
+
 [[plugins]] # リナンバをする
 repo = 'renumber.vim'
 on_cmd = ['Renumber']
