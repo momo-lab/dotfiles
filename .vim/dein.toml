@@ -61,7 +61,7 @@ hook_add = '''
 
 [[plugins]] # Unite
 repo = 'Shougo/unite.vim'
-depends = ['vimproc.vim']
+depends = ['vimproc.vim', 'neomru.vim']
 on_cmd = 'Unite'
 hook_add = '''
   let g:unite_split_rule = 'botright'
@@ -105,6 +105,14 @@ hook_add = '''
   nnoremap <silent> [unite]F :<C-u>Unite
         \ -start-insert -hide-source-names
         \ file_rec file/new<CR>
+  " ファイル履歴を表示
+  nnoremap <silent> [unite]r :<C-u>Unite
+        \ -start-insert -hide-source-names
+        \ neomru/file file/new<CR>
+  " ディレクトリ履歴を表示
+  nnoremap <silent> [unite]R :<C-u>Unite
+        \ -start-insert -hide-source-names
+        \ neomru/directory<CR>
   " git管理のファイルを表示
   nnoremap <silent> <C-p> :<C-u>Unite
         \ -start-insert -hide-source-names
@@ -113,6 +121,10 @@ hook_add = '''
   " Grep
   nnoremap <silent> [unite]g :<C-u>Unite grep:. -no-empty<CR>
 '''
+
+[[plugins]] # Uniteでファイル履歴を扱えるようにする
+repo = 'Shougo/neomru.vim'
+lazy = 1
 
 [[plugins]] # vimproc.vim
 repo = 'Shougo/vimproc.vim'
