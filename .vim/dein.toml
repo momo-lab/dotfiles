@@ -218,6 +218,7 @@ lazy = 1
 # ファイラ {{{
 [[plugins]] # Vimfiler
 repo = 'Shougo/vimfiler.vim'
+depends = ['unite.vim']
 hook_add = '''
   let g:vimfiler_as_default_explorer = 1
 '''
