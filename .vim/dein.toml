@@ -13,12 +13,6 @@ hook_add = '''
 
 # ======================================================================== }}}
 # カラースキーマ {{{
-[[plugins]] # カラースキーマをUniteで切り替える
-repo = 'ujihisa/unite-colorscheme'
-
-[[plugins]] # ハイライトをUniteで一覧表示
-repo = 'osyo-manga/unite-highlight'
-
 [[plugins]]
 repo = 'w0ng/vim-hybrid'
 hook_add = '''
@@ -36,10 +30,6 @@ hook_add = '''
 [[plugins]] # cursor位置のコンテキストによってfiletypeを切り替える
 repo = 'osyo-manga/vim-precious'
 depends = ['context_filetype.vim']
-
-[[plugins]] # cursor位置のファイルタイプ判定ライブラリ
-repo = 'Shougo/context_filetype.vim'
-lazy = 1
 
 [[plugins]] # インデントを可視化
 repo = 'nathanaelkane/vim-indent-guides'
@@ -214,6 +204,14 @@ hook_add = '''
 repo = 'Shougo/neomru.vim'
 lazy = 1
 
+[[plugins]] # カラースキーマを切り替える
+repo = 'ujihisa/unite-colorscheme'
+depends = ['unite.vim']
+
+[[plugins]] # ハイライトを表示
+repo = 'osyo-manga/unite-highlight'
+depends = ['unite.vim']
+
 # ======================================================================== }}}
 # ファイラ {{{
 [[plugins]] # Vimfiler
@@ -353,6 +351,10 @@ lazy = 1
 
 [[plugins]]
 repo = 'mattn/webapi-vim'
+lazy = 1
+
+[[plugins]] # cursor位置のファイルタイプ判定ライブラリ
+repo = 'Shougo/context_filetype.vim'
 lazy = 1
 
 # ======================================================================== }}}
