@@ -209,6 +209,10 @@ hook_add = '''
         \ neomru/directory<CR>
 '''
 
+[[plugins]] # アウトラインを表示
+repo = 'Shougo/unite-outline'
+depends = ['unite.vim']
+
 [[plugins]] # カラースキーマを切り替える
 repo = 'ujihisa/unite-colorscheme'
 depends = ['unite.vim']
