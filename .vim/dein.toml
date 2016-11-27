@@ -186,13 +186,40 @@ hook_add = '''
   nnoremap <silent> [unite]F :<C-u>Unite
         \ -start-insert -hide-source-names
         \ file_rec file/new<CR>
-  " git管理のファイルを表示
-  nnoremap <silent> <C-p> :<C-u>Unite
-        \ -start-insert -hide-source-names
-        \ file_rec/git:--cached:--others:--exclude-standard
-        \ file/new<CR>
   " Grep
   nnoremap <silent> [unite]g :<C-u>Unite grep:. -no-empty<CR>
+
+  " <C-p>,<C-n>で複数のsourceを切り替える
+  let s:toggle_unite_next = '<C-p>'
+  let s:toggle_unite_prev = '<C-n>'
+  let s:toggle_unite_commands = [
+        \ 'file_rec/git:--cached:--others:--exclude-standard file/new',
+        \ 'file_rec file/new',
+        \ 'neomru/file file/new',
+        \ 'buffer -no-start-insert',
+        \ ]
+  let s:toggle_unite_option = '-start-insert -hide-source-names -no-short-source-names'
+  execute printf('nnoremap <silent> %s :<C-u>Unite -profile-name=toggle%i %s %s<CR>',
+        \ s:toggle_unite_next,
+        \ 0, s:toggle_unite_option,
+        \ s:toggle_unite_commands[0])
+  autocmd FileType unite call s:toggle_unite()
+  function! s:toggle_unite()
+    let unite = unite#get_current_unite()
+    if unite.profile_name !~ '^toggle[0-9]\+$'
+      return
+    endif
+    let num = str2nr(substitute(unite.profile_name, 'toggle', '', ''))
+    let cmd = '%s <silent><buffer> %s <Plug>(unite_exit)' .
+          \ ':<C-u>Unite -profile-name=toggle%i ' .
+          \ s:toggle_unite_option . ' %s <CR>'
+    let next = (num + 1) < len(s:toggle_unite_commands) ? num + 1 : 0
+    execute printf(cmd, 'imap', s:toggle_unite_next, next, s:toggle_unite_commands[next])
+    execute printf(cmd, 'nmap', s:toggle_unite_next, next, s:toggle_unite_commands[next])
+    let prev = (num > 0 ? num : len(s:toggle_unite_commands)) - 1
+    execute printf(cmd, 'imap', s:toggle_unite_prev, prev, s:toggle_unite_commands[prev])
+    execute printf(cmd, 'nmap', s:toggle_unite_prev, prev, s:toggle_unite_commands[prev])
+  endfunction
 '''
 
 [[plugins]] # Uniteでファイル履歴を扱えるようにする
