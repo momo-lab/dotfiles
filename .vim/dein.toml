@@ -308,6 +308,16 @@ hook_add = '''
   let g:github_issues_no_omni = 1
 '''
 
+[[plugins]] # GitHub関連の補完
+repo = 'rhysd/github-complete.vim'
+depends = ['vimproc.vim']
+on_ft = ['gitcommit', 'markdown']
+hook_add = '''
+  let g:github_complete_overwrite_omnifunc_filetypes = 
+        \ ['gitcommit', 'markdown']
+  let g:github_complete_include_issue_title = 1
+'''
+
 [[plugins]] # Gist操作
 repo = 'lambdalisue/vim-gista'
 on_cmd = 'Gista'
