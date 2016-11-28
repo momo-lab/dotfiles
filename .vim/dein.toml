@@ -248,6 +248,10 @@ depends = ['unite.vim']
 repo = 'osyo-manga/unite-highlight'
 depends = ['unite.vim']
 
+[[plugins]] # Gist一覧を表示
+repo = 'lambdalisue/vim-gista-unite'
+depends = ['vim-gista', 'unite.vim']
+
 # ======================================================================== }}}
 # ファイラ {{{
 [[plugins]] # Vimfiler
@@ -356,11 +360,6 @@ hook_add = '''
     nmap <buffer> <ESC> <Plug>(gista-quit)
   endfunction
 '''
-
-[[plugins]] # Gist操作(Uniteプラグイン)
-repo = 'lambdalisue/vim-gista-unite'
-lazy = 1
-depends = ['vim-gista']
 
 # ======================================================================== }}}
 # for toml {{{
