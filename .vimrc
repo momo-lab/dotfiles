@@ -24,7 +24,7 @@
   let &runtimepath = s:dein_repo_dir .",". &runtimepath
   let s:toml_file = expand('$HOME/.vim/dein.toml')
   if dein#load_state(s:dein_dir)
-    call dein#begin(s:dein_dir, [$MYVIMRC, s:toml_file])
+    call dein#begin(s:dein_dir)
     call dein#load_toml(s:toml_file)
     call dein#end()
     call dein#save_state()
