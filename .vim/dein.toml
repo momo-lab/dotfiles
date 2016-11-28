@@ -190,6 +190,7 @@ hook_add = '''
   nnoremap <silent> [unite]g :<C-u>Unite grep:. -no-empty<CR>
 
   " <C-p>,<C-n>で複数のsourceを切り替える
+  let s:toggle_unite_keymap = '<C-p>'
   let s:toggle_unite_next = '<C-p>'
   let s:toggle_unite_prev = '<C-n>'
   let s:toggle_unite_commands = [
@@ -200,7 +201,7 @@ hook_add = '''
         \ ]
   let s:toggle_unite_option = '-start-insert -hide-source-names -no-short-source-names'
   execute printf('nnoremap <silent> %s :<C-u>%s -profile-name=toggle%i %s %s<CR>',
-        \ s:toggle_unite_next,
+        \ s:toggle_unite_keymap,
         \ s:toggle_unite_commands[0][0],
         \ 0, s:toggle_unite_option,
         \ s:toggle_unite_commands[0][1])
