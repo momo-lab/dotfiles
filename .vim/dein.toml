@@ -214,24 +214,21 @@ hook_add = '''
       return
     endif
     let num = str2nr(substitute(unite.profile_name, s:toggle_unite_profile_prefix, '', ''))
-    let cmd = 'map <silent><buffer> %s <Plug>(unite_exit)' .
-          \ ':<C-u>%s -profile-name=%s%i %s %s<CR>'
     let next = (num + 1) < len(s:toggle_unite_commands) ? num + 1 : 0
-    let next_cmd = printf(cmd, s:toggle_unite_next,
-          \ s:toggle_unite_commands[next][0],
-          \ s:toggle_unite_profile_prefix, next,
-          \ s:toggle_unite_option,
-          \ s:toggle_unite_commands[next][1])
-    execute 'i' . next_cmd
-    execute 'n' . next_cmd
+    call s:toggle_unite_map(s:toggle_unite_next, next)
     let prev = (num > 0 ? num : len(s:toggle_unite_commands)) - 1
-    let prev_cmd = printf(cmd, s:toggle_unite_prev,
-          \ s:toggle_unite_commands[prev][0],
-          \ s:toggle_unite_profile_prefix, prev,
+    call s:toggle_unite_map(s:toggle_unite_prev, prev)
+  endfunction
+  function! s:toggle_unite_map(keymap, index)
+    let cmd = printf('map <silent><buffer> %s <Plug>(unite_exit)' .
+          \ ':<C-u>%s -profile-name=%s%i %s %s<CR>',
+          \ a:keymap,
+          \ s:toggle_unite_commands[a:index][0],
+          \ s:toggle_unite_profile_prefix, a:index,
           \ s:toggle_unite_option,
-          \ s:toggle_unite_commands[prev][1])
-    execute 'i' . prev_cmd
-    execute 'n' . prev_cmd
+          \ s:toggle_unite_commands[a:index][1])
+    execute 'i' . cmd
+    execute 'n' . cmd
   endfunction
 '''
 
