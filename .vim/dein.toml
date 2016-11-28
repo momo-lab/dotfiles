@@ -195,8 +195,8 @@ hook_add = '''
   let s:toggle_unite_prev = '<C-n>'
   let s:toggle_unite_commands = [
         \ ['Unite', 'file_rec/git:--cached:--others:--exclude-standard file/new'],
-        \ ['UniteWithBufferDir', 'file_rec file/new'],
         \ ['Unite', 'neomru/file file/new'],
+        \ ['UniteWithBufferDir', 'file_rec file/new'],
         \ ['Unite', 'buffer -no-start-insert'],
         \ ]
   let s:toggle_unite_option = '-start-insert -hide-source-names -no-short-source-names'
