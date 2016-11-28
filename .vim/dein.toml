@@ -188,9 +188,14 @@ hook_add = '''
         \ file_rec file/new<CR>
   " Grep
   nnoremap <silent> [unite]g :<C-u>Unite grep:. -no-empty<CR>
+'''
 
+[[plugins]]
+repo = 'momo-lab/switchunite.vim'
+depends = ['unite.vim', 'neomru.vim']
+hook_add = '''
   " <C-p>,<C-n>で複数のsourceを切り替える
-  let g:toggle_unite = {
+  let g:switchunite = {
         \ 'test': {
         \   'keymap': '<C-a>',
         \   'commands': [
@@ -211,62 +216,6 @@ hook_add = '''
         \   ]
         \ },
         \}
-
-  function! s:toggle_unite_init()
-    let g:toggle_unite = get(g:, 'toggle_unite', {})
-    for prefix in keys(g:toggle_unite)
-      " normalize settings
-      " TODO 不正なオプション(keymapは必須、commandsは1つ以上必須)の場合にエラーを表示する
-      let g:toggle_unite[prefix] = extend(g:toggle_unite[prefix], {
-            \ 'prefix': prefix,
-            \ 'keymap_next': get(g:, 'toggle_unite_keymap_next', '<C-f>'),
-            \ 'keymap_prev': get(g:, 'toggle_unite_keymap_prev', '<C-b>'),
-            \ 'option': '',
-            \ }, 'keep')
-
-      " setting keymap
-      let settings = g:toggle_unite[prefix]
-      execute printf('nnoremap <silent> %s :<C-u>%s -profile-name=%s%i %s %s<CR>',
-            \ settings['keymap'],
-            \ settings['commands'][0][0],
-            \ settings['prefix'], 0,
-            \ settings['option'],
-            \ settings['commands'][0][1])
-    endfor
-  endfunction
-
-  function! s:toggle_unite()
-    let unite = unite#get_current_unite()
-    for prefix in keys(g:toggle_unite)
-      if unite.profile_name !~ printf('^%s[0-9]\+$', prefix)
-        continue
-      endif
-      let settings = g:toggle_unite[prefix]
-      let num = str2nr(substitute(unite.profile_name, prefix, '', ''))
-      let next = (num + 1) < len(settings['commands']) ? num + 1 : 0
-      call s:toggle_unite_map(settings, 'next', next)
-      let prev = (num > 0 ? num : len(settings['commands'])) - 1
-      call s:toggle_unite_map(settings, 'prev', prev)
-    endfor
-  endfunction
-
-  function! s:toggle_unite_map(settings, mode, index)
-    let cmd = printf('map <silent><buffer> %s <Plug>(unite_exit)' .
-          \ ':<C-u>%s -profile-name=%s%i %s %s<CR>',
-          \ a:settings['keymap_' . a:mode],
-          \ a:settings['commands'][a:index][0],
-          \ a:settings['prefix'], a:index,
-          \ a:settings['option'],
-          \ a:settings['commands'][a:index][1])
-    execute 'i' . cmd
-    execute 'n' . cmd
-  endfunction
-
-  call s:toggle_unite_init()
-  augroup toggle_unite
-    autocmd!
-    autocmd FileType unite call s:toggle_unite()
-  augroup END
 '''
 
 [[plugins]] # Uniteでファイル履歴を扱えるようにする
