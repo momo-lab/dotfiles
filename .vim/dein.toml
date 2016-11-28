@@ -193,16 +193,17 @@ hook_add = '''
   let s:toggle_unite_next = '<C-p>'
   let s:toggle_unite_prev = '<C-n>'
   let s:toggle_unite_commands = [
-        \ 'file_rec/git:--cached:--others:--exclude-standard file/new',
-        \ 'file_rec file/new',
-        \ 'neomru/file file/new',
-        \ 'buffer -no-start-insert',
+        \ ['Unite', 'file_rec/git:--cached:--others:--exclude-standard file/new'],
+        \ ['UniteWithBufferDir', 'file_rec file/new'],
+        \ ['Unite', 'neomru/file file/new'],
+        \ ['Unite', 'buffer -no-start-insert'],
         \ ]
   let s:toggle_unite_option = '-start-insert -hide-source-names -no-short-source-names'
-  execute printf('nnoremap <silent> %s :<C-u>Unite -profile-name=toggle%i %s %s<CR>',
+  execute printf('nnoremap <silent> %s :<C-u>%s -profile-name=toggle%i %s %s<CR>',
         \ s:toggle_unite_next,
+        \ s:toggle_unite_commands[0][0],
         \ 0, s:toggle_unite_option,
-        \ s:toggle_unite_commands[0])
+        \ s:toggle_unite_commands[0][1])
   autocmd FileType unite call s:toggle_unite()
   function! s:toggle_unite()
     let unite = unite#get_current_unite()
@@ -210,15 +211,22 @@ hook_add = '''
       return
     endif
     let num = str2nr(substitute(unite.profile_name, 'toggle', '', ''))
-    let cmd = '%s <silent><buffer> %s <Plug>(unite_exit)' .
-          \ ':<C-u>Unite -profile-name=toggle%i ' .
-          \ s:toggle_unite_option . ' %s <CR>'
+    let cmd = 'map <silent><buffer> %s <Plug>(unite_exit)' .
+          \ ':<C-u>%s -profile-name=toggle%i %s %s<CR>'
     let next = (num + 1) < len(s:toggle_unite_commands) ? num + 1 : 0
-    execute printf(cmd, 'imap', s:toggle_unite_next, next, s:toggle_unite_commands[next])
-    execute printf(cmd, 'nmap', s:toggle_unite_next, next, s:toggle_unite_commands[next])
+    let next_cmd = printf(cmd, s:toggle_unite_next,
+          \ s:toggle_unite_commands[next][0],
+          \ next, s:toggle_unite_option,
+          \ s:toggle_unite_commands[next][1])
+    execute 'i' . next_cmd
+    execute 'n' . next_cmd
     let prev = (num > 0 ? num : len(s:toggle_unite_commands)) - 1
-    execute printf(cmd, 'imap', s:toggle_unite_prev, prev, s:toggle_unite_commands[prev])
-    execute printf(cmd, 'nmap', s:toggle_unite_prev, prev, s:toggle_unite_commands[prev])
+    let prev_cmd = printf(cmd, s:toggle_unite_prev,
+          \ s:toggle_unite_commands[prev][0],
+          \ prev, s:toggle_unite_option,
+          \ s:toggle_unite_commands[prev][1])
+    execute 'i' . prev_cmd
+    execute 'n' . prev_cmd
   endfunction
 '''
 
