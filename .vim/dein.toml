@@ -202,6 +202,20 @@ hook_add = '''
         \ file_rec:`expand('%:p:h')`
         \ buffer
         \ file/new<CR>
+  " Grep
+  nnoremap <silent> [unite]g :<C-u>Unite grep:. -no-empty<CR>
+  " よく使うファイルをメニューに登録
+  let g:unite_source_menu_menus.fav_files = {
+        \   'description': 'Favolite menus'
+        \ }
+  let g:unite_source_menu_menus.fav_files.file_candidates = [
+        \   ['.vimrc', resolve(expand('~/.vimrc'))],
+        \   ['dein.toml', resolve(expand('~/.vim/dein.toml'))],
+        \   ['.zshrc', resolve(expand('~/.zshrc'))],
+        \   ['.zplug/', resolve(expand('~/.plug'))],
+        \   ['.cache/dein', resolve(expand('~/.cache/dein/repos'))],
+        \ ]
+  nnoremap <silent> [unite]m :<C-u>Unite -start-insert menu:fav_files<CR>
 '''
 
 [[plugins]]
