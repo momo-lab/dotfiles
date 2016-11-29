@@ -19,6 +19,7 @@ zplug "mollifier/cd-gitroot"
 zplug "junegunn/fzf-bin", as:command, from:gh-r, as:command, rename-to:fzf
 # grepのすごいやつ
 zplug "monochromegane/the_platinum_searcher", as:command, from:gh-r, rename-to:pt
+zplug "BurntSushi/ripgrep", as:command, from:gh-r, rename-to:rg
 # JSONパース用コマンド
 zplug "stedolan/jq", as:command, from:gh-r
 # gitリポジトリ管理
