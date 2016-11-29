@@ -168,7 +168,9 @@ hook_add = '''
     imap <buffer> <ESC><ESC>   <Plug>(unite_exit)
     " Ctrl+J/Kで選択
     imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+    nmap <buffer> <C-j>   <Plug>(unite_loop_cursor_down)
     imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+    nmap <buffer> <C-k>   <Plug>(unite_loop_cursor_up)
     " 1ワード削除(インサートモードと同じ挙動になるようにする)
     nmap <buffer> <C-w>   <Plug>(unite_delete_backspace_word)
     " 既に入力されている文字を削除した状態で入力
