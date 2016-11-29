@@ -192,14 +192,6 @@ hook_add = '''
   nnoremap <silent> [unite]<Space> :<C-u>UniteResume<CR>
   " ソースを選択
   nnoremap <silent> [unite]s :<C-u>Unite source<CR>
-  " カレントバッファのディレクトリ配下のファイルを表示
-  nnoremap <silent> [unite]f :<C-u>UniteWithBufferDir
-        \ -start-insert -hide-source-names
-        \ file_rec file/new<CR>
-  " カレントディレクトリ配下のファイルを表示
-  nnoremap <silent> [unite]F :<C-u>Unite
-        \ -start-insert -hide-source-names
-        \ file_rec file/new<CR>
   " Grep
   nnoremap <silent> [unite]g :<C-u>Unite grep:. -no-empty<CR>
   " ファイルを開く
