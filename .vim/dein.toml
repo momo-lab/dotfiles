@@ -174,6 +174,14 @@ hook_add = '''
     " 既に入力されている文字を削除した状態で入力
     nmap <buffer> I       <Plug>(unite_append_end)<Plug>(unite_delete_backward_line)
     nmap <buffer> <C-u>   <Plug>(unite_append_end)<Plug>(unite_delete_backward_line)
+    " <C-p>,<C-n>の方向を入れ替え、インサートモードでも有効にする
+    nmap <buffer> <C-p>   <Plug>(unite_rotate_next_source)
+    imap <buffer> <C-p>   <Plug>(unite_insert_leave)
+          \<Plug>(unite_rotate_next_source)<Plug>(unite_insert_enter)
+    nmap <buffer> <C-n>   <Plug>(unite_rotate_previous_source)
+    imap <buffer> <C-n>   <Plug>(unite_insert_leave)
+          \<Plug>(unite_rotate_previous_source)<Plug>(unite_insert_enter)
+
   endfunction
 
   nnoremap [unite] <Nop>
@@ -192,31 +200,40 @@ hook_add = '''
         \ file_rec file/new<CR>
   " Grep
   nnoremap <silent> [unite]g :<C-u>Unite grep:. -no-empty<CR>
+  " ファイルを開く
+  nnoremap <silent> <C-p> :<C-u>Unite
+        \ -no-short-source-names -start-insert
+        \ file_rec/git:--cached:--others:--exclude-standard
+        \ neomru/file
+        \ file_rec:`expand('%:p:h')`
+        \ buffer
+        \ file/new<CR>
 '''
 
 [[plugins]]
 repo = 'momo-lab/switchunite.vim'
+lazy = 1
 depends = ['unite.vim', 'neomru.vim']
 hook_add = '''
-  " <C-p>,<C-n>で複数のsourceを切り替える
-  call switchunite#add('toggle_file', {
-        \ 'keymap': '<C-p>',
-        \ 'keymap_next': '<C-p>',
-        \ 'keymap_prev': '<C-n>',
-        \ 'option': '-start-insert -hide-source-names -no-short-source-names',
-        \ 'commands': [
-        \   ['Unite', 'file_rec/git:--cached:--others:--exclude-standard file/new'],
-        \   ['Unite', 'neomru/file file/new'],
-        \   ['UniteWithBufferDir', 'file_rec file/new'],
-        \   ['Unite', 'buffer -no-start-insert'],
-        \ ]})
-  " switchunite.vimのテスト用
-  call switchunite#add('toggle_others', {
-        \ 'keymap': '<C-a>',
-        \ 'commands': [
-        \   ['Unite', 'source -no-start-insert'],
-        \   ['Unite', 'dein -no-start-insert'],
-        \ ]})
+  " " <C-p>,<C-n>で複数のsourceを切り替える
+  " call switchunite#add('toggle_file', {
+  "       \ 'keymap': '<C-p>',
+  "       \ 'keymap_next': '<C-p>',
+  "       \ 'keymap_prev': '<C-n>',
+  "       \ 'option': '-start-insert -hide-source-names -no-short-source-names',
+  "       \ 'commands': [
+  "       \   ['Unite', 'file_rec/git:--cached:--others:--exclude-standard file/new'],
+  "       \   ['Unite', 'neomru/file file/new'],
+  "       \   ['UniteWithBufferDir', 'file_rec file/new'],
+  "       \   ['Unite', 'buffer -no-start-insert'],
+  "       \ ]})
+  " " switchunite.vimのテスト用
+  " call switchunite#add('toggle_others', {
+  "       \ 'keymap': '<C-a>',
+  "       \ 'commands': [
+  "       \   ['Unite', 'source -no-start-insert'],
+  "       \   ['Unite', 'dein -no-start-insert'],
+  "       \ ]})
 '''
 
 [[plugins]] # Uniteでファイル履歴を扱えるようにする
