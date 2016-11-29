@@ -186,7 +186,7 @@ hook_add = '''
         \ file_mru
         \ file_rec:`expand('%:p:h')`
         \ buffer
-        \ file_new<CR>
+        \ file_new:`expand('%:p:h')`<CR>
   " Grep
   nnoremap <silent> [unite]g :<C-u>Unite grep:. -no-empty<CR>
   " よく使うファイルをメニューに登録
