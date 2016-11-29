@@ -115,10 +115,6 @@ nnoremap vv viw
 " 折り畳み
 nnoremap zz za
 
-" .vimrcを開く
-exec 'nnoremap <F6> :<C-u>tabedit ' . s:vimrc . '<CR>'
-exec 'nnoremap <F5> :<C-u>source ' . s:vimrc . '<CR>'
-
 " APIキーなど.vimrcに記載できない内容を記述する.vimrc_secretを読み込む
 let s:vimrc_secret=expand('$HOME/.vimrc_secret')
 if filereadable(s:vimrc_secret)
