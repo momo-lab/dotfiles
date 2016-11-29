@@ -1,0 +1,11 @@
+#!/bin/bash
+
+for path in $(ghq list -p); do
+  cd $path
+  branch=$(git symbolic-ref --short HEAD)
+  echo -e "\e[92m$path\e[0m (\e[32m$branch\e[0m)"
+  git $@
+  if [[ $? != 0 ]]; then
+    exit 1
+  fi
+done
