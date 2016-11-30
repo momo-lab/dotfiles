@@ -521,4 +521,11 @@ lazy = 1
 repo = 'Shougo/context_filetype.vim'
 lazy = 1
 
+[[plugins]] # Vim script testing framework
+repo = 'thinca/vim-themis'
+hook_post_update = '''
+  let g:dein#plugin.build =
+        \ 'ln -sf ' . g:dein#plugin.path . '/bin/themis ~/.zplug/bin/themis'
+'''
+
 # ======================================================================== }}}
