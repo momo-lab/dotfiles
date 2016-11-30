@@ -232,6 +232,10 @@ depends = ['vim-gista', 'unite.vim', 'denite.nvim']
 repo = 'momo-lab/denite-source-file-new'
 depends = ['denite.nvim']
 
+[[plugins]] # output
+repo = 'momo-lab/denite-source-output'
+depends = ['denite.nvim']
+
 # ======================================================================== }}}
 # Unite {{{
 # [[plugins]] # Unite
