@@ -181,7 +181,7 @@ hook_add = '''
   " Grep
   nnoremap <silent> [denite]g :<C-u>Denite grep -no-empty<CR>
   " ファイルを開く
-  nnoremap <silent> <C-p> :<C-u>Denite
+  nnoremap <silent> <C-p> :<C-u>Denite -cursor-wrap
         \ file_git
         \ file_mru
         \ file_rec:`expand('%:p:h')`
