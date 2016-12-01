@@ -147,7 +147,7 @@ hook_add = '''
 [[plugins]]
 repo = 'Shougo/denite.nvim'
 hook_add = '''
-  " オプション設定
+  " オプション/エイリアス設定
   call denite#custom#var('file_rec', 'command',
         \ ['rg', '--files', '--glob', '!.git'])
   call denite#custom#alias('source', 'file_git', 'file_rec')
@@ -174,6 +174,21 @@ hook_add = '''
   call denite#custom#map('insert', '<C-p>', 'jump_to_prev_source')
   call denite#custom#map('normal', '<C-p>', 'jump_to_prev_source')
 
+  " よく使うファイルをメニューに登録
+  let s:menus = {}
+  let s:menus.fav_files = {
+        \   'description': 'Favolite menus'
+        \ }
+  let s:menus.fav_files.command_candidates = [
+        \   ['show gist list',    'Denite unite:gista'],
+        \   ['load .vimrc',       'source '  . resolve(expand('~/.vimrc'))],
+        \   ['edit .vimrc',       'tabedit ' . resolve(expand('~/.vimrc'))],
+        \   ['edit dein.toml',    'tabedit ' . resolve(expand('~/.vim/dein.toml'))],
+        \   ['edit .zshrc',       'tabedit ' . resolve(expand('~/.zshrc'))],
+        \ ]
+	call denite#custom#var('menu', 'menus', s:menus)
+
+  " ショートカット
   nnoremap [denite] <Nop>
   nmap <Space> [denite]
   " 前回のUnite結果を再表示
@@ -189,19 +204,6 @@ hook_add = '''
         \ file_new:`expand('%:p:h')`<CR>
   " Grep
   nnoremap <silent> [unite]g :<C-u>Unite grep:. -no-empty<CR>
-  " よく使うファイルをメニューに登録
-  let s:menus = {}
-  let s:menus.fav_files = {
-        \   'description': 'Favolite menus'
-        \ }
-  let s:menus.fav_files.command_candidates = [
-        \   ['show gist list',    'Denite unite:gista'],
-        \   ['load .vimrc',       'source '  . resolve(expand('~/.vimrc'))],
-        \   ['edit .vimrc',       'tabedit ' . resolve(expand('~/.vimrc'))],
-        \   ['edit dein.toml',    'tabedit ' . resolve(expand('~/.vim/dein.toml'))],
-        \   ['edit .zshrc',       'tabedit ' . resolve(expand('~/.zshrc'))],
-        \ ]
-	call denite#custom#var('menu', 'menus', s:menus)
   nnoremap <silent> [denite]m :<C-u>Denite menu:fav_files<CR>
 '''
 
@@ -210,31 +212,28 @@ repo = 'Shougo/unite.vim'
 
 [[plugins]] # Uniteでファイル履歴を扱えるようにする
 repo = 'Shougo/neomru.vim'
-depends = ['denite.nvim']
 
 [[plugins]] # アウトラインを表示
 repo = 'Shougo/unite-outline'
-depends = ['unite.vim', 'denite.nvim']
+depends = ['unite.vim']
 
 [[plugins]] # カラースキーマを切り替える
 repo = 'ujihisa/unite-colorscheme'
-depends = ['unite.vim', 'denite.nvim']
+depends = ['unite.vim']
 
 [[plugins]] # ハイライトを表示
 repo = 'osyo-manga/unite-highlight'
-depends = ['unite.vim', 'denite.nvim']
+depends = ['unite.vim']
 
 [[plugins]] # Gist一覧を表示
 repo = 'lambdalisue/vim-gista-unite'
-depends = ['vim-gista', 'unite.vim', 'denite.nvim']
+depends = ['vim-gista', 'unite.vim']
 
 [[plugins]] # 新規ファイルを開く
 repo = 'momo-lab/denite-source-file-new'
-depends = ['denite.nvim']
 
 [[plugins]] # output
 repo = 'momo-lab/denite-source-output'
-depends = ['denite.nvim']
 
 # ======================================================================== }}}
 # Unite {{{
