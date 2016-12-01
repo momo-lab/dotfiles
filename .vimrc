@@ -122,9 +122,14 @@ if filereadable(s:vimrc_secret)
 endif
 
 " translate-shellを使う
-let s:trans_cmd = 'trans'
-let s:trans_opt = '-b --no-ansi -e google'
-exec 'command! -nargs=0 -range Trans <line1>,<line2>!' . s:trans_cmd . ' ' . s:trans_opt
+function! s:translate(args) range abort
+  let text = join(getline(a:firstline, a:lastline), '\n')
+  let target = strlen(text) == strchars(text) ? 'ja' : 'en'
+  let cmd = printf('%i,%i!trans -b --no-ansi -e google -t %s %s',
+        \ a:firstline, a:lastline, target, a:args)
+  silent! execute cmd
+endfunction
+command! -nargs=* -range Trans <line1>,<line2>call s:translate('<args>')
 nnoremap <silent> <F3> :Trans<CR>
 
 " % でhtmlタグも移動できるようにする
