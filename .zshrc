@@ -14,6 +14,8 @@ zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-completions"
 # gitのルートに移動
 zplug "mollifier/cd-gitroot"
+# git nowサブコマンド
+zplug "iwata/git-now", as:command, use:"{git-now,gitnow}*"
 
 # 選択的インタフェースなやつ
 zplug "junegunn/fzf-bin", as:command, from:gh-r, as:command, rename-to:fzf
