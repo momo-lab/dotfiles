@@ -9,6 +9,8 @@
   co = checkout
   diffs = diff --staged
   diffc = diff --cached
+[init]
+  templatedir = ~/.git_template
 [diff]
   compactionHeuristic = true
 [commit]
@@ -32,3 +34,5 @@
   user = momo-lab
 [bitbucket]
   user = momo-lab
+[pre-push]
+  grep = ^\\(\\[from now\\]\\|WIP\\|\\.local\\)
