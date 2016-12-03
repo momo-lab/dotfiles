@@ -125,7 +125,8 @@ lazy = 1
 # ウィンドウ/タブ操作 {{{
 [[plugins]] # vim-submode
 repo = 'kana/vim-submode'
-hook_add = '''
+on_event = 'VimEnter'
+hook_post_source = '''
   " ウィンドウのサイズ変更をキーリピートできるようにする
   call submode#enter_with('winsize', 'n', '', '<C-w>>', '<C-w>>')
   call submode#enter_with('winsize', 'n', '', '<C-w><', '<C-w><')
@@ -146,7 +147,8 @@ hook_add = '''
 # Denite {{{
 [[plugins]]
 repo = 'Shougo/denite.nvim'
-hook_add = '''
+on_event = 'VimEnter'
+hook_post_source = '''
   " オプション/エイリアス設定
   call denite#custom#var('file_rec', 'command',
         \ ['rg', '--files', '--glob', '!.git'])
