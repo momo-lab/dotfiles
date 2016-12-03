@@ -1,3 +1,6 @@
+# XDG configuration
+export XDG_CONFIG_HOME=$HOME/.config
+
 ### Added by the Heroku Toolbelt
 if [[ -d "${HOME}/.heroku/bin" ]]; then
   export PATH="${HOME}/.heroku/bin:$PATH"
