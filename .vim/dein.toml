@@ -163,18 +163,18 @@ hook_post_source = '''
         \ ['--vimgrep', '--no-heading'])
 
   " キーマッピング
-  call denite#custom#map('insert', '<C-j>', 'move_to_next_line')
-  call denite#custom#map('normal', '<C-j>', 'move_to_next_line')
-  call denite#custom#map('insert', '<C-k>', 'move_to_prev_line')
-  call denite#custom#map('normal', '<C-k>', 'move_to_prev_line')
-  call denite#custom#map('insert', '<C-f>', 'scroll_page_forwards')
-  call denite#custom#map('normal', '<C-f>', 'scroll_page_forwards')
-  call denite#custom#map('insert', '<C-b>', 'scroll_page_backwards')
-  call denite#custom#map('normal', '<C-b>', 'scroll_page_backwards')
-  call denite#custom#map('insert', '<C-n>', 'jump_to_next_source')
-  call denite#custom#map('normal', '<C-n>', 'jump_to_next_source')
-  call denite#custom#map('insert', '<C-p>', 'jump_to_prev_source')
-  call denite#custom#map('normal', '<C-p>', 'jump_to_prev_source')
+  call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
+  call denite#custom#map('normal', '<C-j>', '<denite:move_to_next_line>', 'noremap')
+  call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
+  call denite#custom#map('normal', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
+  call denite#custom#map('insert', '<C-f>', '<denite:scroll_page_forwards>', 'noremap')
+  call denite#custom#map('normal', '<C-f>', '<denite:scroll_page_forwards>', 'noremap')
+  call denite#custom#map('insert', '<C-b>', '<denite:scroll_page_backwards>', 'noremap')
+  call denite#custom#map('normal', '<C-b>', '<denite:scroll_page_backwards>', 'noremap')
+  call denite#custom#map('insert', '<C-n>', '<denite:jump_to_next_source>', 'noremap')
+  call denite#custom#map('normal', '<C-n>', '<denite:jump_to_next_source>', 'noremap')
+  call denite#custom#map('insert', '<C-p>', '<denite:jump_to_previous_source>', 'noremap')
+  call denite#custom#map('normal', '<C-p>', '<denite:jump_to_previous_source>', 'noremap')
 
   " よく使うファイルをメニューに登録
   let s:menus = {}
