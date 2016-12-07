@@ -433,6 +433,7 @@ hook_add = '''
               \ 'ruby': { 'command': 'bundruby' }
               \ }
   nnoremap <silent> <Leader>r :QuickRun -mode n<CR>
+  nnoremap <silent> <Leader>R gg:QuickRun -mode n<CR>``
   vnoremap <silent> <Leader>r :QuickRun -mode v<CR>
 '''
 
