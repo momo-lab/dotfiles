@@ -88,8 +88,20 @@ zstyle ':vcs_info:git:*' stagedstr '%F{green}+%f'
 zstyle ':vcs_info:git:*' unstagedstr '%F{yellow}!%f'
 zstyle ':vcs_info:*' formats '[%s:%b%c%u]'
 zstyle ':vcs_info:*' actionformats '[%s:%b%c%u|%F{cyan}%a%f]'
+zstyle ':vcs_info:git+set-message:*' hooks git-hook-begin git-untracked
 function _update_path_msg() {
   PROMPT="%30<...<%~%# "
+}
+function +vi-git-hook-begin() {
+  test $(command git rev-parse --is-inside-work-tree 2> /dev/null) = 'true'
+  return $?
+}
+function +vi-git-untracked() {
+  if command git status --porcelain 2> /dev/null \
+    | awk '{print $1}' \
+    | grep -F '??' > /dev/null 2>&1 ; then
+    hook_com[unstaged]+='%F{yellow}?%f'
+  fi
 }
 function _update_vcs_info_msg() {
   LANG=en_US.UTF-8 vcs_info
