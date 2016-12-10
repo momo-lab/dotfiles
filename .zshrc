@@ -88,9 +88,11 @@ zstyle ':vcs_info:git:*' stagedstr '%F{green}+%f'
 zstyle ':vcs_info:git:*' unstagedstr '%F{yellow}!%f'
 zstyle ':vcs_info:*' formats '[%s:%b%c%u]'
 zstyle ':vcs_info:*' actionformats '[%s:%b%c%u|%F{cyan}%a%f]'
+function _update_path_msg() {
+  PROMPT="%30<...<%~%# "
+}
 function _update_vcs_info_msg() {
   LANG=en_US.UTF-8 vcs_info
-  PROMPT="%30<...<%~%# "
   RPROMPT="${vcs_info_msg_0_}"
 }
 function _update_rbenv_msg() {
@@ -105,6 +107,7 @@ function _update_pyenv_msg() {
     RPROMPT="${RPROMPT}[python $ver]"
   fi
 }
+add-zsh-hook precmd _update_path_msg
 add-zsh-hook precmd _update_vcs_info_msg
 add-zsh-hook precmd _update_rbenv_msg
 add-zsh-hook precmd _update_pyenv_msg
