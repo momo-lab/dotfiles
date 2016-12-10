@@ -1,3 +1,8 @@
+" load defaults.vim {{{
+if filereadable(expand('$VIMRUNTIME/defaults.vim'))
+  source $VIMRUNTIME/defaults.vim
+endif
+" }}}
 " encoding/fileformat settings {{{
   set encoding=utf-8
   scriptencoding utf-8
