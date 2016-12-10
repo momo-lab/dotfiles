@@ -85,7 +85,7 @@ autoload -Uz vcs_info
 autoload -Uz add-zsh-hook
 zstyle ':vcs_info:git:*' check-for-changes true
 zstyle ':vcs_info:git:*' stagedstr '%F{green}+%f'
-zstyle ':vcs_info:git:*' unstagedstr '%F{yellow}!%f'
+zstyle ':vcs_info:git:*' unstagedstr '%F{red}!%f'
 zstyle ':vcs_info:*' formats '[%s:%b%c%u]'
 zstyle ':vcs_info:*' actionformats '[%s:%b%c%u|%F{cyan}%a%f]'
 zstyle ':vcs_info:git+set-message:*' hooks git-hook-begin git-untracked
@@ -100,7 +100,7 @@ function +vi-git-untracked() {
   if command git status --porcelain 2> /dev/null \
     | awk '{print $1}' \
     | grep -F '??' > /dev/null 2>&1 ; then
-    hook_com[unstaged]+='%F{yellow}?%f'
+    hook_com[unstaged]+='%F{red}?%f'
   fi
 }
 function _update_vcs_info_msg() {
