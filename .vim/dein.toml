@@ -64,6 +64,19 @@ hook_add = '''
   map <silent> sP :call YanktmpPaste_P()<CR>
 '''
 
+[[plugins]] # ヤンク履歴を管理
+repo = 'LeafCage/yankround.vim'
+hook_add = '''
+  nmap p <Plug>(yankround-p)
+  xmap p <Plug>(yankround-p)
+  nmap P <Plug>(yankround-P)
+  nmap gp <Plug>(yankround-gp)
+  xmap gp <Plug>(yankround-gp)
+  nmap gP <Plug>(yankround-gP)
+  "nmap <C-p> <Plug>(yankround-prev)
+  nmap <C-n> <Plug>(yankround-next)
+'''
+
 [[plugins]] # コメントアウト
 # caw.vimはdot repeatするのに別のプラグインが必要なのでとりあえず使うのやめる
 #repo = 'tyru/caw.vim'
@@ -147,6 +160,7 @@ hook_post_source = '''
 # Denite {{{
 [[plugins]]
 repo = 'Shougo/denite.nvim'
+depends = ['yankround.vim']
 on_event = 'VimEnter'
 hook_post_source = '''
   " オプション/エイリアス設定
@@ -198,12 +212,14 @@ hook_post_source = '''
   " Grep
   nnoremap <silent> [denite]g :<C-u>Denite grep -no-empty<CR>
   " ファイルを開く
-  nnoremap <silent> <C-p> :<C-u>Denite -cursor-wrap
+  nnoremap <silent> <SID>(my-denite-open) :<C-u>Denite -cursor-wrap
         \ file_git
         \ file_mru
         \ file_rec:`expand('%:p:h')`
         \ buffer
         \ file_new:`expand('%:p:h')`<CR>
+  nmap <expr> <C-p> yankround#is_active() ? "\<Plug>(yankround-prev)" : "<SID>(my-denite-open)"
+
   " Grep
   nnoremap <silent> [denite]g :<C-u>Denite grep:. -no-empty -buffer-name=search-buffer-denite<CR>
   nnoremap <silent> [denite]G :<C-u>Denite -resume -buffer-name=search-buffer-denite<CR>
