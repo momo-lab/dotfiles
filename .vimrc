@@ -51,6 +51,7 @@ set number                          " 行番号を表示
 set title                           " ウィンドウタイトルにファイル名を表示
 set belloff=esc                     " ESCのビープ音を消す
 set modeline                        " modeline(末尾のvim:ts=2みたいなやつ)を有効にする
+set mouse=                          " マウスは使わない
 
 " clipboard
 if has('clipboard')
