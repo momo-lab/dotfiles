@@ -49,7 +49,7 @@ set noswapfile                      " swapファイルを作らない
 set hidden                          " 保存していないファイルがあってもファイルを開く
 set number                          " 行番号を表示
 set title                           " ウィンドウタイトルにファイル名を表示
-set belloff=esc                     " ESCのビープ音を消す
+set belloff=all                     " 全てのビープ音を消す
 set modeline                        " modeline(末尾のvim:ts=2みたいなやつ)を有効にする
 set mouse=                          " マウスは使わない
 
