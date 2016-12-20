@@ -28,6 +28,8 @@ zplug "stedolan/jq", as:command, from:gh-r
 # gitリポジトリ管理
 zplug "motemen/ghq", as:command, from:gh-r
 zplug "sona-tar/ghs", as:command, from:gh-r
+# gitコマンド拡張
+zplug "b4b4r07/git-br", as:command, use:'git-br'
 # ssh-keyをgithub/bitbucketに登録
 zplug "b4b4r07/ssh-keyreg"
 # githubコマンド
