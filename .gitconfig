@@ -36,3 +36,5 @@
   user = momo-lab
 [pre-push]
   grep = ^\\(\\[from now\\]\\|WIP\\|\\.local\\)
+[rebase]
+  autosquash = true
