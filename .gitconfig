@@ -9,6 +9,7 @@
   co = checkout
   diffs = diff --staged
   diffc = diff --cached
+  ss = show-select
 [init]
   templatedir = ~/.git_template
 [diff]
