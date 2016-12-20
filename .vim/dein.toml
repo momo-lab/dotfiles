@@ -48,9 +48,17 @@ hook_add = '''
 '''
 
 # ======================================================================== }}}
-# カーソル移動(テキストオブジェクトとか) {{{
+# カーソル移動(テキストオブジェクトとか、ctagsとか) {{{
 [[plugins]]
 repo = 'tpope/vim-surround'
+
+[[plugins]] # ctagsを便利に使う
+repo = 'soramugi/auto-ctags.vim'
+hook_add = '''
+  let g:auto_ctags = 1
+  let g:auto_ctags_directory_list = ['.git', '.svn']
+  set tags=.git/tags,.svn/tags,./tags,tags
+'''
 
 # ======================================================================== }}}
 # 編集 {{{
