@@ -19,6 +19,7 @@ zplug "iwata/git-now", as:command, use:"{git-now,gitnow}*"
 
 # 選択的インタフェースなやつ
 zplug "junegunn/fzf-bin", as:command, from:gh-r, as:command, rename-to:fzf
+zplug "momo-lab/fzy", at:develop, as:command, hook-build:'make'
 # grepのすごいやつ
 zplug "monochromegane/the_platinum_searcher", as:command, from:gh-r, rename-to:pt
 zplug "BurntSushi/ripgrep", as:command, from:gh-r, rename-to:rg

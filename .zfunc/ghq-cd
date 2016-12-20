@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
-# ghqとfzf連携
+# ghqとfzy連携
 
-local repo=$(ghq list | fzf --query "$*" --select-1)
+local repo=$(ghq list | fzy --query="$*" --select-1)
 if [[ "$repo" != "" ]]; then
   cd $(ghq root)/$repo
 fi
