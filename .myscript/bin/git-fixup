@@ -1,0 +1,11 @@
+#!/bin/sh
+
+commit=$(git show-branch --sha1-name \
+  | grep '*' \
+  | grep -v $(git rev-parse --abbrev-ref HEAD) \
+  | sed 's/^[^[]\+\[\([a-z0-9]\+\)\]/\1/' \
+  | fzy \
+  | cut -d' ' -f1)
+if [ "$commit" != "" ]; then
+  git commit --fixup=$commit $*
+fi
