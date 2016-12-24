@@ -29,7 +29,7 @@ check_repos() {
   return $ret
 }
 
-for repo in $(ghq list | fzf -m); do
+for repo in $(ghq list | fzy --multi); do
   printf "\e[1;34m> %s\e[0m\n" "$repo"
   (
     repo=$(ghq root)/$repo
