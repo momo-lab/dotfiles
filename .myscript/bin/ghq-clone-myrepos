@@ -51,7 +51,7 @@ DATA1
   done <<DATA2
 $repos
 DATA2
-} | fzy --multi | awk '
+} | fzy --multi --show-count | awk '
   $2~/^github$/ { print "git@github.com:" $1 ".git" }
   $2~/^bitbucket$/ { print "git@bitbucket.org:" $1 ".git" }
 ' | ghq import
