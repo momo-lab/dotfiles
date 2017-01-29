@@ -22,12 +22,13 @@ zplug "junegunn/fzf-bin", as:command, from:gh-r, as:command, rename-to:fzf
 zplug "momo-lab/fzy", at:develop, as:command, hook-build:'make'
 # grepのすごいやつ
 zplug "monochromegane/the_platinum_searcher", as:command, from:gh-r, rename-to:pt
+# TODO このままだとripgrepがインストールされなかったので手動でいれた
 zplug "BurntSushi/ripgrep", as:command, from:gh-r, rename-to:rg
 # JSONパース用コマンド
 zplug "stedolan/jq", as:command, from:gh-r
 # gitリポジトリ管理
 zplug "motemen/ghq", as:command, from:gh-r
-zplug "sona-tar/ghs", as:command, from:gh-r
+#zplug "sona-tar/ghs", as:command, from:gh-r
 # gitコマンド拡張
 zplug "b4b4r07/git-br", as:command, use:'git-br'
 # ssh-keyをgithub/bitbucketに登録
