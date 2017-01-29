@@ -28,8 +28,8 @@ alias ls="ls --color=auto -F"
 alias ll="ls -l"
 alias lla="ls -la"
 
-alias gs="git localinfo"
-alias gsall='gs `ghq list -p`'
+alias gi="git localinfo"
+alias gsall='gi `ghq list -p`'
 alias gl="ghq-cd"
 
 alias rb="bundruby"
