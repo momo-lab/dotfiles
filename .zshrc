@@ -179,3 +179,7 @@ done
 # shell共通のプロファイル
 source "${HOME}/.shell_profile"
 
+### tmux起動
+if [[ -x "$(which tmux)" && -z $TMUX ]]; then
+  tmux -2 attach || tmux -2 new-session ; exit
+fi
