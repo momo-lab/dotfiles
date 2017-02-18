@@ -527,10 +527,16 @@ on_ft = 'toml'
 # for html {{{
 [[plugins]]
 repo = 'mattn/emmet-vim'
-on_ft = ['html']
+on_ft = ['html', 'vue']
 hook_add = '''
   let g:user_emmet_leader_key = '<c-y>'
 '''
+
+# ======================================================================== }}}
+# for vue {{{
+[[plugins]]
+repo = 'posva/vim-vue'
+on_ft = ['vue']
 
 # ======================================================================== }}}
 # library {{{
