@@ -52,20 +52,24 @@ zplug 'mollifier/zload', as:plugin
 # FIXME なぜかfpathに追加されない…
 fpath=(~/.zplug/repos/mollifier/zload $fpath)
 
+# 自作関数群読み込み
+# (この位置でfpathすることでzplugにcompinitしてもらう)
+fpath=(~/.zfunc $fpath)
+
 # install any uninstalled plugins
 zplug check || zplug install
 # load plugins
 zplug load
 
+# 自作関数のロード
+for func in ~/.zfunc/[^_]*(:t); do
+  autoload -Uz $func
+done
 
 # History
 HISTFILE=~/.zsh_history
 HISTSIZE=100000
 SAVEHIST=100000
-
-
-# Completions
-autoload -Uz compinit; compinit -i
 
 # Group matches and describe.
 zstyle ':completion:*:*:*:*:*' menu select
@@ -169,12 +173,6 @@ bindkey "^[[15~" __load_zshrc # F5キー
 #}
 #zle -N __edit_zshrc
 #bindkey "^[[17~" __edit_zshrc # F6キー
-
-# 自作関数群読み込み
-fpath=(~/.zfunc $fpath); compinit
-for func in ~/.zfunc/[^_]*(:t); do
-  autoload -Uz $func
-done
 
 # shell共通のプロファイル
 source "${HOME}/.shell_profile"
