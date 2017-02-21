@@ -1,3 +1,6 @@
+# Color
+export TERM=xterm-256color
+
 # XDG configuration
 export XDG_CONFIG_HOME=$HOME/.config
 
