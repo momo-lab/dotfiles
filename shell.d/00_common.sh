@@ -24,7 +24,8 @@ export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.myscript/bin:$PATH"
 
 # default editor
-export EDITOR="vim"
+export EDITOR="nvim"
+alias vi="nvim"
 
 # Aliases
 alias ls="ls --color=auto -F"

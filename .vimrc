@@ -12,6 +12,7 @@ endif
   set fileformats=unix,dos,mac
 " }}}
 " 各種パス設定 {{{
+  let g:python3_host_prog = expand('$HOME') . '/.anyenv/envs/pyenv/shims/python'
   let s:cache_home = empty($XDG_CACHE_HOME) ? expand('~/.cache') : $XDG_CACHE_HOME
   let s:vimrc = resolve(expand($MYVIMRC))
 " }}}
