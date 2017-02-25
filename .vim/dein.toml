@@ -409,6 +409,7 @@ repo = 'Shougo/vimfiler.vim'
 depends = ['unite.vim']
 hook_add = '''
   let g:vimfiler_as_default_explorer = 1
+  nnoremap <F2> :<C-u>VimFilerExplorer<CR>
 '''
 
 # ======================================================================== }}}
