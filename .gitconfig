@@ -40,3 +40,5 @@
   grep = ^\\(\\[from now\\]\\|WIP\\|\\.local\\)
 [rebase]
   autosquash = true
+[merge]
+  ff = false
