@@ -10,6 +10,7 @@
   diffs = diff --staged
   diffc = diff --cached
   ss = show-select
+  delete-merged-branches = !git branch --merged | grep -vE '^\\*|master$|develop$' | xargs -I % git branch -d %
 [init]
   templatedir = ~/.git_template
 [diff]
