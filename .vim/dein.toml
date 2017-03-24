@@ -164,6 +164,9 @@ hook_post_source = '''
   call submode#map('tabchange', 'n', '', 'T', 'gT')
 '''
 
+[[plugins]]
+repo = 'christoomey/vim-tmux-navigator'
+
 # ======================================================================== }}}
 # Denite {{{
 [[plugins]]
