@@ -185,7 +185,7 @@ hook_post_source = '''
   call denite#custom#var('grep', 'final_opts', [])
   call denite#custom#var('grep', 'separator', ['--'])
   call denite#custom#var('grep', 'default_opts',
-        \ ['--vimgrep', '--no-heading'])
+        \ ['--vimgrep', '--no-heading', '--glob', '!*.min.*'])
 
   " キーマッピング
   call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
