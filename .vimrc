@@ -120,4 +120,10 @@ nnoremap <silent> <F3> :Trans<CR>
 " % でhtmlタグも移動できるようにする
 source $VIMRUNTIME/macros/matchit.vim
 
+function! s:toggle_copymode() abort
+  setlocal number!
+  setlocal list!
+endfunction
+command! CopyModeToggle call s:toggle_copymode()
+
 " vim:fdm=marker:ts=2
