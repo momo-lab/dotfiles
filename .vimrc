@@ -79,34 +79,12 @@ set list
 set listchars=tab:▸\ ,eol:↲,extends:❯,precedes:❮
 
 " インデント
-let s:tabstop = {
-      \ '*': 4,
-      \ 'vim': 2,
-      \ 'coffee': 2,
-      \ 'html': 2,
-      \ 'ruby': 2,
-      \ 'eruby': 2,
-      \ 'scss': 2,
-      \ 'zsh': 2,
-      \ 'yaml': 2,
-      \ 'toml': 2,
-      \ 'gitconfig': 2,
-      \ 'sh': 2,
-      \ }
-function! s:settabstop()
-  let tabstop = s:tabstop['*']
-  if has_key(s:tabstop, &filetype)
-    let tabstop = s:tabstop[&filetype]
-  endif
-  exec "setlocal tabstop=" . tabstop . " shiftwidth=" . tabstop . " softtabstop=" . tabstop
-  setlocal autoindent
-  setlocal smartindent
-  setlocal expandtab
-endfunction
-augroup vimrc_indent
-  autocmd!
-  autocmd BufRead,BufNewFile * call s:settabstop()
-augroup END
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set autoindent
+set smartindent
+set expandtab
 
 " ヘルプは q で閉じる
 augroup vimrc_close
