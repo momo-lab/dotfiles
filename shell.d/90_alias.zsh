@@ -9,6 +9,7 @@ abbrev-alias g="git"
 abbrev-alias ga="git add"
 abbrev-alias gap="git add -p"
 abbrev-alias gc="git commit"
+abbrev-alias gd="git diff"
 abbrev-alias gf="git flow"
 abbrev-alias gff="git flow feature"
 
