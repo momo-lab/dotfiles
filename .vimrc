@@ -79,9 +79,6 @@ set list
 set listchars=tab:▸\ ,eol:↲,extends:❯,precedes:❮
 
 " インデント
-set autoindent
-set smartindent
-set expandtab
 let s:tabstop = {
       \ '*': 4,
       \ 'vim': 2,
@@ -102,6 +99,9 @@ function! s:settabstop()
     let tabstop = s:tabstop[&filetype]
   endif
   exec "setlocal tabstop=" . tabstop . " shiftwidth=" . tabstop . " softtabstop=" . tabstop
+  setlocal autoindent
+  setlocal smartindent
+  setlocal expandtab
 endfunction
 augroup vimrc_indent
   autocmd!
