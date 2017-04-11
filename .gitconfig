@@ -1,6 +1,6 @@
 [alias]
-  tree = log --graph --oneline --pretty='format:%C(auto)%h %d %s (%C(blue)%C(green)%cd%C(blue) %an%C(reset))' --date='format:%Y-%m-%d %H:%M'
-  tr = log --graph --oneline --pretty='format:%C(auto)%h %d %s (%C(blue)%C(green)%cd%C(blue) %an%C(reset))' --date='format:%Y-%m-%d %H:%M'
+  tree = log --graph --oneline --pretty='format:%C(auto)%h%d %s (%C(blue)%C(green)%cd%C(blue) %an%C(reset))' --date='format:%Y-%m-%d %H:%M'
+  tr = log --graph --oneline --pretty='format:%C(auto)%h%d %s (%C(blue)%C(green)%cd%C(blue) %an%C(reset))' --date='format:%Y-%m-%d %H:%M'
   st = status
   ci = commit
   cim = commit -m
