@@ -7,8 +7,12 @@ function show_git_status() {
     cd $path
     if [ -n "$(git rev-parse --git-dir 2> /dev/null)" ]; then
       git -c color.ui=always status -s;
-      git -c color.ui=always stash list --oneline --decorate $*;
-      git -c color.ui=always log --branches --not --remotes --oneline --graph --decorate $*
+      git -c color.ui=always stash list --oneline \
+          --pretty='format:%C(auto)%h%d %s (%C(blue)%C(green)%cd%C(reset))' \
+          --date='format:%Y-%m-%d %H:%M' $*;
+      git -c color.ui=always log --branches --not --remotes --oneline --graph \
+          --pretty='format:%C(auto)%h%d %s (%C(blue)%C(green)%cd%C(reset))' \
+          --date='format:%Y-%m-%d %H:%M' $*
     fi
   `
   if [ "$status" != "" ]; then
