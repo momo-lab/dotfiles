@@ -1,6 +1,6 @@
 [alias]
-  tree = log --graph --oneline --pretty='format:%C(auto)%h%d %s (%C(blue)%C(green)%cd%C(blue) %an%C(reset))' --date='format:%Y-%m-%d %H:%M'
-  tr = log --graph --oneline --pretty='format:%C(auto)%h%d %s (%C(blue)%C(green)%cd%C(blue) %an%C(reset))' --date='format:%Y-%m-%d %H:%M'
+  tree = log --graph --oneline --pretty=tree-format --date='format:%Y-%m-%d %H:%M'
+  tr = log --graph --oneline --pretty=tree-format --date='format:%Y-%m-%d %H:%M'
   st = status
   ci = commit
   cim = commit -m
@@ -40,3 +40,6 @@
   autosquash = true
 [merge]
   ff = false
+[pretty]
+  localinfo-format = format:%C(auto)%h %C(green)%cd%C(auto)%d %s
+  tree-format = format:%C(auto)%h %C(green)%cd%C(auto)%d %s %C(cyan bold)%an%C(reset)
