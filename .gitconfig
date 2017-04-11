@@ -41,5 +41,5 @@
 [merge]
   ff = false
 [pretty]
-  localinfo-format = format:%C(auto)%h %C(green)%cd%C(auto)%d %s
-  tree-format = format:%C(auto)%h %C(green)%cd%C(auto)%d %s %C(cyan bold)%an%C(reset)
+  localinfo-format = format:%C(auto)%h %C(green)%ad%C(auto)%d %s
+  tree-format = format:%C(auto)%h %C(green)%ad%C(auto)%d %s %C(cyan bold)%an%C(reset)
