@@ -548,6 +548,10 @@ repo = 'airblade/vim-gitgutter'
 repo = 'cohama/agit.vim'
 on_cmd = ['Agit', 'AgitFile']
 
+[[plugins]]
+repo = 'lambdalisue/gina.vim'
+on_cmd = ['Gina']
+
 # ======================================================================== }}}
 # for github {{{
 [[plugins]] # Github issue
