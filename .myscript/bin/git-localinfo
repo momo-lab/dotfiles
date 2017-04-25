@@ -14,11 +14,13 @@ function show_git_status() {
     fi
   `
   if [ "$status" != "" ]; then
-    if [ "$path" != "" ]; then
-      branch=`cd $path; git symbolic-ref --short HEAD`
-      echo -e "\e[92m$path\e[0m (\e[32m$branch\e[0m)"
-    fi
-    echo "$status"
+    (
+      if [ "$path" != "" ]; then
+        branch=`cd $path; git symbolic-ref --short HEAD`
+        echo -e "\e[92m$path\e[0m (\e[32m$branch\e[0m)"
+      fi
+      echo "$status"
+    ) | less -RXF
   fi
 }
 
