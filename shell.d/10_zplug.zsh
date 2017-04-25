@@ -43,6 +43,9 @@ zplug "soimort/translate-shell", \
 zplug "momo-lab/zsh-abbrev-alias"
 # for develop
 #zplug "~/.ghq/github.com/momo-lab/zsh-abbrev-alias", from:local
+# ドットの展開
+zplug "momo-lab/zsh-replace-multiple-dots"
+# zplug "~/.ghq/github.com/momo-lab/zsh-replace-multiple-dots", from:local
 
 # zload
 zplug 'mollifier/zload', as:plugin
