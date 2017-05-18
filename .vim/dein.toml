@@ -16,6 +16,34 @@ hook_add = '''
   set helplang=ja
 '''
 
+[[plugins]] # 各種マニュアル
+repo = 'thinca/vim-ref'
+depends = ['jsref', 'jqapi']
+hook_add = '''
+  inoremap <silent><C-k> <C-o>:call<Space>ref#K('normal')<CR><ESC>
+  nmap <silent>K <Plug>(ref-keyword)
+
+  let g:ref_no_default_key_mappings = 1
+  let g:ref_cache_dir               = $HOME . '/.vim/vim-ref/cache'
+  let g:ref_detect_filetype         = {
+  \    'css':        'phpmanual',
+  \    'html':       ['phpmanual',  'javascript', 'jquery'],
+  \    'javascript': ['javascript', 'jquery'],
+  \    'php':        ['phpmanual',  'javascript', 'jquery']
+  \}
+  let g:ref_javascript_doc_path = $HOME . '/.cache/dein/repos/github.com/tokuhirom/jsref/htdocs'
+  let g:ref_jquery_doc_path     = $HOME . '/.cache/dein/repos/github.com/mustardamus/jqapi'
+  let g:ref_phpmanual_path      = $HOME . '/.vim/vim-ref/php-chunked-xhtml'
+  let g:ref_use_cache           = 1
+'''
+[[plugins]]
+repo = 'tokuhirom/jsref'
+lazy = 1
+
+[[plugins]]
+repo = 'mustardamus/jqapi'
+lazy = 1
+
 # ======================================================================== }}}
 # カラースキーマ {{{
 [[plugins]]
