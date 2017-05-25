@@ -127,7 +127,7 @@ hook_add = '''
 '''
 
 [[plugins]] # リナンバをする
-repo = 'renumber.vim'
+repo = 'vim-scripts/renumber.vim'
 on_cmd = ['Renumber']
 
 [[plugins]] # undo内容をツリー形式で表示する
