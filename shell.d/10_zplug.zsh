@@ -28,6 +28,7 @@ zplug "motemen/ghq", as:command, from:gh-r
 #zplug "sona-tar/ghs", as:command, from:gh-r
 # gitコマンド拡張
 zplug "b4b4r07/git-br", as:command, use:'git-br'
+zplug "takaaki-kasai/git-foresta", as:command, use:'git-foresta'
 # ssh-keyをgithub/bitbucketに登録
 zplug "b4b4r07/ssh-keyreg"
 # githubコマンド

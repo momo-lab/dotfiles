@@ -5,7 +5,7 @@ if [ "$*" != "" ]; then
   return
 fi
 
-commit=$(git -c color.ui=always tr \
+commit=$(git -c color.ui=always tree \
   | fzy --show-count \
   | cut -d' ' -f2 \
   | sed -r "s:\x1B\[[0-9;]*[mK]::g")
