@@ -14,3 +14,11 @@ bindkey -M emacs '^J' history-substring-search-down
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 
+# Ctrl+Rでfzyで検索
+function fzy-history-selection() {
+  BUFFER=`history -n 1 | tac | awk '!a[$0]++' | fzy --show-count --select-1 --query="$BUFFER"`
+  CURSOR=$#BUFFER
+  zle reset-prompt
+}
+zle -N fzy-history-selection
+bindkey '^R' fzy-history-selection
