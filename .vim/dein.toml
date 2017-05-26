@@ -88,6 +88,14 @@ hook_add = '''
   set tags=.git/tags,.svn/tags,./tags,tags
 '''
 
+[[plugins]]
+repo = 'sgur/vim-textobj-parameter'
+depends = ['vim-textobj-user']
+
+[[plugins]]
+repo = 'kana/vim-textobj-user'
+lazy = 1
+
 # ======================================================================== }}}
 # EditorConfig {{{
 [[plugins]]
