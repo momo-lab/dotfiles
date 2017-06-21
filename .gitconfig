@@ -1,6 +1,6 @@
 [alias]
   tree = log --graph --oneline --pretty=tree-format --date='format:%Y-%m-%d %H:%M'
-  tr = !git foresta $* | less -RXS
+  tr = log --graph --oneline --pretty=tree-format --date='format:%Y-%m-%d %H:%M'
   st = status
   ci = commit
   cim = commit -m

@@ -9,7 +9,7 @@ function show_git_status() {
       git -c color.ui=always status -s;
       git -c color.ui=always stash list --oneline \
           --pretty=localinfo-format --date='format:%Y-%m-%d %H:%M' $*;
-      git -c color.ui=always foresta --branches --not --remotes \
+      git -c color.ui=always log --branches --not --remotes --graph --oneline \
           --pretty=localinfo-format --date='format:%Y-%m-%d %H:%M' $*
     fi
   `
