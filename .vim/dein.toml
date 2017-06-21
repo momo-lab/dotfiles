@@ -212,7 +212,6 @@ repo = 'christoomey/vim-tmux-navigator'
 # Denite {{{
 [[plugins]]
 repo = 'Shougo/denite.nvim'
-rev = '73fd4d04fbc96040482b73dca0c33fd64cdf0f9c'
 depends = ['yankround.vim']
 on_event = 'VimEnter'
 hook_post_source = '''
