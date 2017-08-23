@@ -21,8 +21,6 @@
   autocrlf = false
   editor = vim
   excludesfile = ~/.gitignore_global
-[include]
-  path = .gitconfig_local
 [fetch]
   prune = true
 [push]
@@ -45,3 +43,5 @@
 [pretty]
   localinfo-format = format:%C(auto)%h %C(green)%ad%C(auto)%d %s
   tree-format = format:%C(auto)%h %C(green)%ad%C(auto)%d %s %C(cyan bold)%an%C(reset)
+[include]
+  path = .gitconfig_local
