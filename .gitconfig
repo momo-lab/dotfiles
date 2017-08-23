@@ -23,6 +23,8 @@
   excludesfile = ~/.gitignore_global
 [include]
   path = .gitconfig_local
+[fetch]
+  prune = true
 [push]
   default = simple
 [pull]
