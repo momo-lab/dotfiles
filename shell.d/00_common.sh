@@ -24,8 +24,13 @@ export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.myscript/bin:$PATH"
 
 # default editor
-export EDITOR="nvim"
-alias vi="nvim"
+if which nvim >/dev/null 2>&1; then
+  export EDITOR="nvim"
+  alias vi="nvim"
+else
+  export EDITOR="vim"
+  alias vi="vim"
+fi
 
 # Aliases
 alias ls="ls --color=auto -F"
