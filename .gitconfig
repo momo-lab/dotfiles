@@ -1,47 +1,47 @@
 [alias]
-  tree = log --graph --oneline --pretty=tree-format --date='format:%Y-%m-%d %H:%M'
-  tr = log --graph --oneline --pretty=tree-format --date='format:%Y-%m-%d %H:%M'
-  st = status
-  ci = commit
-  cim = commit -m
-  co = checkout
-  diffs = diff --staged
-  diffc = diff --cached
-  ss = show-select
-  delete-merged-branches = !git branch --merged | grep -vE '^\\*|master$|develop$' | xargs -I % git branch -d %
+    tree = log --graph --oneline --pretty=tree-format --date='format:%Y-%m-%d %H:%M'
+    tr = log --graph --oneline --pretty=tree-format --date='format:%Y-%m-%d %H:%M'
+    st = status
+    ci = commit
+    cim = commit -m
+    co = checkout
+    diffs = diff --staged
+    diffc = diff --cached
+    ss = show-select
+    delete-merged-branches = !git branch --merged | grep -vE '^\\*|master$|develop$' | xargs -I % git branch -d %
 [init]
-  templatedir = ~/.git_template
+    templatedir = ~/.git_template
 [diff]
-  compactionHeuristic = true
+    compactionHeuristic = true
 [commit]
-  verbose = true
+    verbose = true
 [color]
-  ui = auto
+    ui = auto
 [core]
-  autocrlf = false
-  editor = vim
-  excludesfile = ~/.gitignore_global
+    autocrlf = false
+    editor = vim
+    excludesfile = ~/.gitignore_global
 [fetch]
-  prune = true
+    prune = true
 [push]
-  default = simple
+    default = simple
 [pull]
-  rebase = true
+    rebase = true
 [user]
-  email = momotaro.n@gmail.com
-  name = momotaro
+    email = momotaro.n@gmail.com
+    name = momotaro
 [github]
-  user = momo-lab
+    user = momo-lab
 [bitbucket]
-  user = momo-lab
+    user = momo-lab
 [pre-push]
-  grep = ^\\(\\[from now\\]\\|WIP\\|\\.local\\)
+    grep = ^\\(\\[from now\\]\\|WIP\\|\\.local\\)
 [rebase]
-  autosquash = true
+    autosquash = true
 [merge]
-  ff = false
+    ff = false
 [pretty]
-  localinfo-format = format:%C(auto)%h %C(green)%ad%C(auto)%d %s
-  tree-format = format:%C(auto)%h %C(green)%ad%C(auto)%d %s %C(cyan bold)%an%C(reset)
+    localinfo-format = format:%C(auto)%h %C(green)%ad%C(auto)%d %s
+    tree-format = format:%C(auto)%h %C(green)%ad%C(auto)%d %s %C(cyan bold)%an%C(reset)
 [include]
-  path = .gitconfig_local
+    path = .gitconfig_local
