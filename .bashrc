@@ -4,3 +4,7 @@ for file in $basedir/shell.d/*.{sh,bash}; do
     source $file
   fi
 done
+
+if [ -f $HOME/.bashrc_local ]; then
+  source $HOME/.bashrc_local
+fi
