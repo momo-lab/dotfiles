@@ -9,6 +9,7 @@
     diffc = diff --cached
     ss = show-select
     delete-merged-branches = !git branch --merged | grep -vE '^\\*|master$|develop$' | xargs -I % git branch -d %
+    now-branch = symbolic-ref --short HEAD
     feature  = flow feature
     fs = flow feature start
     ff = flow feature finish
