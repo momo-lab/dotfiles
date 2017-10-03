@@ -13,6 +13,7 @@
     feature  = flow feature
     fs = flow feature start
     ff = flow feature finish
+    fp = flow feature publish
 [init]
     templatedir = ~/.git_template
 [diff]
