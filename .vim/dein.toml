@@ -586,6 +586,9 @@ on_cmd = ['Agit', 'AgitFile']
 repo = 'lambdalisue/gina.vim'
 on_cmd = ['Gina']
 
+[[plugins]] # git rebase -iを便利にする
+repo = 'hotwatermorning/auto-git-diff'
+
 # ======================================================================== }}}
 # for github {{{
 [[plugins]] # Github issue
