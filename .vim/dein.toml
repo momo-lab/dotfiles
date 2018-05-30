@@ -550,7 +550,7 @@ on_cmd = ['TranslateGoogle', 'TranslateGoogleCmd']
 [[plugins]]
 repo = 'glidenote/memolist.vim'
 hook_add = '''
-  let g:memolist_path = "/vagrant/memo"
+  let g:memolist_path = "/mnt/c/Users/momotaro/memo"
   let g:memolist_denite = 0
 '''
 
