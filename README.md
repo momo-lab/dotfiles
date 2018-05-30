@@ -35,3 +35,9 @@ Bash on Ubuntu on Windows の場合は以下も入れておくこと
 - git for Windows <https://git-for-windows.github.io/>
 - Kaoriya版gvim <http://www.kaoriya.net/software/vim/> (Optional)
 
+How to use
+----------
+
+## tmux
+prefixは「Ctrl + t」。
+とりあえず、「Ctrl+t」→「?」としておけば、できることがわかる。
