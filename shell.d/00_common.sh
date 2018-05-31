@@ -1,3 +1,6 @@
+# default umask
+umask 022
+
 # Color
 export TERM=xterm-256color
 
