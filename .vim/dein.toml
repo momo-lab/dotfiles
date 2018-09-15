@@ -131,7 +131,7 @@ hook_add = '''
 #repo = 'tyru/caw.vim'
 repo = 'tomtom/tcomment_vim'
 hook_add = '''
-  let g:tcommentMapLeader1 = '<c-\>'
+  let g:tcomment_mapleader1 = '<c-\>'
 '''
 
 [[plugins]] # リナンバをする
