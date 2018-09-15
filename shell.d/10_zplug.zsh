@@ -9,10 +9,6 @@ zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-history-substring-search"
 # 入力補完
 zplug "zsh-users/zsh-completions"
-# gitのルートに移動
-zplug "mollifier/cd-gitroot"
-# git nowサブコマンド
-zplug "iwata/git-now", as:command, use:"{git-now,gitnow}*"
 
 # 選択的インタフェースなやつ
 zplug "junegunn/fzf-bin", as:command, from:gh-r, as:command, rename-to:fzf
@@ -29,6 +25,8 @@ zplug "motemen/ghq", as:command, from:gh-r
 # gitコマンド拡張
 zplug "b4b4r07/git-br", as:command, use:'git-br'
 zplug "takaaki-kasai/git-foresta", as:command, use:'git-foresta'
+zplug "mollifier/cd-gitroot" # gitのルートに移動
+zplug "iwata/git-now", as:command, use:"{git-now,gitnow}*" # git nowサブコマンド
 # ssh-keyをgithub/bitbucketに登録
 zplug "b4b4r07/ssh-keyreg"
 # githubコマンド
