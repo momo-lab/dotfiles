@@ -1,0 +1,3 @@
+[core]
+    user = username
+    email = username@example.com
