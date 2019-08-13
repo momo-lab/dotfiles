@@ -4,7 +4,7 @@ abbrev-alias -g G="| grep"
 abbrev-alias -g E="2>&1 > /dev/null"
 abbrev-alias -g N="> /dev/null"
 # for git
-abbrev-alias -f B="git symbolic-ref --short HEAD"
+abbrev-alias -g -e B='$(git symbolic-ref --short HEAD 2> /dev/null)'
 abbrev-alias g="git"
 abbrev-alias ga="git add"
 abbrev-alias gap="git add -p"
