@@ -7,3 +7,6 @@ done
 if [[ -x "$(which tmux 2> /dev/null)" && -z $TMUX ]]; then
   tmux -2 attach || tmux -2 new-session ; exit
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_OPTS="--layout=reverse --height=30% --inline-info"
