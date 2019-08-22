@@ -9,7 +9,7 @@ zstyle ':vcs_info:*' actionformats '[%s:%b%c%u|%F{cyan}%a%f]'
 zstyle ':vcs_info:git+set-message:*' hooks git-hook-begin git-untracked
 
 function _update_path_msg() {
-  PROMPT="%30<...<%~%# "
+  PROMPT="%30<...<%~% %(?..%{$bg[red]%}<%?>%{$reset_color%})# "
 }
 
 function +vi-git-hook-begin() {
