@@ -41,7 +41,7 @@
 [bitbucket]
     user = momo-lab
 [pre-push]
-    grep = ^\\(\\[from now\\]\\|WIP\\|\\.local\\)
+    grep = ^\\(\\[from now\\]\\|WIP\\|\\.local\\|fixup!\\)
 [rebase]
     autosquash = true
 [merge]
