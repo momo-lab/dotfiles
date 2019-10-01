@@ -11,7 +11,7 @@ set lines=51
 " カラー設定 {{{
 "  syntax on
   set background=dark
-  exec "colorscheme " . g:mycolorscheme
+"  exec "colorscheme " . g:mycolorscheme
 "  colorscheme desert
 
   " 空白文字を目立たなくする
