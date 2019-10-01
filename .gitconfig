@@ -27,6 +27,7 @@
     autocrlf = false
     editor = vim
     excludesfile = ~/.gitignore_global
+    symlinks = true
 [fetch]
     prune = true
 [push]
