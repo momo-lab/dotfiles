@@ -14,6 +14,7 @@ fi
 
 ### Added by anyenv
 if [[ -d "${HOME}/.anyenv/bin" ]]; then
+  export ANYENV_DEFINITION_ROOT=${HOME}/.anyenv/plugins/anyenv-install
   export PATH="${HOME}/.anyenv/bin:$PATH"
   eval "$(anyenv init -)"
 fi
