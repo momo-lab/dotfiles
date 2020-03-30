@@ -6,11 +6,12 @@ function show_git_status() {
   status=`
     cd $path
     if [ -n "$(git rev-parse --git-dir 2> /dev/null)" ]; then
-      git -c color.ui=always status -s;
-      git -c color.ui=always stash list --oneline \
-          --color=always --pretty=localinfo-format --date='format:%Y-%m-%d %H:%M' $*;
+      git -c color.ui=always status -s
+      stash="$(git -c color.ui=always stash list --oneline \
+	  --color=always --pretty=localinfo-format --date='format:%Y-%m-%d %H:%M' $*)"
+      test "$stash" != "" && echo "$stash"
       git -c color.ui=always log --branches --not --remotes --graph --oneline \
-          --color=always --pretty=localinfo-format --date='format:%Y-%m-%d %H:%M' $*
+	  --color=always --pretty=localinfo-format --date='format:%Y-%m-%d %H:%M' $*
     fi
   `
   if [ "$status" != "" ]; then
