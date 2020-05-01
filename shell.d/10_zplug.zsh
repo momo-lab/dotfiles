@@ -38,13 +38,20 @@ zplug "soimort/translate-shell", \
   at:stable, as:command, use:"build/*", \
   hook-build:"make build &> /dev/null"
 
+function __my_zplug() {
+  local plugin=$1
+  local ghq_path="~/ghq/github.com/$plugin"
+  if [ -d "$ghq_path" ]; then
+    zplug "$ghq_path", from:local
+  else
+    zplug "$plugin"
+  fi
+}
+
 # 短縮展開
-zplug "momo-lab/zsh-abbrev-alias"
-# for develop
-#zplug "~/.ghq/github.com/momo-lab/zsh-abbrev-alias", from:local
+__my_zplug "momo-lab/zsh-abbrev-alias"
 # ドットの展開
-zplug "momo-lab/zsh-replace-multiple-dots"
-# zplug "~/.ghq/github.com/momo-lab/zsh-replace-multiple-dots", from:local
+__my_zplug "momo-lab/zsh-replace-multiple-dots"
 
 # zload
 zplug 'mollifier/zload', as:plugin
