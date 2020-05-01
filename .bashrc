@@ -1,5 +1,5 @@
 basedir=$(dirname $(readlink -f $HOME/.bashrc))
-for file in $basedir/shell.d/*.{sh,bash}; do
+for file in $(ls -1 $basedir/shell.d/*.{sh,bash} 2> /dev/null); do
   if [ -f $file ]; then
     source $file
   fi

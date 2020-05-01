@@ -1,5 +1,5 @@
 basedir=$(dirname $(readlink -f $HOME/.zshrc))
-for file in $basedir/shell.d/*.{sh,zsh}; do
+for file in $(ls -1 $basedir/shell.d/*.{sh,zsh} 2> /dev/null); do
   source $file
 done
 
