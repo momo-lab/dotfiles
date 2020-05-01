@@ -1,4 +1,6 @@
 # abbrev-alias
+type abbrev-alias >/dev/null 2>&1 || return
+
 # for pipe
 abbrev-alias -g G='| grep'
 abbrev-alias -g E='2>&1 > /dev/null'
