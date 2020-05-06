@@ -1,5 +1,2 @@
 # 短縮展開
-path=~/ghq/github.com/momo-lab/bash-abbrev-alias/abbrev-alias
-if [[ -f $path ]]; then
-  source $path
-fi
+source $GHR_GET_ROOT/packages/github.com/momo-lab/auto-expand-alias/auto-expand-alias.plugin.bash

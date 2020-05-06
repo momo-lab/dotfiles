@@ -21,7 +21,8 @@ function __my_zplug() {
 }
 
 # 短縮展開
-__my_zplug "momo-lab/zsh-abbrev-alias"
+#__my_zplug "momo-lab/zsh-abbrev-alias"
+source $GHR_GET_ROOT/packages/github.com/momo-lab/auto-expand-alias/auto-expand-alias.plugin.zsh
 # ドットの展開
 __my_zplug "momo-lab/zsh-replace-multiple-dots"
 
