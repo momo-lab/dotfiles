@@ -1,28 +1,26 @@
 # abbrev-alias
-#type abbrev-alias >/dev/null 2>&1 || return
+type abbrev-alias >/dev/null 2>&1 || return
 
-# global alias
-#if [[ "$SHELL" =~ /zsh$ ]]; then
-#  alias -g G='| grep'
-#  alias -g E='2>&1 > /dev/null'
-#  alias -g N='> /dev/null'
-#  # for git
-#  alias -g B='$(git symbolic-ref --short HEAD 2> /dev/null)'
-#  alias -g OB='origin $(git symbolic-ref --short HEAD 2> /dev/null)'
-#fi
+# global abbrev-alias
+abbrev-alias -g G='| grep'
+abbrev-alias -g E='2>&1 > /dev/null'
+abbrev-alias -g N='> /dev/null'
+# for git
+abbrev-alias -ge B='$(git symbolic-ref --short HEAD 2> /dev/null)'
+abbrev-alias -ge OB='origin $(git symbolic-ref --short HEAD 2> /dev/null)'
 
-alias g='git'
-alias ga='git add'
-alias gap='git add -p'
-alias gaa='git add -A'
-alias gb='git br'
-alias gc='git commit'
-alias gcm='git commit -m'
-alias gd='git diff'
-alias gds='git diffs'
-alias gm='git merge'
-alias gmn='git merge --no-edit'
-alias gr='git rebase'
-alias gri='git rebase -i'
-alias gf='git flow'
-alias gff='git flow feature'
+abbrev-alias g='git'
+abbrev-alias ga='git add'
+abbrev-alias gap='git add -p'
+abbrev-alias gaa='git add -A'
+abbrev-alias gb='git br'
+abbrev-alias gc='git commit'
+abbrev-alias gcm='git commit -m'
+abbrev-alias gd='git diff'
+abbrev-alias gds='git diffs'
+abbrev-alias gm='git merge'
+abbrev-alias gmn='git merge --no-edit'
+abbrev-alias gr='git rebase'
+abbrev-alias gri='git rebase -i'
+abbrev-alias gf='git flow'
+abbrev-alias gff='git flow feature'
