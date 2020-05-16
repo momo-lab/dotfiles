@@ -34,9 +34,6 @@
     default = simple
 [pull]
     rebase = true
-[user]
-    email = momotaro.n@gmail.com
-    name = momotaro
 [github]
     user = momo-lab
 [bitbucket]
