@@ -45,7 +45,10 @@
 [merge]
     ff = false
 [pretty]
-    localinfo-format = format:%C(auto)%h %C(green)%ad%C(auto)%d%C(reset) %s
-    tree-format =      format:%C(auto)%h %C(green)%ad%C(auto)%d%C(reset) %s %C(cyan bold)%an%C(reset)
+    tree-format = format:%C(auto)%h %C(green)%ad%C(auto)%d%C(reset) %s %C(cyan bold)%an%C(reset)
 [include]
     path = .gitconfig_local
+[localinfo]
+    stash-pretty = format:%C(auto)%h %C(green)%ad%C(auto)%d%C(reset) %gd %s
+    log-pretty   = format:%C(auto)%h %C(green)%ad%C(auto)%d%C(reset) %s %C(cyan bold)%an%C(reset)
+    date-format  = format:%Y-%m-%d %H:%M
