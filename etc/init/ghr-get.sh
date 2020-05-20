@@ -2,13 +2,26 @@
 
 root=$HOME/.ghr-get
 if [ ! -d $root ]; then
-  git clone https://github.com/momo-lab/ghr-get.git $root
+  git clone https://github.com/momo-lab/ghr-get $root
 fi
 
+# tools
 ghr-get install junegunn/fzf-bin
 ghr-get install monochromegane/the_platinum_searcher
 ghr-get install github/hub
 ghr-get install x-motemen/ghq
-ghr-get install momo-lab/git-now
 ghr-get install b4b4r07/ssh-keyreg
 ghr-get install stedolan/jq
+
+# git subcommands
+ghr-get install momo-lab/git-now
+
+# bash plugins
+ghr-get install momo-lab/bash-abbrev-alias
+
+# zsh plugins
+ghr-get install zsh-users/zsh-completions
+ghr-get install zsh-users/zsh-history-substring-search
+ghr-get install zsh-users/zsh-syntax-highlighting
+ghr-get install momo-lab/zsh-abbrev-alias
+ghr-get install momo-lab/zsh-replace-multiple-dots
