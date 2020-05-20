@@ -5,6 +5,7 @@
     ci = commit
     cim = commit -m
     co = checkout
+    fe = fetch
     diffs = diff --staged
     diffc = diff --cached
     ss = show-select
