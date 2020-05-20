@@ -8,6 +8,7 @@
     fe = fetch
     diffs = diff --staged
     diffc = diff --cached
+    diffbase = !git diff $(git based-branch)...
     ss = show-select
     delete-merged-branches = !git branch --merged | grep -vE '^\\*|master$|develop$' | xargs -I % git branch -d %
     now-branch = symbolic-ref --short HEAD
@@ -18,6 +19,7 @@
     d = "!f() { args=$@; [ -z \"$args\" ] && args=HEAD; ([ \"$args\" = \"HEAD\" ] && git status --short || git diff --name-status $args | sed 's/\t/  /') | fzf --preview \"echo {} | cut -c 4- | xargs git diff --color=always $args --\" --multi --height 90% | cut -c 4-; }; f"
     change-execution = update-index --add --chmod=+x
     not-change-execution = update-index --add --chmod=-x
+    based-branch = !git show-branch | grep '*[^[]\\+\\[' | grep -v "$(git rev-parse --abbrev-ref HEAD)" | head -1 | awk -F'[]~^[]' '{print $2}'
 [init]
     templatedir = ~/.git_template
 [diff]
