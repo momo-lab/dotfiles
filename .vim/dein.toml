@@ -241,7 +241,7 @@ hook_post_source = '''
 
   " オプション/エイリアス設定
   call denite#custom#var('file/rec', 'command',
-        \ ['rg', '--files', '--glob', '!.git'])
+        \ ['pt', '--files', '--glob', '!.git'])
   call denite#custom#alias('source', 'file/rec/git', 'file/rec')
   call denite#custom#var('file/rec/git', 'command',
         \ ['git', 'ls-files', '-co', '--exclude-standard'])
