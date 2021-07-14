@@ -26,6 +26,7 @@ apt-get とかで入れればよろし
 - git
 - vim
 - zsh
+- unzip (for ghr-get)
 
 Bash on Ubuntu on Windows の場合は以下も入れておくこと
 
