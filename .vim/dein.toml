@@ -128,8 +128,7 @@ hook_add = '''
 '''
 
 [[plugins]] # コメントアウト
-# caw.vimはdot repeatするのに別のプラグインが必要なのでとりあえず使うのやめる
-#repo = 'tyru/caw.vim'
+# Help: visualモードでgc、normalモードでgc<Count>c{motion}などで行ける。
 repo = 'tomtom/tcomment_vim'
 hook_add = '''
   let g:tcomment_mapleader1 = '<c-\>'
