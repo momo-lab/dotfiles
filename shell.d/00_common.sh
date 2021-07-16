@@ -9,12 +9,13 @@ export XDG_CONFIG_HOME=$HOME/.config
 
 ### Added by the Heroku Toolbelt
 if [[ -d "${HOME}/.heroku/bin" ]]; then
-  export PATH="${HOME}/.heroku/bin:$PATH"
+  export PATH="$PATH:${HOME}/.heroku/bin"
 fi
 
 ### Added by anyenv
 if [[ -d "${HOME}/.anyenv/bin" ]]; then
   export ANYENV_DEFINITION_ROOT=${HOME}/.anyenv/plugins/anyenv-install
+  export PATH="${HOME}/.anyenv/bin:$PATH"
   if [[ -f "${HOME}/.anyenv-rc.sh" ]]; then
     source ${HOME}/.anyenv-rc.sh
   fi

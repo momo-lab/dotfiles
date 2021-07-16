@@ -34,6 +34,15 @@ else
   anyenv plugin-install pyenv momo-lab/xxenv-latest
 fi
 
+# nodenv
+if [[ -d ~/.anyenv/envs/nodenv ]]; then
+  echo "nodenv is already installed."
+else
+  echo "nodenv install..."
+  anyenv install nodenv
+  anyenv plugin-install nodenv momo-lab/xxenv-latest
+fi
+
 # goenv
 if [[ -d ~/.anyenv/envs/goenv ]]; then
   echo "goenv is already installed."
