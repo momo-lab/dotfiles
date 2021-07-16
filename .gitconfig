@@ -61,3 +61,5 @@
 [ghq]
 	root = ~/go/src
 	root = ~/ghq
+[credential]
+	helper = cache --timeout=86400
