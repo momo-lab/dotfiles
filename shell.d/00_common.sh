@@ -21,7 +21,7 @@ if [[ -d "${HOME}/.anyenv/bin" ]]; then
 fi
 
 # GOPATH
-export GOPATH="$HOME/.go"
+export GOPATH="$HOME/go"
 export PATH="$PATH:$GOROOT/bin:$GOPATH/bin"
 
 ### Added by $HOME/bin
