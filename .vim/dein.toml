@@ -808,6 +808,13 @@ rev = 'fix_syntax_sync'
 on_ft = 'toml'
 
 # ======================================================================== }}}
+# for golang {{{
+[[plugins]]
+# :wでgoimportsする
+repo = 'mattn/vim-goimports'
+on_ft = 'go'
+
+# ======================================================================== }}}
 # for html {{{
 [[plugins]]
 repo = 'mattn/emmet-vim'
