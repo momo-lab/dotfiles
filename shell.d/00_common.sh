@@ -22,7 +22,9 @@ fi
 
 # GOPATH
 export GOPATH="$HOME/go"
-export PATH="$PATH:$GOROOT/bin:$GOPATH/bin"
+export PATH="$PATH:$GOPATH/bin"
+# goenvでGOPATHの管理をしないようにする
+export GOENV_DISABLE_GOPATH=1
 
 ### Added by $HOME/bin
 export PATH="$HOME/bin:$PATH"
