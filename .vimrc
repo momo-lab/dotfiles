@@ -77,14 +77,6 @@ endif
 set list
 set listchars=tab:▸\ ,eol:↲,extends:❯,precedes:❮
 
-" インデント
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
-set autoindent
-set smartindent
-set expandtab
-
 " ヘルプは q で閉じる
 augroup vimrc_close
   autocmd!
