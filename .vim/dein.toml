@@ -745,27 +745,6 @@ repo = 'daisuzu/translategoogle.vim'
 on_cmd = ['TranslateGoogle', 'TranslateGoogleCmd']
 
 # ======================================================================== }}}
-# memo {{{
-[[plugins]]
-repo = 'glidenote/memolist.vim'
-hook_add = '''
-  let g:memolist_path = "/mnt/c/Users/momotaro/memo"
-  let g:memolist_denite = 0
-'''
-
-[[plugins]]
-repo = 'fuenor/qfixhowm'
-hook_add = '''
-  let g:QFixHowm_Key = 'g'
-  let g:howm_dir = '/vagrant/howm'
-  let g:howm_filename = '%Y/%m/%Y-%m-%d-%H%M%S.md'
-  let g:howm_fileencoding = 'utf-8'
-  let g:howm_fileformat = 'unix'
-  let g:QFixHowm_FileType = 'markdown'
-  let g:QFixHowm_Title = '#'
-'''
-
-# ======================================================================== }}}
 # for git {{{
 [[plugins]] # :Gwrite, :Gdiff, :GcommitなどGで始まるコマンドを提供
 repo = 'tpope/vim-fugitive'
