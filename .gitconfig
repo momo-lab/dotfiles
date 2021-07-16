@@ -62,4 +62,4 @@
 	root = ~/go/src
 	root = ~/ghq
 [credential]
-	helper = cache --timeout=86400
+	helper = store --file ~/.git-credentials
