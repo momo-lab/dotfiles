@@ -91,6 +91,10 @@ nnoremap vv viw
 " 折り畳み
 nnoremap zz za
 
+" ESCキーでIMEをOFFにする
+" TODO: 環境によって使い方が変わりそうなので要調査
+inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
+
 " APIキーなど.vimrcに記載できない内容を記述する.vimrc_secretを読み込む
 let s:vimrc_secret=expand('$HOME/.vimrc_secret')
 if filereadable(s:vimrc_secret)
