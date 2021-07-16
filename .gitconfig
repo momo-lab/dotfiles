@@ -1,63 +1,63 @@
 [alias]
-    tree = log --graph --oneline --pretty=tree-format --date='format:%Y-%m-%d %H:%M'
-    tr = log --graph --oneline --pretty=tree-format --date='format:%Y-%m-%d %H:%M'
-    st = status
-    ci = commit
-    cim = commit -m
-    co = checkout
-    sw = switch
-    fe = fetch
-    diffs = diff --staged
-    diffc = diff --cached
-    diffbase = !git diff $(git based-branch)...
-    ss = show-select
-    delete-merged-branches = !git branch --merged | grep -vE '^\\*|master$|develop$' | xargs -I % git branch -d %
-    now-branch = symbolic-ref --short HEAD
-    feature  = flow feature
-    fs = flow feature start
-    ff = flow feature finish
-    fp = flow feature publish
-    d = "!f() { args=$@; [ -z \"$args\" ] && args=HEAD; ([ \"$args\" = \"HEAD\" ] && git status --short || git diff --name-status $args | sed 's/\t/  /') | fzf --preview \"echo {} | cut -c 4- | xargs git diff --color=always $args --\" --multi --height 90% | cut -c 4-; }; f"
-    change-execution = update-index --add --chmod=+x
-    not-change-execution = update-index --add --chmod=-x
-    based-branch = !git show-branch | grep '*[^[]\\+\\[' | grep -v "$(git rev-parse --abbrev-ref HEAD)" | head -1 | awk -F'[]~^[]' '{print $2}'
+	tree = log --graph --oneline --pretty=tree-format --date='format:%Y-%m-%d %H:%M'
+	tr = log --graph --oneline --pretty=tree-format --date='format:%Y-%m-%d %H:%M'
+	st = status
+	ci = commit
+	cim = commit -m
+	co = checkout
+	sw = switch
+	fe = fetch
+	diffs = diff --staged
+	diffc = diff --cached
+	diffbase = !git diff $(git based-branch)...
+	ss = show-select
+	delete-merged-branches = !git branch --merged | grep -vE '^\\*|master$|develop$' | xargs -I % git branch -d %
+	now-branch = symbolic-ref --short HEAD
+	feature  = flow feature
+	fs = flow feature start
+	ff = flow feature finish
+	fp = flow feature publish
+	d = "!f() { args=$@; [ -z \"$args\" ] && args=HEAD; ([ \"$args\" = \"HEAD\" ] && git status --short || git diff --name-status $args | sed 's/\t/  /') | fzf --preview \"echo {} | cut -c 4- | xargs git diff --color=always $args --\" --multi --height 90% | cut -c 4-; }; f"
+	change-execution = update-index --add --chmod=+x
+	not-change-execution = update-index --add --chmod=-x
+	based-branch = !git show-branch | grep '*[^[]\\+\\[' | grep -v "$(git rev-parse --abbrev-ref HEAD)" | head -1 | awk -F'[]~^[]' '{print $2}'
 [init]
-    templatedir = ~/.git_template
+	templatedir = ~/.git_template
 [diff]
-    compactionHeuristic = true
+	compactionHeuristic = true
 [commit]
-    verbose = true
+	verbose = true
 [color]
-    ui = auto
+	ui = auto
 [core]
-    autocrlf = false
-    editor = vim
-    excludesfile = ~/.gitignore_global
-    symlinks = true
+	autocrlf = false
+	editor = vim
+	excludesfile = ~/.gitignore_global
+	symlinks = true
 [fetch]
-    prune = true
+	prune = true
 [push]
-    default = simple
+	default = simple
 [pull]
-    rebase = true
+	rebase = true
 [github]
-    user = momo-lab
+	user = momo-lab
 [bitbucket]
-    user = momo-lab
+	user = momo-lab
 [pre-push]
-    grep = ^\\(\\[from now\\]\\|WIP\\|\\.local\\|fixup!\\)
+	grep = ^\\(\\[from now\\]\\|WIP\\|\\.local\\|fixup!\\)
 [rebase]
-    autosquash = true
+	autosquash = true
 [merge]
-    ff = false
+	ff = false
 [pretty]
-    tree-format = format:%C(auto)%h %C(green)%ad%C(auto)%d%C(reset) %s %C(cyan bold)%an%C(reset)
+	tree-format = format:%C(auto)%h %C(green)%ad%C(auto)%d%C(reset) %s %C(cyan bold)%an%C(reset)
 [include]
-    path = .gitconfig_local
+	path = .gitconfig_local
 [localinfo]
-    stash-pretty = format:%C(auto)%h %C(green)%ad%C(auto)%d%C(reset) %gd %s
-    log-pretty   = format:%C(auto)%h %C(green)%ad%C(auto)%d%C(reset) %s %C(cyan bold)%an%C(reset)
-    date-format  = format:%Y-%m-%d %H:%M
+	stash-pretty = format:%C(auto)%h %C(green)%ad%C(auto)%d%C(reset) %gd %s
+	log-pretty   = format:%C(auto)%h %C(green)%ad%C(auto)%d%C(reset) %s %C(cyan bold)%an%C(reset)
+	date-format  = format:%Y-%m-%d %H:%M
 [ghq]
-    root = ~/go/src
-    root = ~/ghq
+	root = ~/go/src
+	root = ~/ghq
