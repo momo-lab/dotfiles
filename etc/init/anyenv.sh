@@ -1,25 +1,46 @@
 #!/bin/bash
 
-echo "Initialize anyenv"
-if [[ ! -d ~/.anyenv/bin ]]; then
+if [[ -d ~/.anyenv/bin ]]; then
+  echo "anyenv is already installed."
+else
+  echo "anyenv install..."
   anyenv_root=${HOME}/.anyenv
   git clone https://github.com/anyenv/anyenv "${anyenv_root}"
   git clone https://github.com/momo-lab/anyenv-plugin.git "${anyenv_root}/plugins/anyenv-plugin"
-  ${anyenv_root}/bin/anyenv install --init
+  PATH=$PATH:${anyenv_root}/bin
+  anyenv install --force-init
 
   # anyenv plugins
   anyenv plugin-install znz/anyenv-git
   anyenv plugin-install znz/anyenv-update
+fi
 
-  # install *env
+# rbenv
+if [[ -d ~/.anyenv/envs/rbenv ]]; then
+  echo "rbenv is already installed."
+else
+  echo "rbenv install..."
   anyenv install rbenv
-  anyenv install pyenv
-  eval "$(anyenv init -)"
-
-  # rbenv
   anyenv plugin-install jf/rbenv-gemset
   anyenv plugin-install rbenv momo-lab/xxenv-latest
+fi
 
-  # pyenv
+# pyenv
+if [[ -d ~/.anyenv/envs/pyenv ]]; then
+  echo "pyenv is already installed."
+else
+  echo "pyenv install..."
+  anyenv install pyenv
   anyenv plugin-install pyenv momo-lab/xxenv-latest
 fi
+
+# goenv
+if [[ -d ~/.anyenv/envs/goenv ]]; then
+  echo "goenv is already installed."
+else
+  echo "goenv install..."
+  anyenv install goenv
+  anyenv plugin-install goenv momo-lab/xxenv-latest
+fi
+
+anyenv init - --no-rehash > ~/.anyenv-rc.sh
