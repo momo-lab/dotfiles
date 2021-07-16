@@ -51,6 +51,7 @@ set title                           " ウィンドウタイトルにファイル
 set belloff=all                     " 全てのビープ音を消す
 set modeline                        " modeline(末尾のvim:ts=2みたいなやつ)を有効にする
 set mouse=                          " マウスは使わない
+set ambiwidth=double                " 日本語の記号のカーソル位置がおかしくならないようにする
 
 " clipboard
 if has('clipboard')
