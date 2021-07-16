@@ -27,6 +27,10 @@ export PATH="$PATH:$GOROOT/bin:$GOPATH/bin"
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.myscript/bin:$PATH"
 
+### fzf settings
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_OPTS="--layout=reverse --height=30% --inline-info"
+
 # default editor
 if which nvim >/dev/null 2>&1; then
   export EDITOR="nvim"
