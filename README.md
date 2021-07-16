@@ -11,10 +11,12 @@ webからとってきて直接実行するならこう
 
 上記のことを手動でやるならこう
 
-    cd ~
-    git clone git@github.com:momo-lab/dotfiles.git
-    cd dotfiles
-    ./install.sh init
+```sh
+cd ~
+git clone git@github.com:momo-lab/dotfiles.git
+cd dotfiles
+./install.sh init
+```
 
 Windowsの場合は、Git Bash上で実行すること。
 
