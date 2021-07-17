@@ -725,7 +725,7 @@ hook_add = '''
 '''
 
 # ======================================================================== }}}
-# QuickRun {{{
+# コード実行(QuickRun/vim-test) {{{
 [[plugins]]
 repo = 'thinca/vim-quickrun'
 on_cmd = 'QuickRun'
@@ -736,6 +736,13 @@ hook_add = '''
   nnoremap <silent> <Leader>r :QuickRun -mode n<CR>
   nnoremap <silent> <Leader>R gg:QuickRun -mode n<CR>``
   vnoremap <silent> <Leader>r :QuickRun -mode v<CR>
+'''
+
+[[plugins]]
+repo = 'vim-test/vim-test'
+on_cmd = ['TestNearest', 'TestFile', 'TestSuite', 'TestLast', 'TestVisit']
+hook_add = '''
+  nnoremap <silent> <Leader>t :TestNearest<CR>
 '''
 
 # ======================================================================== }}}
