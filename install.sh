@@ -19,6 +19,7 @@ dotfiles_deploy() {
 
         ln -sfnv $WORKDIR/$file $HOME/$file
     done
+    (cd $WORKDIR; git init)
 }
 
 # help
