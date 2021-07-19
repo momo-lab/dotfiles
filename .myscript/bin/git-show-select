@@ -1,4 +1,5 @@
 #!/bin/sh
+# gitのコミットをfzfで選択してgit showする
 
 if [ "$*" != "" ]; then
   git show $*
@@ -6,7 +7,7 @@ if [ "$*" != "" ]; then
 fi
 
 commit=$(git -c color.ui=always tree \
-  | fzy --show-count \
+  | fzf --ansi \
   | cut -d' ' -f2 \
   | sed -r "s:\x1B\[[0-9;]*[mK]::g")
 if [ "$commit" != "" ]; then
