@@ -28,7 +28,7 @@ function get_repos() {
 }
 
 # 自分のリポジトリ一覧を取得
-repos=`cat <(get_repos github) <(get_repos bitbucket)`
+repos=$(get_repos github)
 
 # 最大文字長をカウント
 max_length=0
@@ -51,7 +51,7 @@ DATA1
   done <<DATA2
 $repos
 DATA2
-} | fzy --multi --show-count | awk '
-  $2~/^github$/ { print "git@github.com:" $1 ".git" }
+} | fzf --multi | awk '
+  $2~/^github$/ { print "https://github.com/" $1 ".git" }
   $2~/^bitbucket$/ { print "git@bitbucket.org:" $1 ".git" }
-' | ghq import
+' | ghq get
