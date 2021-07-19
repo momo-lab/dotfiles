@@ -641,6 +641,18 @@ repo = 'momo-lab/denite-source-output'
 # depends = ['vim-gista', 'unite.vim']
 #
 # ======================================================================== }}}
+# ファイルセレクタ(fzf.vim) {{{
+[[plugins]]
+repo = 'junegunn/fzf.vim'
+depends = ['fzf']
+hook_add = '''
+'''
+
+[[plugins]]
+repo = 'junegunn/fzf'
+lazy = 1
+
+# ======================================================================== }}}
 # 補完・スニペット {{{
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
