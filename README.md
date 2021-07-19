@@ -7,13 +7,13 @@ Install
 webからとってきて直接実行するならこう
 
 ```sh
-bash $(curl -sL http://dot.momo-lab.net)
+eval "$(curl -sL http://dot.momo-lab.net)"
 ```
 
 上記のことを手動でやるならこう
 
 ```sh
-dotfiles_path=~/ghq/github.com/momo-lab
+dotfiles_path=~/ghq/github.com/momo-lab/dotfiles
 mkdir -p $dotfiles_path
 git clone https://github.com/momo-lab/dotfiles.git $dotfiles_path
 cd $dotfiles_path
