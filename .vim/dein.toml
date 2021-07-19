@@ -130,9 +130,6 @@ hook_add = '''
 [[plugins]] # コメントアウト
 # Help: visualモードでgc、normalモードでgc<Count>c{motion}などで行ける。
 repo = 'tomtom/tcomment_vim'
-hook_add = '''
-  let g:tcomment_mapleader1 = '<c-\>'
-'''
 
 [[plugins]] # リナンバをする
 repo = 'vim-scripts/renumber.vim'
