@@ -54,16 +54,6 @@ if [[ -t 0 ]]; then
   stty start undef
 fi
 
-# Aliases
-alias ls="ls --color=auto -F"
-alias ll="ls -l"
-alias lla="ls -la"
-
-alias gi="git localinfo"
-alias gl="ghq-cd"
-
-alias rb="bundruby"
-
 function jqless() {
   cat ${1:--} | jq ${2:-.} -C | less -RXF
 }

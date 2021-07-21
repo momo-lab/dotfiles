@@ -1,3 +1,13 @@
+# aliases
+alias ls="ls --color=auto -F"
+alias ll="ls -l"
+alias lla="ls -la"
+
+alias gi="git localinfo"
+alias gl="ghq-cd"
+
+alias rb="bundruby"
+
 # abbrev-alias
 type abbrev-alias >/dev/null 2>&1 || return
 
