@@ -5,32 +5,10 @@ end_of_line = lf
 insert_final_newline = true
 charset = utf-8
 indent_style = space
-indent_size = 4
-
-[*.toml]
-indent_size = 2
-
-[{*.vim,.vimrc,.gvimrc}]
-indent_size = 2
-
-[*.{css,scss,html,htm}]
-indent_size = 2
-
-[*.{rb,erb}]
-indent_size = 2
-
-[{*.{sh,zsh},.zshrc,.bashrc}]
-indent_size = 2
-
-[.gitconfig]
 indent_size = 2
 
 [*.go]
 indent_style = tab
-indent_size = 2
-
-[*.md]
-indent_size = 2
 
 [.gitconfig]
 indent_style = tab
