@@ -54,8 +54,4 @@ if [[ -t 0 ]]; then
   stty start undef
 fi
 
-function jqless() {
-  cat ${1:--} | jq ${2:-.} -C | less -RXF
-}
-
 # vim:ft=zsh
