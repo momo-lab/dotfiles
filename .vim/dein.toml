@@ -115,6 +115,7 @@ hook_add = '''
 '''
 
 [[plugins]] # ヤンク履歴を管理
+# Help: pでペースト後に<C-p>で履歴をさかのぼれる
 repo = 'LeafCage/yankround.vim'
 hook_add = '''
   nmap p <Plug>(yankround-p)
