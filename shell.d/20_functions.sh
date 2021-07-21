@@ -1,7 +1,9 @@
 # ghqとfzf連携
 ghq-cd() {
-  local repo=$(ghq list --full-path | fzf --query="$*" --select-1)
+  local repo=$(ghq list --full-path |
+    sed "s:$HOME/::" |
+    fzf --query="$*" --select-1 --preview 'cd $HOME/{}; git localinfo')
   if [[ "$repo" != "" ]]; then
-    cd $(readlink -f $repo)
+    cd $(readlink -f $HOME/$repo)
   fi
 }
