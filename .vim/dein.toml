@@ -395,258 +395,36 @@ hook_add = '''
 # '''
 
 # ======================================================================== }}}
-# Denite {{{
-[[plugins]]
-repo = 'Shougo/denite.nvim'
-depends = ['yankround.vim', 'nvim-yarp', 'vim-hug-neovim-rpc']
-on_event = 'VimEnter'
-hook_post_source = '''
-
-  " Define mappings
-  autocmd FileType denite call s:denite_my_settings()
-  function! s:denite_my_settings() abort
-    nnoremap <silent><buffer><expr> <CR>
-    \ denite#do_map('do_action')
-    nnoremap <silent><buffer><expr> d
-    \ denite#do_map('do_action', 'delete')
-    nnoremap <silent><buffer><expr> p
-    \ denite#do_map('do_action', 'preview')
-    nnoremap <silent><buffer><expr> q
-    \ denite#do_map('quit')
-    nnoremap <silent><buffer><expr> i
-    \ denite#do_map('open_filter_buffer')
-    nnoremap <silent><buffer><expr> <Space>
-    \ denite#do_map('toggle_select').'j'
-  endfunction
-
-  autocmd FileType denite-filter call s:denite_filter_my_settings()
-  function! s:denite_filter_my_settings() abort
-    imap <silent><buffer> <C-o> <Plug>(denite_filter_quit)
-  endfunction
-
-  " オプション/エイリアス設定
-  call denite#custom#var('file/rec', 'command',
-        \ ['pt', '--files', '--glob', '!.git'])
-  call denite#custom#alias('source', 'file/rec/git', 'file/rec')
-  call denite#custom#var('file/rec/git', 'command',
-        \ ['git', 'ls-files', '-co', '--exclude-standard'])
-  call denite#custom#var('grep', 'command', ['rg'])
-  call denite#custom#var('grep', 'recursive_opts', [])
-  call denite#custom#var('grep', 'final_opts', [])
-  call denite#custom#var('grep', 'separator', ['--'])
-  call denite#custom#var('grep', 'default_opts',
-        \ ['--vimgrep', '--no-heading', '--glob', '!*.min.*'])
-
-  " よく使うファイルをメニューに登録
-  let s:menus = {}
-  let s:menus.fav_files = {
-        \   'description': 'Favolite menus'
-        \ }
-  let s:menus.fav_files.command_candidates = [
-        \   ['show gist list',    'Denite unite:gista'],
-        \   ['load .vimrc',       'source '  . resolve(expand('~/.vimrc'))],
-        \   ['edit .vimrc',       'tabedit ' . resolve(expand('~/.vimrc'))],
-        \   ['edit dein.toml',    'tabedit ' . resolve(expand('~/.vim/dein.toml'))],
-        \   ['edit .zshrc',       'tabedit ' . resolve(expand('~/.zshrc'))],
-        \ ]
-	call denite#custom#var('menu', 'menus', s:menus)
-
-  " ショートカット
-  nnoremap [denite] <Nop>
-  nmap <Space> [denite]
-  " 前回のUnite結果を再表示
-  nnoremap <silent> [denite]<Space> :<C-u>Denite -resume<CR>
-  " Grep
-  nnoremap <silent> [denite]g :<C-u>Denite grep -no-empty<CR>
-  " ファイルを開く
-  nnoremap <silent> <SID>(my-denite-open) :<C-u>Denite
-        \ file/rec/git
-        \ file_mru
-        \ file/rec:`expand('%:p:h')`
-        \ buffer
-        \ file_new:`expand('%:p:h')`<CR>
-  nmap <expr> <C-p> yankround#is_active() ? "\<Plug>(yankround-prev)" : "<SID>(my-denite-open)"
-
-  " Grep
-  nnoremap <silent> [denite]g :<C-u>Denite grep:. -no-empty -buffer-name=search-buffer-denite<CR>
-  nnoremap <silent> [denite]G :<C-u>Denite -resume -buffer-name=search-buffer-denite<CR>
-  nnoremap <silent> [denite]n :<C-u>Denite -resume -buffer-name=search-buffer-denite
-        \ -select=+1 -immediately<CR>
-  nnoremap <silent> [denite]N :<C-u>Denite -resume -buffer-name=search-buffer-denite
-        \ -select=-1 -immediately<CR>
-  " Menu
-  nnoremap <silent> [denite]m :<C-u>Denite menu:fav_files<CR>
-'''
-
-[[plugins]] # :Denite unite:xxx のために導入
-repo = 'Shougo/unite.vim'
-
-[[plugins]] # Uniteでファイル履歴を扱えるようにする
-repo = 'Shougo/neomru.vim'
-
-[[plugins]] # アウトラインを表示
-repo = 'Shougo/unite-outline'
-depends = ['unite.vim']
-
-[[plugins]] # カラースキーマを切り替える
-repo = 'ujihisa/unite-colorscheme'
-depends = ['unite.vim']
-
-[[plugins]] # ハイライトを表示
-repo = 'osyo-manga/unite-highlight'
-depends = ['unite.vim']
-
-[[plugins]] # Gist一覧を表示
-repo = 'lambdalisue/vim-gista-unite'
-depends = ['vim-gista', 'unite.vim']
-
-[[plugins]] # 新規ファイルを開く
-repo = 'momo-lab/denite-source-file-new'
-
-[[plugins]] # output
-repo = 'momo-lab/denite-source-output'
-
-# ======================================================================== }}}
-# Unite {{{
-# [[plugins]] # Unite
-# repo = 'Shougo/unite.vim'
-# depends = ['vimproc.vim']
-# on_cmd = 'Unite'
-# hook_add = '''
-#   let g:unite_split_rule = 'botright'
-#   let g:unite_enable_start_insert = 0
-#   let g:unite_enable_short_source_names = 1
-#   let g:unite_source_menu_menus = {}
-#
-#   " unite-grepのバックエンドをptに切り替える
-#   " http://qiita.com/items/c8962f9325a5433dc50d
-#   let g:unite_source_grep_encoding = 'utf-8'
-#   if executable('pt')
-#     let g:unite_source_grep_command = 'pt'
-#     let g:unite_source_grep_default_opts = '--nocolor --nogroup'
-#     let g:unite_source_grep_recursive_opt = ''
-#     let g:unite_source_grep_max_candidates = 200
-#   endif
-#
-#   autocmd FileType unite call s:unite_my_settings()
-#   function! s:unite_my_settings()
-#     " <ESC>連打で終了
-#     nmap <buffer> <ESC>   <Plug>(unite_exit)
-#     imap <buffer> <ESC><ESC>   <Plug>(unite_exit)
-#     " Ctrl+J/Kで選択
-#     imap <buffer> <C-j>   <Plug>(unite_select_next_line)
-#     nmap <buffer> <C-j>   <Plug>(unite_loop_cursor_down)
-#     imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
-#     nmap <buffer> <C-k>   <Plug>(unite_loop_cursor_up)
-#     " 1ワード削除(インサートモードと同じ挙動になるようにする)
-#     nmap <buffer> <C-w>   <Plug>(unite_delete_backspace_word)
-#     " 既に入力されている文字を削除した状態で入力
-#     nmap <buffer> I       <Plug>(unite_append_end)<Plug>(unite_delete_backward_line)
-#     nmap <buffer> <C-u>   <Plug>(unite_append_end)<Plug>(unite_delete_backward_line)
-#     " <C-p>,<C-n>の方向を入れ替え、インサートモードでも有効にする
-#     nmap <buffer> <C-p>   <Plug>(unite_rotate_next_source)
-#     imap <buffer> <C-p>   <Plug>(unite_insert_leave)
-#           \<Plug>(unite_rotate_next_source)<Plug>(unite_insert_enter)
-#     nmap <buffer> <C-n>   <Plug>(unite_rotate_previous_source)
-#     imap <buffer> <C-n>   <Plug>(unite_insert_leave)
-#           \<Plug>(unite_rotate_previous_source)<Plug>(unite_insert_enter)
-#
-#   endfunction
-#
-#   nnoremap [unite] <Nop>
-#   nmap <Space> [unite]
-#   " 前回のUnite結果を再表示
-#   nnoremap <silent> [unite]<Space> :<C-u>UniteResume<CR>
-#   " ソースを選択
-#   nnoremap <silent> [unite]s :<C-u>Unite source<CR>
-#   " Grep
-#   nnoremap <silent> [unite]g :<C-u>Unite grep:. -no-empty<CR>
-#   " ファイルを開く
-#   nnoremap <silent> <C-p> :<C-u>Unite
-#         \ -no-short-source-names -start-insert
-#         \ file_rec/git:--cached:--others:--exclude-standard
-#         \ neomru/file
-#         \ file_rec/async:`expand('%:p:h')`
-#         \ buffer
-#         \ file/new<CR>
-#   " Grep
-#   nnoremap <silent> [unite]g :<C-u>Unite grep:. -no-empty<CR>
-#   " よく使うファイルをメニューに登録
-#   let g:unite_source_menu_menus.fav_files = {
-#         \   'description': 'Favolite menus'
-#         \ }
-#   let g:unite_source_menu_menus.fav_files.command_candidates = [
-#         \   ['show gist list',    'Unite gista'],
-#         \   ['load .vimrc',       'source '  . resolve(expand('~/.vimrc'))],
-#         \   ['edit .vimrc',       'tabedit ' . resolve(expand('~/.vimrc'))],
-#         \   ['edit dein.toml',    'tabedit ' . resolve(expand('~/.vim/dein.toml'))],
-#         \   ['edit .zshrc',       'tabedit ' . resolve(expand('~/.zshrc'))],
-#         \ ]
-#   nnoremap <silent> [unite]m :<C-u>Unite -start-insert menu:fav_files<CR>
-# '''
-#
-# [[plugins]]
-# repo = 'momo-lab/switchunite.vim'
-# lazy = 1
-# depends = ['unite.vim', 'neomru.vim']
-# hook_add = '''
-#   " " <C-p>,<C-n>で複数のsourceを切り替える
-#   " call switchunite#add('toggle_file', {
-#   "       \ 'keymap': '<C-p>',
-#   "       \ 'keymap_next': '<C-p>',
-#   "       \ 'keymap_prev': '<C-n>',
-#   "       \ 'option': '-start-insert -hide-source-names -no-short-source-names',
-#   "       \ 'commands': [
-#   "       \   ['Unite', 'file_rec/git:--cached:--others:--exclude-standard file/new'],
-#   "       \   ['Unite', 'neomru/file file/new'],
-#   "       \   ['UniteWithBufferDir', 'file_rec file/new'],
-#   "       \   ['Unite', 'buffer -no-start-insert'],
-#   "       \ ]})
-#   " " switchunite.vimのテスト用
-#   " call switchunite#add('toggle_others', {
-#   "       \ 'keymap': '<C-a>',
-#   "       \ 'commands': [
-#   "       \   ['Unite', 'source -no-start-insert'],
-#   "       \   ['Unite', 'dein -no-start-insert'],
-#   "       \ ]})
-# '''
-#
-# [[plugins]] # Uniteでファイル履歴を扱えるようにする
-# repo = 'Shougo/neomru.vim'
-# depends = ['unite.vim']
-# hook_add = '''
-#   " ファイル履歴を表示
-#   nnoremap <silent> [unite]r :<C-u>Unite
-#         \ -start-insert -hide-source-names
-#         \ neomru/file file/new<CR>
-#   " ディレクトリ履歴を表示
-#   nnoremap <silent> [unite]R :<C-u>Unite
-#         \ -start-insert -hide-source-names
-#         \ neomru/directory<CR>
-# '''
-#
-# [[plugins]] # アウトラインを表示
-# repo = 'Shougo/unite-outline'
-# depends = ['unite.vim']
-#
-# [[plugins]] # カラースキーマを切り替える
-# repo = 'ujihisa/unite-colorscheme'
-# depends = ['unite.vim']
-#
-# [[plugins]] # ハイライトを表示
-# repo = 'osyo-manga/unite-highlight'
-# depends = ['unite.vim']
-#
-# [[plugins]] # Gist一覧を表示
-# repo = 'lambdalisue/vim-gista-unite'
-# depends = ['vim-gista', 'unite.vim']
-#
-# ======================================================================== }}}
 # ファイルセレクタ(fzf.vim) {{{
 [[plugins]]
 repo = 'junegunn/fzf.vim'
 depends = ['fzf']
 hook_add = '''
+" commands
+function! s:get_git_root()
+  let root = split(system('git rev-parse --show-toplevel'), '\n')[0]
+  return v:shell_error ? '' : root
+endfunction
+function! s:gitgrep_cmd(args) abort
+  let root = s:get_git_root()
+  let opts = "-e --column --color"
+  if len(root) > 0
+    return "pt ".opts." --hidden ".shellescape(a:args)." $(git ls-files)"
+  else
+    return "pt ".opts." ".shellescape(a:args)
+  endif
+endfunction
+command! -bang -nargs=* GitGrep call fzf#vim#grep(
+  \ s:gitgrep_cmd(<q-args>), 1, fzf#vim#with_preview(), <bang>0)
+command! -bang -nargs=* GGrep   call fzf#vim#grep(
+  \ s:gitgrep_cmd(<q-args>), 1, fzf#vim#with_preview(), <bang>0)
+
+" keymap
+nnoremap [fzf] <Nop>
+nmap <Space> [fzf]
+nnoremap [fzf]g :<C-u>GitGrep 
+nnoremap <silent> [fzf]h :<C-u>History<CR>
+nmap <expr> <C-p> yankround#is_active() ? "\<Plug>(yankround-prev)" : ":<C-u>GitFiles<CR>"
 '''
 
 [[plugins]]
@@ -862,25 +640,6 @@ on_ft = ['vue']
 repo = 'Shougo/vimproc.vim'
 lazy = 1
 build = 'make'
-
-[[plugins]]
-repo = 'vim-jp/vital.vim'
-lazy = 1
-
-[[plugins]]
-repo = 'roxma/nvim-yarp'
-lazy = 1
-
-[[plugins]]
-repo = 'roxma/vim-hug-neovim-rpc'
-
-[[plugins]]
-repo = 'lambdalisue/vital-Web-API-GitHub'
-lazy = 1
-
-[[plugins]]
-repo = 'mattn/webapi-vim'
-lazy = 1
 
 [[plugins]] # cursor位置のファイルタイプ判定ライブラリ
 repo = 'Shougo/context_filetype.vim'

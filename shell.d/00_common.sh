@@ -32,7 +32,12 @@ export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.myscript/bin:$PATH"
 
 ### fzf settings
-export FZF_DEFAULT_OPTS="--layout=reverse --height=30% --inline-info --cycle"
+export FZF_DEFAULT_OPTS="
+  --layout=reverse
+  --height=30% --inline-info
+  --cycle
+  --bind=ctrl-f:page-down,ctrl-b:page-up
+"
 
 # default editor
 if which nvim >/dev/null 2>&1; then
