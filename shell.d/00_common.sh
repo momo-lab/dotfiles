@@ -48,6 +48,12 @@ else
   alias vi="vim"
 fi
 
+# Ctrl+S/Ctrl+Qの無効化
+if [[ -t 0 ]]; then
+  stty stop undef
+  stty start undef
+fi
+
 # Aliases
 alias ls="ls --color=auto -F"
 alias ll="ls -l"
