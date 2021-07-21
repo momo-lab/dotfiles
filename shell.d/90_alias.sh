@@ -24,3 +24,6 @@ abbrev-alias gr='git rebase'
 abbrev-alias gri='git rebase -i'
 abbrev-alias gf='git flow'
 abbrev-alias gff='git flow feature'
+
+abbrev-alias gg='ghq-git'
+abbrev-alias ggi='ghq-git localinfo'

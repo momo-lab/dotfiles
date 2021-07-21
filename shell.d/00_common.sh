@@ -49,7 +49,6 @@ alias ll="ls -l"
 alias lla="ls -la"
 
 alias gi="git localinfo"
-alias gsall='gi `ghq list -p`'
 alias gl="ghq-cd"
 
 alias rb="bundruby"
