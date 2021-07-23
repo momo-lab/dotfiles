@@ -21,6 +21,7 @@
 	change-execution = update-index --add --chmod=+x
 	not-change-execution = update-index --add --chmod=-x
 	based-branch = !git show-branch | grep '*[^[]\\+\\[' | grep -v "$(git rev-parse --abbrev-ref HEAD)" | head -1 | awk -F'[]~^[]' '{print $2}'
+	root = !git rev-parse --show-toplevel 2> /dev/null
 [init]
 	templatedir = ~/.git_template
 [diff]
