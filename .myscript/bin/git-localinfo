@@ -20,12 +20,9 @@ function output_workspace() {
     [ -n "$path" ] && cd "$root"
 
     # get config
-    local date_format=$(git config localinfo.date-format)
-    [ -z "$date_format" ] && date_format="$DEFAULT_DATE_FORMAT"
-    local stash_pretty=$(git config localinfo.stash-pretty)
-    [ -z "$stash_pretty" ] && stash_pretty="$DEFAULT_STASH_PRETTY"
-    local log_pretty=$(git config localinfo.log-pretty)
-    [ -z "$log_pretty" ] && log_pretty="$DEFAULT_LOG_PRETTY"
+    local date_format=$(git config --get --default "$DEFAULT_DATE_FORMAT" localinfo.date-format)
+    local stash_pretty=$(git config --get --default "$DEFAULT_STASH_PRETTY" localinfo.stash-pretty)
+    local log_pretty=$(git config --get --default "$DEFAULT_LOG_PRETTY" localinfo.log-pretty)
 
     # output path & branch
     if [ -n "$path" ]; then
