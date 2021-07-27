@@ -1,10 +1,10 @@
 #!/bin/bash
 
-if [[ -d ~/.anyenv/bin ]]; then
+anyenv_root="${HOME}/.anyenv"
+if [[ -d $anyenv_root ]]; then
   echo "anyenv is already installed."
 else
   echo "anyenv install..."
-  anyenv_root=${HOME}/.anyenv
   git clone https://github.com/anyenv/anyenv "${anyenv_root}"
   git clone https://github.com/momo-lab/anyenv-plugin.git "${anyenv_root}/plugins/anyenv-plugin"
   PATH=$PATH:${anyenv_root}/bin
@@ -16,7 +16,7 @@ else
 fi
 
 # rbenv
-if [[ -d ~/.anyenv/envs/rbenv ]]; then
+if [[ -d ${anyenv_root}/envs/rbenv ]]; then
   echo "rbenv is already installed."
 else
   echo "rbenv install..."
@@ -26,7 +26,7 @@ else
 fi
 
 # pyenv
-if [[ -d ~/.anyenv/envs/pyenv ]]; then
+if [[ -d ${anyenv_root}/envs/pyenv ]]; then
   echo "pyenv is already installed."
 else
   echo "pyenv install..."
@@ -35,7 +35,7 @@ else
 fi
 
 # nodenv
-if [[ -d ~/.anyenv/envs/nodenv ]]; then
+if [[ -d ${anyenv_root}/envs/nodenv ]]; then
   echo "nodenv is already installed."
 else
   echo "nodenv install..."
@@ -44,7 +44,7 @@ else
 fi
 
 # goenv
-if [[ -d ~/.anyenv/envs/goenv ]]; then
+if [[ -d ${anyenv_root}/envs/goenv ]]; then
   echo "goenv is already installed."
 else
   echo "goenv install..."
