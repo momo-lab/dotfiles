@@ -52,4 +52,4 @@ else
   anyenv plugin-install goenv momo-lab/xxenv-latest
 fi
 
-anyenv init - --no-rehash > ~/.anyenv-rc.sh
+anyenv init - --no-rehash | sed 's/^goenv rehash/# &/' > ~/.anyenv-rc.sh
