@@ -8,3 +8,7 @@ if [[ -x "$(which tmux 2> /dev/null)" && -z $TMUX ]]; then
   ### tmux起動
   tmux -2 attach || tmux -2 new-session ; exit
 fi
+
+if (which zprof > /dev/null 2>&1); then
+  zprof
+fi
