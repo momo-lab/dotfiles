@@ -1,75 +1,23 @@
 #!/usr/bin/env bash
 
+# get config
 DEFAULT_DATE_FORMAT="format:%Y-%m-%d %H:%M:%S"
 DEFAULT_STASH_PRETTY="format:%C(auto)%h %C(green)%ad%C(auto)%d%C(reset) %gd %s"
 DEFAULT_LOG_PRETTY="format:%C(auto)%h %C(green)%ad%C(auto)%d%C(reset) %s"
+date_format=$(git config --get --default "$DEFAULT_DATE_FORMAT" localinfo.date-format)
+stash_pretty=$(git config --get --default "$DEFAULT_STASH_PRETTY" localinfo.stash-pretty)
+log_pretty=$(git config --get --default "$DEFAULT_LOG_PRETTY" localinfo.log-pretty)
 
-function abort() {
-  echo "$@" >&2
-  exit 1
-}
+# check git directory
+git rev-parse --show-toprevel > /dev/null || exit $!
 
-function output_workspace() {
-  local path="$1"
-  shift
-  (
-    cd "$path" 2> /dev/null ||
-      abort "git-localinfo: No such directory: $path"
-    root=$(git rev-parse --show-toplevel 2> /dev/null) ||
-      abort "git-localinfo: Not a git repository (or any of the parent directories): $path"
-    [ -n "$path" ] && cd "$root"
+# output status
+git -c color.ui=always status -s
 
-    # get config
-    local date_format=$(git config --get --default "$DEFAULT_DATE_FORMAT" localinfo.date-format)
-    local stash_pretty=$(git config --get --default "$DEFAULT_STASH_PRETTY" localinfo.stash-pretty)
-    local log_pretty=$(git config --get --default "$DEFAULT_LOG_PRETTY" localinfo.log-pretty)
+# output stash list
+git -c color.ui=always stash list --oneline \
+  --color=always --pretty="$stash_pretty" --date="$date_format" $@
 
-    # output path & branch
-    if [ -n "$path" ]; then
-      branch=$(git symbolic-ref --short HEAD)
-      echo -e "\e[92m$root\e[0m (\e[32m$branch\e[0m)"
-    fi
-
-    # output status
-    git -c color.ui=always status -s
-
-    # output stash list
-    local stash="$(git -c color.ui=always stash list --oneline \
-      --color=always --pretty="$stash_pretty" --date="$date_format" $@)"
-    [ -n "$stash" ] && echo "$stash"
-
-    # output log
-    git -c color.ui=always log --branches --not --remotes --graph --oneline \
-      --color=always --pretty="$log_pretty" --date="$date_format" $@
-  )
-}
-
-function show_help() {
-  echo "usage: git localinfo [<git log options>] [<git directory path>...]"
-  echo
-  echo "Show workspace informations:"
-  echo "  git status"
-  echo "  git stash list"
-  echo "  git log (unpushed commits)"
-}
-
-# parse options
-declare -a argv=()
-declare -a options=()
-while [ $# -gt 0 ]; do
-  case "$1" in
-    -h | --help) show_help; exit 0 ;;
-    -*) options=("${options[@]}" "$1");;
-    *)  argv=("${argv[@]}" "$1");;
-  esac
-  shift
-done
-
-# main
-if [ -z $argv ]; then
-  output_workspace "" ${options[@]}
-else
-  for path in ${argv[@]}; do
-    output_workspace "$path" ${options[@]}
-  done
-fi
+# output log
+git -c color.ui=always log --branches --not --remotes --graph --oneline \
+  --color=always --pretty="$log_pretty" --date="$date_format" $@
