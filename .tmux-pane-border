@@ -1,7 +1,4 @@
 #!/bin/zsh
-
-echo "[$(date)]($*)" >> ~/a.txt
-
 pane_current_path="$1"
 pane_index="$2"
 pane_active="$3"
