@@ -27,5 +27,6 @@ ghr-get install momo-lab/bash-abbrev-alias
 ghr-get install zsh-users/zsh-completions
 ghr-get install zsh-users/zsh-history-substring-search
 ghr-get install zsh-users/zsh-syntax-highlighting
+ghr-get install zsh-users/zsh-autosuggestions
 ghr-get install momo-lab/zsh-abbrev-alias
 ghr-get install momo-lab/zsh-replace-multiple-dots
