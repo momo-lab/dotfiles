@@ -3,9 +3,6 @@ alias ls="ls --color=auto -F"
 alias ll="ls -l"
 alias lla="ls -la"
 
-alias gi="git localinfo"
-alias gl="ghq-cd"
-
 alias rb="bundruby"
 
 # abbrev-alias
@@ -34,6 +31,8 @@ abbrev-alias gr='git rebase'
 abbrev-alias gri='git rebase -i'
 abbrev-alias gf='git flow'
 abbrev-alias gff='git flow feature'
+abbrev-alias gi="git localinfo"
 
+abbrev-alias gl="ghq-cd"
 abbrev-alias gg='ghq-git'
 abbrev-alias ggi='ghq-git localinfo'
