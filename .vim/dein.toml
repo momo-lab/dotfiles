@@ -143,6 +143,9 @@ hook_add = '''
   nnoremap <F4> :<C-u>UndotreeToggle<CR>
 '''
 
+[[plugins]]
+repo = 'kana/vim-smartinput'
+
 # ======================================================================== }}}
 # バッファ内検索 {{{
 [[plugins]]
