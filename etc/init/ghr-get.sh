@@ -8,7 +8,7 @@ if [ ! -d $root ]; then
 fi
 
 # tools
-ghr-get install junegunn/fzf-bin
+ghr-get install junegunn/fzf
 ghr-get install monochromegane/the_platinum_searcher
 ghr-get install github/hub
 ghr-get install x-motemen/ghq
