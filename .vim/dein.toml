@@ -146,6 +146,34 @@ hook_add = '''
 [[plugins]]
 repo = 'kana/vim-smartinput'
 
+[[plugins]]
+repo = 'monaqa/dps-dial.vim'
+depends = ['denops.vim']
+hook_add = '''
+  nmap  <C-a>  <Plug>(dps-dial-increment)
+  nmap  <C-x>  <Plug>(dps-dial-decrement)
+  xmap  <C-a>  <Plug>(dps-dial-increment)
+  xmap  <C-x>  <Plug>(dps-dial-decrement)
+  xmap g<C-a> g<Plug>(dps-dial-increment)
+  xmap g<C-x> g<Plug>(dps-dial-decrement)
+
+
+  function! s:dps_dial_settings() abort
+    let g:dps_dial#augends = g:dps_dial#default_augends + ['week-jp']
+    call extend(g:dps_dial#aliases, {
+    \   'week-jp': {
+    \     'kind': 'constant',
+    \     'opts': {
+    \       'elements': ['月', '火', '水', '木', '金', '土', '日'],
+    \       'word': v:false,
+    \       'cyclic': v:true,
+    \     },
+    \   },
+    \ })
+  endfunction
+  autocmd User DenopsPluginPost:dial call <SID>dps_dial_settings()
+'''
+
 # ======================================================================== }}}
 # バッファ内検索 {{{
 [[plugins]]
@@ -654,5 +682,9 @@ hook_post_update = '''
   let g:dein#plugin.build =
         \ 'ln -sf ' . g:dein#plugin.path . '/bin/themis ~/.zplug/bin/themis'
 '''
+
+[[plugins]]
+repo = 'vim-denops/denops.vim'
+lazy = 1
 
 # ======================================================================== }}}
