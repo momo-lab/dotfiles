@@ -456,6 +456,7 @@ nnoremap [fzf] <Nop>
 nmap <Space> [fzf]
 nnoremap [fzf]g :<C-u>GitGrep 
 nnoremap <silent> [fzf]h :<C-u>History<CR>
+nnoremap <silent> [fzf]f :<C-u>Files<CR>
 nmap <expr> <C-p> yankround#is_active() ? "\<Plug>(yankround-prev)" : ":<C-u>GitFiles<CR>"
 '''
 
