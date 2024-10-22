@@ -17,14 +17,9 @@ if [[ -d "${HOME}/.heroku/bin" ]]; then
   export PATH="$PATH:${HOME}/.heroku/bin"
 fi
 
-# Added by anyenv
-if [[ -d "${HOME}/.anyenv/bin" ]]; then
-  export ANYENV_DEFINITION_ROOT=${HOME}/.anyenv/plugins/anyenv-install
-  export PATH="${HOME}/.anyenv/bin:$PATH"
-  if [[ -f "${HOME}/.anyenv-rc.sh" ]]; then
-    source ${HOME}/.anyenv-rc.sh
-  fi
-fi
+# Added by asdf
+source $HOME/.asdf/asdf.sh
+fpath=(${ASDF_DIR}/completions $fpath)
 
 # GOPATH
 export GOPATH="$HOME/go"
