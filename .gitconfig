@@ -62,8 +62,6 @@
 [ghq]
 	root = ~/go/src
 	root = ~/ghq
-[credential]
-	helper = store --file ~/.git-credentials
 [pager]
 	diff = delta
 	log = delta
@@ -74,3 +72,9 @@
 [delta]
 	line-numbers = true
 	side-by-side = true
+[credential "https://github.com"]
+	helper = 
+	helper = !gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !gh auth git-credential
