@@ -664,6 +664,9 @@ hook_add = '''
 [[plugins]]
 repo = 'Quramy/tsuquyomi'
 depends = ['vimproc.vim']
+hook_add = '''
+  let g:tsuquyomi_disable_default_mappings = 1
+'''
 
 # ======================================================================== }}}
 # for markdown {{{
