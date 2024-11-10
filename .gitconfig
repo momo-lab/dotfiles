@@ -24,6 +24,7 @@
 	root = !git rev-parse --show-toplevel 2> /dev/null
 [init]
 	templatedir = ~/.git_template
+	defaultBranch = main
 [diff]
 	compactionHeuristic = true
 [commit]
