@@ -1,0 +1,20 @@
+[tools]
+# Github
+github-cli = "latest"
+hub = "latest"
+
+# CLI Tools
+ghq = "latest"
+fzf = "latest"
+jq = "latest"
+delta = "latest"    # better diff
+bat = "latest"      # better cat
+ripgrep = "latest"  # better grep
+
+# Editor
+neovim = "latest"
+
+# Language
+node = "latest"
+
+# Automatically added

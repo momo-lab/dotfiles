@@ -7,16 +7,6 @@ if [ ! -d $root ]; then
   type ghr-get > /dev/null 2>&1 && eval "$(ghr-get init -)"
 fi
 
-# tools
-#ghr-get install junegunn/fzf
-ghr-get install monochromegane/the_platinum_searcher
-#ghr-get install github/hub
-#ghr-get install x-motemen/ghq
-#ghr-get install b4b4r07/ssh-keyreg
-#ghr-get install stedolan/jq
-#ghr-get install dandavison/delta
-#ghr-get install sharkdp/bat
-
 # git subcommands
 ghr-get install momo-lab/git-now
 

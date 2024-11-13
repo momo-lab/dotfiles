@@ -17,10 +17,6 @@ if [[ -d "${HOME}/.heroku/bin" ]]; then
   export PATH="$PATH:${HOME}/.heroku/bin"
 fi
 
-# Added by asdf
-source $HOME/.asdf/asdf.sh
-fpath=(${ASDF_DIR}/completions $fpath)
-
 # GOPATH
 export GOPATH="$HOME/go"
 export PATH="$PATH:$GOPATH/bin"
