@@ -17,6 +17,9 @@ if [[ -d "${HOME}/.heroku/bin" ]]; then
   export PATH="$PATH:${HOME}/.heroku/bin"
 fi
 
+# yarn
+export PATH="$PATH:$HOME/.yarn/bin"
+
 # GOPATH
 export GOPATH="$HOME/go"
 export PATH="$PATH:$GOPATH/bin"
