@@ -36,3 +36,5 @@ abbrev-alias gi="git localinfo"
 abbrev-alias gl="ghq-cd"
 abbrev-alias gg='ghq-git'
 abbrev-alias ggi='ghq-git localinfo'
+
+abbrev-alias sw='split-window'
