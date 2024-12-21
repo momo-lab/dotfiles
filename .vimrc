@@ -55,7 +55,7 @@ set ambiwidth=double                " 日本語の記号のカーソル位置が
 
 " clipboard
 if has('clipboard')
-  set clipboard& clipboard^=unnamed " Yankしたらクリップボードへ
+  set clipboard& clipboard^=unnamedplus " Yankしたらクリップボードへ
 endif
 
 " undo
