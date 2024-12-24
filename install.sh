@@ -16,6 +16,7 @@ dotfiles_deploy() {
     for file in $WORKDIR/.??*; do
         file=$(basename $file)
         [[ "$file" == ".git" ]] && continue
+        [[ "$file" == ".gitignore" ]] && continue
 
         ln -sfnv $WORKDIR/$file $HOME/$file
     done
