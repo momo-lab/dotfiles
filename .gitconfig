@@ -48,6 +48,7 @@
 	user = momo-lab
 [pre-push]
 	grep = ^\\(\\[from now\\]\\|WIP\\|\\.local\\|fixup!\\)
+	max-count = 10
 [rebase]
 	autosquash = true
 [merge]
