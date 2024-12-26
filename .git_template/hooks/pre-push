@@ -40,6 +40,7 @@ do
     then
       # New branch, examine all commits
       range=$(git rev-list --max-count=$maxcount $local_sha)
+      range="$(echo "$range" | head -1)..$(echo "$range" | tail -1)"
     else
       # Update to existing branch, examine new commits
       range="$remote_sha..$local_sha"
