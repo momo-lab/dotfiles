@@ -24,6 +24,8 @@ url="$2"
 
 re=`git config pre-push.grep`
 [ -z "$re" ] && exit 0
+maxcount=`git config pre-push.max-count`
+[ -z "$maxcount" ] && maxcount=10
 
 z40=0000000000000000000000000000000000000000
 
@@ -37,7 +39,7 @@ do
         if [ "$remote_sha" = $z40 ]
         then
             # New branch, examine all commits
-            range="$local_sha"
+            range=`git rev-list --max-count=$maxcount $local_sha`
         else
             # Update to existing branch, examine new commits
             range="$remote_sha..$local_sha"
