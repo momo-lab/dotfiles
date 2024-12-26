@@ -60,7 +60,7 @@ hook_add = '''
   set cursorline
   augroup my_colorscheme
     autocmd!
-    autocmd VimEnter * nested colorscheme hybrid
+    autocmd VimEnter * nested colorscheme default
     " 行番号を少し目立たせる(TODO guifgは未テスト)
     autocmd ColorScheme * hi LineNr       ctermfg=245 ctermbg=236 guifg=#373b41
     autocmd ColorScheme * hi CursorLineNr ctermfg=221 ctermbg=236 guifg=#f0c674
@@ -480,9 +480,9 @@ if = 'has("nvim")'
 on_i = 1
 hook_add = '''
   " Use deoplete.
-  let g:deoplete#enable_at_startup = 1
+  "let g:deoplete#enable_at_startup = 1
   " Use smartcase.
-  let g:deoplete#enable_smart_case = 1
+  "let g:deoplete#enable_smart_case = 1
 
   inoremap <silent><expr> <TAB>
   \ pumvisible() ? "\<C-n>" :

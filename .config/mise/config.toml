@@ -10,6 +10,7 @@ jq = "latest"
 delta = "latest"    # better diff
 bat = "latest"      # better cat
 ripgrep = "latest"  # better grep
+fd = "latest"       # better find
 
 # Editor
 neovim = "latest"
