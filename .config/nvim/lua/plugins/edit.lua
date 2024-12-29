@@ -127,7 +127,7 @@ return {
     end,
   },
 
-  -- *** 見た目の改善 ***あああ
+  -- *** 見た目の改善 ***
   -- インデントの可視化
   {
     "shellRaining/hlchunk.nvim",
