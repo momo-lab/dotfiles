@@ -26,5 +26,8 @@ vim.keymap.set('n', 'vv', 'viw', {noremap = true})
 -- zzで畳み込みのトグル
 vim.keymap.set('n', 'zz', 'za', {noremap = true})
 -- qを押し間違えるので、マクロはQに変更
-vim.keymap.set('n', 'q', '<NOP>')
-vim.keymap.set('n', 'Q', 'q')
+vim.keymap.set('n', 'q', '<NOP>', {noremap = true})
+vim.keymap.set('n', 'Q', 'q', {noremap = true})
+-- ビジュアルモードのsはsurroundで使うのでSにremap
+vim.keymap.set('x', 'S', 's', {noremap = true})
+vim.keymap.set('x', 's', '<NOP>', {noremap = true})
