@@ -1,5 +1,3 @@
-local vim = vim
-
 -- LSP Server List
 local lsp_servers = {
   "lua_ls",
@@ -7,8 +5,8 @@ local lsp_servers = {
 }
 
 -- キーマッピング
-local keymappings = function(ev)
-  local keymap = function(mode, lhs, rhs, desc)
+local function keymappings(ev)
+  local function map(mode, lhs, rhs, desc)
     vim.keymap.set(mode, lhs, rhs, {
       noremap = true,
       silent = true,
@@ -16,9 +14,9 @@ local keymappings = function(ev)
       buffer = ev.buf,
     })
   end
-  keymap("n", "gD", vim.lsp.buf.declaration, "Go to declaration")
-  keymap("n", "gd", vim.lsp.buf.definition, "Go to definition")
-  keymap("n", "K", vim.lsp.buf.hover, "Hover")
+  map("n", "gD", vim.lsp.buf.declaration, "Go to declaration")
+  map("n", "gd", vim.lsp.buf.definition, "Go to definition")
+  map("n", "K", vim.lsp.buf.hover, "Hover")
 end
 
 return {
@@ -43,6 +41,13 @@ return {
           end,
         })
       end
+      lsp_config.lua_ls.setup({
+        settings = {
+          Lua = {
+            diagnostics = { globals = {'vim'} },
+          },
+        },
+      })
       vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("UserLspConfig", {}),
         callback = keymappings,
