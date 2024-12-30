@@ -58,14 +58,12 @@ return {
   {
     "kylechui/nvim-surround",
     event = "VeryLazy",
-    config = function()
-      require("nvim-surround").setup {
-        keymaps = {
-          visual = "s",
-          visual_line = "gs",
-        },
-      }
-    end,
+    opts = {
+      keymaps = {
+        visual = "s",
+        visual_line = "gs",
+      },
+    },
   },
   -- treesitterを使ってテキストオブジェクトのパターンを増やす
   -- usage: , でパラメータを選択
@@ -113,18 +111,15 @@ return {
     "https://github.com/SUSTech-data/wildfire.nvim",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     event = "VeryLazy",
-    config = function()
-      require("wildfire").setup()
-
-      -- TODO: <CR>以外の方法でビジュアルモードになると、incrでエラーが出るのをどうにかしたい
-      -- ビジュアルモードになったらinit_selectionする、というのを試してみたが意図する挙動にはならなかった
-      -- vim.api.nvim_create_autocmd("ModeChanged", {
-      --   pattern = { "*:[vV\x16]*" },
-      --   callback = function(ev)
-      --     require("wildfire").init_selection()
-      --   end,
-      -- })
-    end,
+    opts = {},
+    -- TODO: <CR>以外の方法でビジュアルモードになると、incrでエラーが出るのをどうにかしたい
+    -- ビジュアルモードになったらinit_selectionする、というのを試してみたが意図する挙動にはならなかった
+    -- vim.api.nvim_create_autocmd("ModeChanged", {
+    --   pattern = { "*:[vV\x16]*" },
+    --   callback = function(ev)
+    --     require("wildfire").init_selection()
+    --   end,
+    -- })
   },
 
   -- *** 見た目の改善 ***
@@ -132,11 +127,9 @@ return {
   {
     "shellRaining/hlchunk.nvim",
     event = { "BufReadPre", "BufNewFile" },
-    config = function()
-      require("hlchunk").setup({
-        chunk = { enable = true },
-        indent = { enable = true },
-      })
-    end
+    opts = {
+      chunk = { enable = true },
+      indent = { enable = true },
+    },
   },
 }
