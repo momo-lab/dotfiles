@@ -132,4 +132,8 @@ return {
       indent = { enable = true },
     },
   },
+  -- 文字幅の調整
+  {
+    "rbtnn/vim-ambiwidth",
+  },
 }
