@@ -16,7 +16,8 @@ vim.opt.undofile = true
 
 -- 不可視文字
 vim.opt.list = true
-vim.opt.listchars = 'tab:▸ ,eol:↲,extends:❯,precedes:❮'
+-- vim.opt.listchars = 'tab:▸ ,eol:↲,extends:❯,precedes:❮'
+vim.opt.listchars = 'tab: -,eol:↲,extends:❯,precedes:❮'
 
 -- Keymapの調整
 -- redoをUに割り当て
