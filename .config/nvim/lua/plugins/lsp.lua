@@ -1,7 +1,19 @@
 -- LSP Server List
 local lsp_servers = {
   "lua_ls",
-  "ts_ls",
+  "ts_ls", -- for typescript
+  "yamlls",
+  "html",
+  "cssls",
+}
+
+local formatters = {
+  "stylua", -- for lua
+  "prettier", -- for yaml, typescript, css
+}
+
+local diagnostics = {
+  "yamllint",
 }
 
 -- キーマッピング
@@ -33,24 +45,75 @@ return {
       require("mason-lspconfig").setup({
         ensure_installed = lsp_servers,
       })
+
+      -- 全体設定
       local lsp_config = require("lspconfig")
-      for _, lsp_server in ipairs(lsp_servers) do
-        lsp_config[lsp_server].setup({
+      vim.iter(lsp_servers):each(function(server)
+        lsp_config[server].setup({
           root_dir = function(fname)
             return lsp_config.util.find_git_ancestor(fname) or vim.fn.getcwd()
           end,
         })
-      end
+      end)
+
+      -- 個別設定
       lsp_config.lua_ls.setup({
         settings = {
           Lua = {
-            diagnostics = { globals = {'vim'} },
+            diagnostics = { globals = { "vim" } },
           },
         },
       })
+
+      -- キーマッピング定義
       vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("UserLspConfig", {}),
         callback = keymappings,
+      })
+    end,
+  },
+  -- Linter/Formatter
+  {
+    "jay-babu/mason-null-ls.nvim",
+    dependencies = {
+      "williamboman/mason.nvim",
+      "nvimtools/none-ls.nvim",
+    },
+    cmd = "Mason",
+    config = {
+      automatic_setup = true,
+      ensure_installed = vim.iter({ formatters, diagnostics }):flatten():totable(),
+      handlers = {},
+    },
+  },
+  {
+    "nvimtools/none-ls.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "lukas-reineke/lsp-format.nvim",
+    },
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      require("lsp-format").setup()
+      local null_ls = require("null-ls")
+
+      local formatting_sources = vim
+        .iter(formatters)
+        :map(function(tool)
+          return null_ls.builtins.formatting[tool]
+        end)
+        :totable()
+      local diagnostics_sources = vim
+        .iter(diagnostics)
+        :map(function(tool)
+          return null_ls.builtins.diagnostics[tool]
+        end)
+        :totable()
+
+      null_ls.setup({
+        sources = vim.iter({ formatting_sources, diagnostics_sources }):flatten():totable(),
+        -- 保存時に自動フォーマット
+        on_attach = require("lsp-format").on_attach,
       })
     end,
   },
@@ -60,7 +123,7 @@ return {
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
     },
-    event = "VeryLazy",
+    event = { "InsertEnter", "CmdlineEnter" },
     config = function()
       local cmp = require("cmp")
       cmp.setup({
