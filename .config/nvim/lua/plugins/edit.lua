@@ -10,14 +10,19 @@ return {
     -- https://github.com/numToStr/Comment.nvim
   },
   -- カッコやクォートなどの自動入力
+  -- usage: (|foobar とか (|)(foobar) とかで<C-e>とすると閉じカッコをいい感じに補完する
   {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
-    opts = {
-      fast_wrap = {
-        map = "<C-e>",
-      },
-    },
+    config = function()
+      local autopairs = require("nvim-autopairs")
+      autopairs.setup({
+        fast_wrap = {
+          map = "<C-e>",
+        },
+      })
+      autopairs.add_rules(require("nvim-autopairs.rules.endwise-lua"))
+    end,
   },
   -- タグの自動入力
   {
