@@ -38,7 +38,6 @@ return {
   },
 
   -- *** Tree-Sitters(構文解析) ***
-  -- TODO: typescriptreactを使えるようにしたい
   -- TODO: インデントが壊れるらしいのでこっちも試す https://github.com/yioneko/nvim-yati
   {
     "nvim-treesitter/nvim-treesitter",
@@ -55,7 +54,8 @@ return {
           "vimdoc",
           "query",
           "javascript",
-          "typescript", -- "typescriptreact",
+          "typescript",
+          "tsx",
           "html",
           "css",
         },
