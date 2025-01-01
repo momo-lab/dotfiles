@@ -38,9 +38,15 @@ return {
 
       configs.setup({
         ensure_installed = {
-          "c", "lua", "vim", "vimdoc", "query",
-          "javascript", "typescript", -- "typescriptreact",
-          "html", "css",
+          "c",
+          "lua",
+          "vim",
+          "vimdoc",
+          "query",
+          "javascript",
+          "typescript", -- "typescriptreact",
+          "html",
+          "css",
         },
         sync_install = false,
         highlight = { enable = true },
@@ -94,17 +100,17 @@ return {
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     event = "VeryLazy",
     config = function()
-      require('nvim-treesitter.configs').setup {
+      require("nvim-treesitter.configs").setup({
         textsubjects = {
           enable = true,
-          prev_selection = 'V',
+          prev_selection = "V",
           keymaps = {
-            ['v'] = 'textsubjects-smart',
-            [';'] = 'textsubjects-container-outer',
-            ['i;'] = 'textsubjects-container-inner',
+            ["v"] = "textsubjects-smart",
+            [";"] = "textsubjects-container-outer",
+            ["i;"] = "textsubjects-container-inner",
           },
         },
-      }
+      })
     end,
   },
   {

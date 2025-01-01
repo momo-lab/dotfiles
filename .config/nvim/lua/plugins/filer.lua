@@ -6,9 +6,9 @@ return {
     "nvim-telescope/telescope-file-browser.nvim",
     dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
     config = function()
-      local telescope = require('telescope')
-      local fb_actions = require('telescope').extensions.file_browser.actions
-      telescope.setup {
+      local telescope = require("telescope")
+      local fb_actions = require("telescope").extensions.file_browser.actions
+      telescope.setup({
         extensions = {
           file_browser = {
             hidden = true,
@@ -17,33 +17,34 @@ return {
                 ["<C-i>"] = fb_actions.toggle_respect_gitignore,
               },
             },
-          }
+          },
         },
-      }
-      telescope.load_extension 'file_browser'
+      })
+      telescope.load_extension("file_browser")
     end,
     keys = {
       {
-        '<leader>f',
+        "<leader>f",
         function()
-          require('telescope').extensions.file_browser.file_browser()
+          require("telescope").extensions.file_browser.file_browser()
         end,
-        desc = 'File Browser (telescope)',
+        desc = "File Browser (telescope)",
       },
     },
   },
   -- FuzzyFinder
   {
-    'nvim-telescope/telescope.nvim', tag = '0.1.8',
-    cmd = { 'Telescope' },
-    dependencies = { 'nvim-lua/plenary.nvim' },
+    "nvim-telescope/telescope.nvim",
+    tag = "0.1.8",
+    cmd = { "Telescope" },
+    dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
-      local actions = require('telescope.actions')
-      require('telescope').setup{
+      local actions = require("telescope.actions")
+      require("telescope").setup({
         defaults = {
-          sorting_strategy = 'ascending',
+          sorting_strategy = "ascending",
           layout_config = {
-            prompt_position = 'top',
+            prompt_position = "top",
             height = 0.6,
           },
           mappings = {
@@ -60,55 +61,55 @@ return {
         },
         pickers = {
           find_files = { hidden = true },
-          grep_string = { additional_args = {"--hidden"} },
-          live_grep = { additional_args = {"--hidden"} },
+          grep_string = { additional_args = { "--hidden" } },
+          live_grep = { additional_args = { "--hidden" } },
         },
-      }
+      })
     end,
     keys = {
       -- git管理下のファイル一覧
       {
-        '<C-p>',
+        "<C-p>",
         function()
-          require('telescope.builtin').git_files()
+          require("telescope.builtin").git_files()
         end,
       },
---      {
---        '<C-p>',
---        '<C-r>=v:lua.require("telescope.builtin").find_files()<CR>',
---        mode = 'c',
---      },
+      --      {
+      --        '<C-p>',
+      --        '<C-r>=v:lua.require("telescope.builtin").find_files()<CR>',
+      --        mode = 'c',
+      --      },
       -- ファイル一覧
       {
-        '<leader>F',
+        "<leader>F",
         function()
-          require('telescope.builtin').find_files()
+          require("telescope.builtin").find_files()
         end,
-        desc = 'Find Files (telescope)',
+        desc = "Find Files (telescope)",
       },
       -- Grep
       {
-        '<leader>g',
+        "<leader>g",
         function()
-          require('telescope.builtin').live_grep()
+          require("telescope.builtin").live_grep()
         end,
-        desc = 'Live Grep (telescope)',
+        desc = "Live Grep (telescope)",
       },
       -- 過去の結果を再表示
       {
-        '<leader><leader>',
+        "<leader><leader>",
         function()
-          require('telescope.builtin').pickers()
+          require("telescope.builtin").pickers()
         end,
-        desc = 'Pickers History (telescope)',
+        desc = "Pickers History (telescope)",
       },
       -- Grep
       {
-        '<leader>t',
+        "<leader>t",
         function()
-          require('telescope.builtin').grep_string({search = 'TODO'..':'})
+          require("telescope.builtin").grep_string({ search = "TODO" .. ":" })
         end,
-        desc = 'TODO Search (telescope)',
+        desc = "TODO Search (telescope)",
       },
     },
   },
