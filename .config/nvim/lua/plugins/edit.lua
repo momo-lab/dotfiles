@@ -11,8 +11,19 @@ return {
   },
   -- カッコやクォートなどの自動入力
   {
-    "kana/vim-smartinput",
-    event = "VeryLazy",
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    opts = {
+      fast_wrap = {
+        map = "<C-e>",
+      },
+    },
+  },
+  -- タグの自動入力
+  {
+    "windwp/nvim-ts-autotag",
+    event = "InsertEnter",
+    opts = {},
   },
   -- ノーマルモードに戻ったら日本語入力をOFFにする
   {
