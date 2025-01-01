@@ -27,8 +27,9 @@ local function keymappings(ev)
     })
   end
   map("n", "gD", vim.lsp.buf.declaration, "Go to declaration")
-  map("n", "gd", vim.lsp.buf.definition, "Go to definition")
-  map("n", "K", vim.lsp.buf.hover, "Hover")
+  map("n", "gd", "<cmd>Lspsaga peek_definition<CR>", "Go to definition(lspsaga)")
+  map("n", "K", "<cmd>Lspsaga hover_doc<CR>", "Hover(lspsaga)")
+  map("n", "gR", "<cmd>Lspsaga rename<CR>", "Rename(lspsaga)")
 end
 
 return {
@@ -38,6 +39,7 @@ return {
     dependencies = {
       "williamboman/mason-lspconfig.nvim",
       "neovim/nvim-lspconfig",
+      "nvimdev/lspsaga.nvim",
     },
     event = "VeryLazy",
     config = function()
@@ -152,5 +154,24 @@ return {
   {
     "onsails/lspkind.nvim",
     event = "InsertEnter",
+    opts = {},
+  },
+  -- 見た目の改善
+  {
+    "nvimdev/lspsaga.nvim",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons",
+    },
+    event = { "Bufread", "BufNewFile" },
+    config = function()
+      require("lspsaga").setup({
+        definition = {
+          keys = {
+            edit = "o",
+          },
+        },
+      })
+    end,
   },
 }
