@@ -111,6 +111,15 @@ return {
         end,
         desc = "TODO Search (telescope)",
       },
+      -- dotfilesを開く
+      {
+        "<leader>.",
+        function()
+          local rootpath = vim.fn.resolve(vim.fn.stdpath("config"))
+          require("telescope.builtin").git_files({ cwd = rootpath })
+        end,
+        desc = "dotfiles (telescope)",
+      },
     },
   },
 }
