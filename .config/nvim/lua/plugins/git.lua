@@ -60,4 +60,10 @@ return {
       end,
     },
   },
+  -- GitのDiffを表示
+  {
+    "sindrets/diffview.nvim",
+    cmd = { "DiffviewOpen", "DiffviewFileHistory" },
+    opts = {},
+  },
 }
