@@ -11,6 +11,7 @@ delta = "latest"    # better diff
 bat = "latest"      # better cat
 ripgrep = "latest"  # better grep
 fd = "latest"       # better find
+lazygit = "latest"  # git TUI client
 
 # Editor
 neovim = "latest"
