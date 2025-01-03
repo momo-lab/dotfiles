@@ -7,18 +7,13 @@ export XDG_CONFIG_HOME=$HOME/.config
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.myscript/bin:$PATH"
 
-# Installed Tools
-export GHR_GET_ROOT=$HOME/.ghr-get
-export PATH=$GHR_GET_ROOT/bin:$PATH
-type ghr-get > /dev/null 2>&1 && eval "$(ghr-get init -)"
+# Installed zsh plugins
+eval "$(sheldon source)"
 
 # Added by the Heroku Toolbelt
 if [[ -d "${HOME}/.heroku/bin" ]]; then
   export PATH="$PATH:${HOME}/.heroku/bin"
 fi
-
-# yarn
-export PATH="$PATH:$HOME/.yarn/bin"
 
 # GOPATH
 export GOPATH="$HOME/go"
