@@ -23,5 +23,4 @@ require("lazy").setup({
     { import = "plugins" },
   },
   install = { colorscheme = { "hybrid" } },
-  checker = { enabled = true },
 })
