@@ -1,5 +1,6 @@
 #!/bin/bash
 
-echo "Initialize vim plugins."
-vim -es +qall
-
+echo "Initialize nvim plugins."
+if which nvim 2>&1 > /dev/null; then
+  nvim --headless +qall
+fi
