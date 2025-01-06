@@ -8,6 +8,21 @@ ghq-cd() {
   fi
 }
 
+# C-nで新しいwindowでプロジェクトを開く
+ghq-open() {
+  local repo=$(ghq list --full-path |
+    sed "s:$HOME/::" |
+    fzf --tmux --query="$*" --select-1 --preview 'cd $HOME/{}; git localinfo')
+  if [[ "$repo" != "" ]]; then
+    tmux new-window -c $(readlink -f $HOME/$repo)
+    local name=$(basename $repo)
+    tmux rename-window "$name"
+    split-window
+  fi
+}
+zle -N ghq-open
+bindkey '^N' ghq-open
+
 # jqした結果をlessで表示
 function jqless() {
   cat ${1:--} | jq ${2:-.} -C | less -RXF
