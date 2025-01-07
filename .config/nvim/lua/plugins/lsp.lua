@@ -166,6 +166,10 @@ return {
     event = { "Bufread", "BufNewFile" },
     config = function()
       require("lspsaga").setup({
+        lightbulb = {
+          enable = true,
+          sign = false,
+        },
         definition = {
           keys = {
             edit = "o",
