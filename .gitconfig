@@ -29,6 +29,7 @@
 	compactionHeuristic = true
 [commit]
 	verbose = true
+	template = ~/.gitmessage.txt
 [color]
 	ui = auto
 [core]
