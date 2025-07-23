@@ -26,7 +26,10 @@ local function keymappings(ev)
       buffer = ev.buf,
     })
   end
-  map("n", "gD", vim.lsp.buf.declaration, "Go to declaration")
+  map("n", "ge", "<cmd>Lspsaga show_line_diagnostics<CR>", "Show line diagnostics(lspsaga)")
+  map("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", "Jump prev diagnostics(lspsaga)")
+  map("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", "Jump next diagnostics(lspsaga)")
+
   map("n", "gd", "<cmd>Lspsaga peek_definition<CR>", "Go to definition(lspsaga)")
   map("n", "K", "<cmd>Lspsaga hover_doc<CR>", "Hover(lspsaga)")
   map("n", "gR", "<cmd>Lspsaga rename<CR>", "Rename(lspsaga)")
@@ -177,5 +180,51 @@ return {
         },
       })
     end,
+  },
+  -- diagnosticsのリストをトグル表示したり。
+  {
+    "folke/trouble.nvim",
+    opts = {
+      modes = {
+        diagnostics = {
+          auto_close = true,
+          auto_open = true,
+        },
+      },
+    },
+    cmd = "Trouble",
+    event = "VeryLazy",
+    keys = {
+      {
+        "<leader>xx",
+        "<cmd>Trouble diagnostics toggle<cr>",
+        desc = "Diagnostics (Trouble)",
+      },
+      {
+        "<leader>xX",
+        "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+        desc = "Buffer Diagnostics (Trouble)",
+      },
+      {
+        "<leader>cs",
+        "<cmd>Trouble symbols toggle focus=false<cr>",
+        desc = "Symbols (Trouble)",
+      },
+      {
+        "<leader>cl",
+        "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+        desc = "LSP Definitions / references / ... (Trouble)",
+      },
+      {
+        "<leader>xL",
+        "<cmd>Trouble loclist toggle<cr>",
+        desc = "Location List (Trouble)",
+      },
+      {
+        "<leader>xQ",
+        "<cmd>Trouble qflist toggle<cr>",
+        desc = "Quickfix List (Trouble)",
+      },
+    },
   },
 }
