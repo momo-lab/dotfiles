@@ -17,7 +17,7 @@ ghq-open() {
     tmux new-window -c $(readlink -f $HOME/$repo)
     local name=$(basename $repo)
     tmux rename-window "$name"
-    split-window
+    split-window $(readlink -f $HOME/$repo)
   fi
 }
 zle -N ghq-open
