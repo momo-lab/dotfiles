@@ -1,1 +1,5 @@
 *.zwc
+.config/coc/
+.config/vim/
+.config/wslu/
+.config/yarn/
