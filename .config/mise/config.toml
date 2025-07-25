@@ -18,5 +18,7 @@ neovim = "latest"
 
 # Language
 node = "latest"
+pnpm = "latest"
+yarn = "latest"
 
 # Automatically added
