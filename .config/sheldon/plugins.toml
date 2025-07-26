@@ -42,3 +42,13 @@ apply = ["defer"]
 [plugins.zsh-smartinput]
 github = "momo-lab/zsh-smartinput"
 apply = ["defer"]
+
+[plugins.git-now]
+github = "iwata/git-now"
+dir = "."
+apply = ["PATH"]
+
+[plugins.git-now-completion]
+github = "iwata/git-now"
+dir = "etc"
+apply = ["fpath"]
