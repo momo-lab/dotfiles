@@ -43,9 +43,7 @@ Dependencies
 apt-get とかで入れればよろし
 
 - git
-- vim
 - zsh
-- unzip (for ghr-get)
 
 #### Windows
 - git for Windows <https://git-for-windows.github.io/>
