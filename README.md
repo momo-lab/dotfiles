@@ -36,6 +36,9 @@ Windowsの場合は、Git Bash上で実行すること。
 - **[Neovim Config](./.config/nvim):**
   Neovimの設定はLuaで行われています。
   プラグイン管理には`lazy.nvim`を使用しており、設定は`.config/nvim/lua/plugins`以下に分割されています。
+- **[install-global-node](./.myscript/bin/install-global-node):**
+  Node.js製のグローバルツールを管理します。
+  管理するパッケージは `~/.config/install-global-node/packages.txt` に記載します。
 
 Dependencies
 ------------

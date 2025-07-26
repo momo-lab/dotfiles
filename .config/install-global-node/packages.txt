@@ -1,0 +1,2 @@
+pnpm:@google/gemini-cli
+npm:@anthropic-ai/claude-code
