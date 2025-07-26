@@ -20,3 +20,11 @@ export GOPATH="$HOME/go"
 export PATH="$PATH:$GOPATH/bin"
 # goenvでGOPATHの管理をしないようにする
 export GOENV_DISABLE_GOPATH=1
+
+# pnpm
+export PNPM_HOME="/home/momotaro/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
