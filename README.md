@@ -22,6 +22,21 @@ cd $dotfiles_path
 
 Windowsの場合は、Git Bash上で実行すること。
 
+構成
+-------
+
+このdotfilesは、以下のツールによって構成管理されています。
+
+- **[mise](https://mise.jdx.dev/) ([.config/mise/config.toml](.config/mise/config.toml)):**
+  CLIツールや言語ランタイムのバージョン管理を行います。
+  `ghq`, `fzf`, `neovim`, `node` などのツールをインストール・管理します。
+- **[sheldon](https://sheldon.cli.rs/) ([.config/sheldon/plugins.toml](.config/sheldon/plugins.toml)):**
+  Zshのプラグイン管理を行います。
+  `zsh-completions`, `zsh-syntax-highlighting` などのプラグインを読み込みます。
+- **[Neovim Config](./.config/nvim):**
+  Neovimの設定はLuaで行われています。
+  プラグイン管理には`lazy.nvim`を使用しており、設定は`.config/nvim/lua/plugins`以下に分割されています。
+
 Dependencies
 ------------
 #### Linux
