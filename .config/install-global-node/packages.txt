@@ -1,3 +1,0 @@
-pnpm:@google/gemini-cli
-npm:@anthropic-ai/claude-code
-pnpm:@google/clasp
