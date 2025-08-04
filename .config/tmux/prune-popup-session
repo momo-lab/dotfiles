@@ -1,0 +1,13 @@
+#! /usr/bin/env zsh
+# 使われていないpopupセッションを削除する
+
+# 現在がpopupセッションなら何もしない
+my_session=$(tmux display -p '#{session_name}')
+if [[ "$my_session" =~ ^popup- ]]; then
+  exit
+fi
+
+diff --old-line-format='' --unchanged-line-format='' --new-line-format='%L' \
+  <(tmux list-windows -F 'popup-#{window_index}') \
+  <(tmux list-sessions -F '#{session_name}' | grep ^popup-) |
+  xargs -I {} tmux kill-session -t {}

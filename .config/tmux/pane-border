@@ -12,7 +12,7 @@ fi
 
 # vcs_info
 cd $1
-source $(dirname "$(readlink -f $0)")/shell.d/90_prompt.zsh
+source $(dirname "$(readlink -f $0)")/../../shell.d/90_prompt.zsh
 vcs_info
 if [[ -n $vcs_info_msg_0_ ]]; then
   vcs_status="["
@@ -32,7 +32,4 @@ else
   vcs_status=""
 fi
 
-# anyenv local versions
-anyenv_msg=$(_update_anyenv_msg)
-
-echo "${directory}─${vcs_status}${anyenv_msg}"
+echo "${directory}─${vcs_status}"

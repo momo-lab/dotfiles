@@ -40,24 +40,13 @@ function _update_vcs_info_msg() {
   [ -n $prompt ] && echo -n "$prompt"
 }
 
-function _update_anyenv_msg() {
-  local result=""
-  local env ver
-  for env in $(anyenv envs); do
-    ver=$($env local 2> /dev/null)
-    [ $? -eq 0 ] && [ -n $ver ] && result+="[$env $ver]"
-  done
-  [ -n $result ] && echo -n "$result"
-}
-
 function _update_prompt() {
+  zsh-defer -dm -c 'RPROMPT="$(_update_vcs_info_msg)"'
   if [ -n $TMUX ]; then
     tmux refresh-client -S
-    PROMPT="%(?..%{$bg[red]%}<%?>%{$reset_color%})# "
-    RPROMPT=""
+    PROMPT="%(?..%F{red}<%?>%f)# "
   else
-    PROMPT="%30<...<%~% %(?..%{$bg[red]%}<%?>%{$reset_color%})# "
-    RPROMPT="$(_update_vcs_info_msg)$(_update_anyenv_msg)"
+    PROMPT="%30<...<%~% %(?..%F{red}<%?>%f)# "
   fi
 }
 
