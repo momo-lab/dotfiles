@@ -16,16 +16,16 @@ lazygit = "latest"  # git TUI client
 # Editor
 neovim = "latest"
 
-# Language
+# nodejs
 node = "latest"
 pnpm = "latest"
 yarn = "latest"
-
-# npm Tools
 "npm:@google/gemini-cli" = "latest"
 "npm:@google/clasp" = "latest"
 "npm:@anthropic-ai/claude-code" = "latest"
 "npm:@antfu/ni" = "latest" # npm/pnpm/yarn package manager
 "npm:@sasazame/ccresume" = "latest" # claude-code resume
 
-# Automatically added
+# python
+python = "latest"
+uv = "latest"
