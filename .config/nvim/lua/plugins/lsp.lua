@@ -1,124 +1,70 @@
--- LSP Server List
-local lsp_servers = {
-  "lua_ls",
-  "ts_ls", -- for typescript
-  "yamlls",
-  "html",
-  "cssls",
-}
-
-local formatters = {
-  "stylua", -- for lua
-  "prettier", -- for yaml, typescript, css
-}
-
-local diagnostics = {
-  "yamllint",
-}
-
--- キーマッピング
-local function keymappings(ev)
-  local function map(mode, lhs, rhs, desc)
-    vim.keymap.set(mode, lhs, rhs, {
-      noremap = true,
-      silent = true,
-      desc = desc,
-      buffer = ev.buf,
-    })
-  end
-  map("n", "ge", "<cmd>Lspsaga show_line_diagnostics<CR>", "Show line diagnostics(lspsaga)")
-  map("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", "Jump prev diagnostics(lspsaga)")
-  map("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", "Jump next diagnostics(lspsaga)")
-
-  map("n", "gd", "<cmd>Lspsaga peek_definition<CR>", "Go to definition(lspsaga)")
-  map("n", "K", "<cmd>Lspsaga hover_doc<CR>", "Hover(lspsaga)")
-  map("n", "gR", "<cmd>Lspsaga rename<CR>", "Rename(lspsaga)")
-end
-
 return {
+  -- LSPのサーバをインストール
+  {
+    "mason-org/mason.nvim",
+    build = ":MasonUpdate",
+    cmd = { "Mason", "MasonInstall", "MasonLog", "MasonUninstall", "MasonUninstAll", "MasonUpdate" },
+    config = true,
+  },
   -- LSP系のツールをインストール
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason-lspconfig.nvim",
     dependencies = {
-      "williamboman/mason-lspconfig.nvim",
+      "mason-org/mason.nvim",
       "neovim/nvim-lspconfig",
       "nvimdev/lspsaga.nvim",
     },
-    event = "VeryLazy",
-    config = function()
-      require("mason").setup()
-      require("mason-lspconfig").setup({
-        ensure_installed = lsp_servers,
-      })
+    event = { "BufReadPre", "BufNewFile" },
+    config = true,
+    keys = {
+      -- エラー箇所に移動
+      { "ge", "<cmd>Lspsaga show_line_diagnostics<CR>", desc = "Show line diagnostics(lspsaga)" },
+      { "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", desc = "Jump prev diagnostics(lspsaga)" },
+      { "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", desc = "Jump next diagnostics(lspsaga)" },
 
-      -- 全体設定
-      local lsp_config = require("lspconfig")
-      vim.iter(lsp_servers):each(function(server)
-        lsp_config[server].setup({
-          root_dir = function(fname)
-            return lsp_config.util.find_git_ancestor(fname) or vim.fn.getcwd()
-          end,
-        })
-      end)
-
-      -- 個別設定
-      lsp_config.lua_ls.setup({
-        settings = {
-          Lua = {
-            diagnostics = { globals = { "vim" } },
-          },
-        },
-      })
-
-      -- キーマッピング定義
-      vim.api.nvim_create_autocmd("LspAttach", {
-        group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-        callback = keymappings,
-      })
-    end,
+      { "<C-space>", "<cmd>lua vim.lsp.completion.get()<CR>", mode = "i" },
+      { "K", "<cmd>Lspsaga hover_doc<CR>", desc = "Hover(lspsaga)" },
+      { "gd", "<cmd>Lspsaga peek_definition<CR>", "Go to definition(lspsaga)" },
+      { "gR", "<cmd>Lspsaga rename<CR>", "Rename(lspsaga)" },
+    },
   },
   -- Linter/Formatter
+  -- * biomeの設定があればそれを優先。無ければprettierを使う。
   {
-    "jay-babu/mason-null-ls.nvim",
-    dependencies = {
-      "williamboman/mason.nvim",
-      "nvimtools/none-ls.nvim",
-    },
-    cmd = "Mason",
-    config = {
-      automatic_setup = true,
-      ensure_installed = vim.iter({ formatters, diagnostics }):flatten():totable(),
-      handlers = {},
-    },
-  },
-  {
-    "nvimtools/none-ls.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "lukas-reineke/lsp-format.nvim",
-    },
+    "stevearc/conform.nvim",
     event = { "BufReadPre", "BufNewFile" },
+    cmd = "ConformInfo",
     config = function()
-      require("lsp-format").setup()
-      local null_ls = require("null-ls")
-
-      local formatting_sources = vim
-        .iter(formatters)
-        :map(function(tool)
-          return null_ls.builtins.formatting[tool]
-        end)
-        :totable()
-      local diagnostics_sources = vim
-        .iter(diagnostics)
-        :map(function(tool)
-          return null_ls.builtins.diagnostics[tool]
-        end)
-        :totable()
-
-      null_ls.setup({
-        sources = vim.iter({ formatting_sources, diagnostics_sources }):flatten():totable(),
-        -- 保存時に自動フォーマット
-        on_attach = require("lsp-format").on_attach,
+      local biome_root_file = require("conform.util").root_file({
+        "biome.json",
+        "biome.jsonc",
+      })
+      require("conform").setup({
+        format_on_save = {
+          timeout_ms = 1000,
+          lsp_fallback = true,
+        },
+        formatters_by_ft = {
+          lua = { "stylua" },
+          json = { "biome", "prettier" },
+          javascript = { "biome-organize-imports", "biome", "prettier" },
+          typescript = { "biome-organize-imports", "biome", "prettier" },
+          yaml = { "biome", "prettier" },
+          css = { "biome", "prettier" },
+          markdown = { "biome", "prettier" },
+        },
+        formatters = {
+          biome = {
+            cwd = biome_root_file,
+            require_cwd = true,
+          },
+          prettier = {
+            condition = function(self, ctx)
+              local root = biome_root_file(self, ctx)
+              return root == nil
+            end,
+          },
+        },
       })
     end,
   },
@@ -147,8 +93,11 @@ return {
         },
         mapping = cmp.mapping.preset.insert({
           ["<C-p>"] = cmp.mapping.select_prev_item(),
+          ["<C-k>"] = cmp.mapping.select_prev_item(),
           ["<C-n>"] = cmp.mapping.select_next_item(),
+          ["<C-j>"] = cmp.mapping.select_next_item(),
           ["<C-Space>"] = cmp.mapping.complete(),
+          ["<CR>"] = cmp.mapping.confirm({ select = true }),
         }),
       })
     end,
