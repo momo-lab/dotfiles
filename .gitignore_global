@@ -2,3 +2,5 @@
 .rbenv-gemsets
 .python-version
 .git_*
+.serena/
+.claude/
