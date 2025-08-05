@@ -1,13 +1,23 @@
-#! /usr/bin/env zsh
-# 使われていないpopupセッションを削除する
+#! /usr/bin/env bash
+# kill unused popup session
 
-# 現在がpopupセッションなら何もしない
-my_session=$(tmux display -p '#{session_name}')
-if [[ "$my_session" =~ ^popup- ]]; then
-  exit
-fi
+escape_tmux_formats() {
+  local text=$(cat)
+  text=$(echo "$text" | sed "s/#[^{]/.*/g")
+  while echo "$text" | grep -q '#{[^#{}]*}'; do
+    text=$(echo "$text" | sed "s/#{[^#{}]*}/.*/g")
+  done
+  echo $text
+}
+
+pattern=$(
+  tmux show-options -gv '@toggle-popup-session-name-format' |
+    sed -e 's/[][)(\\.*^$+?|]/\\&/g' |
+    escape_tmux_formats
+)
+this_session=$(tmux display-message -pF '#S')
 
 diff --old-line-format='' --unchanged-line-format='' --new-line-format='%L' \
-  <(tmux list-windows -F 'popup-#{window_index}') \
-  <(tmux list-sessions -F '#{session_name}' | grep ^popup-) |
+  <(tmux list-panes -aF '#{E:@toggle-popup-session-name-format}' | uniq) \
+  <(tmux list-sessions -F '#S' -f "#{m/r:${pattern},#S}") |
   xargs -I {} tmux kill-session -t {}

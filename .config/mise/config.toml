@@ -29,3 +29,4 @@ yarn = "latest"
 # python
 python = "latest"
 uv = "latest"
+tmux = "latest"

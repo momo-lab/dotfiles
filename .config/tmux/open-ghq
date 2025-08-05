@@ -1,0 +1,11 @@
+#! /usr/bin/env zsh
+
+local repo=$(ghq list --full-path |
+  sed "s:$HOME/::" |
+  fzf --tmux --query="$*" --select-1 --preview 'cd $HOME/{}; git localinfo')
+if [[ "$repo" != "" ]]; then
+  local repo_path=$(readlink -f $HOME/$repo)
+  local name=$(basename $repo)
+  tmux new-window -c "$repo_path" -n "$name" \; \
+    split-window -hb -c "$repo_path" "$EDITOR"
+fi

@@ -22,5 +22,5 @@ done
 
 if [[ -x "$(which tmux 2> /dev/null)" && -z $TMUX ]]; then
   ### tmux起動
-  tmux -2 attach || tmux -2 new-session ; exit
+  tmux -2 new-session -A -s main ; exit
 fi

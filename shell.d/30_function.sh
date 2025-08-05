@@ -20,8 +20,6 @@ ghq-open() {
     split-window $(readlink -f $HOME/$repo)
   fi
 }
-zle -N ghq-open
-bindkey '^N' ghq-open
 
 # jqした結果をlessで表示
 function jqless() {
