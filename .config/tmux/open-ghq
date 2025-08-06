@@ -2,7 +2,7 @@
 
 local repo=$(ghq list --full-path |
   sed "s:$HOME/::" |
-  fzf --tmux --query="$*" --select-1 --preview 'cd $HOME/{}; git localinfo')
+  fzf --tmux=center,80%,60% --query="$*" --select-1 --preview 'cd $HOME/{}; git localinfo')
 if [[ "$repo" != "" ]]; then
   local repo_path=$(readlink -f $HOME/$repo)
   local name=$(basename $repo)
