@@ -4,6 +4,7 @@ github-cli = "latest"
 hub = "latest"
 
 # CLI Tools
+tmux = "latest"
 ghq = "latest"
 fzf = "latest"
 jq = "latest"
@@ -29,4 +30,7 @@ yarn = "latest"
 # python
 python = "latest"
 uv = "latest"
-tmux = "latest"
+"pipx:asciinema" = "latest"
+
+# rust
+rust = "latest"

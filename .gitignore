@@ -3,3 +3,5 @@
 .config/vim/
 .config/wslu/
 .config/yarn/
+.config/asciinema/
+.config/screenkey.json

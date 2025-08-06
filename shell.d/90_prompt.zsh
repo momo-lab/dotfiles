@@ -42,7 +42,7 @@ function _update_vcs_info_msg() {
 
 function _update_prompt() {
   zsh-defer -dm -c 'RPROMPT="$(_update_vcs_info_msg)"'
-  if [ -n $TMUX ]; then
+  if [ -n "$TMUX" ]; then
     tmux refresh-client -S
     PROMPT="%(?..%F{red}<%?>%f)# "
   else

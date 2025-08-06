@@ -20,7 +20,7 @@ for file in $(ls -1 $basedir/shell.d/*.{sh,zsh} 2> /dev/null); do
   source $file
 done
 
-if [[ -x "$(which tmux 2> /dev/null)" && -z $TMUX ]]; then
+if [[ -x "$(which tmux 2> /dev/null)" && -z $TMUX && -z $NOTMUX ]]; then
   ### tmux起動
   tmux -2 new-session -A -s main ; exit
 fi

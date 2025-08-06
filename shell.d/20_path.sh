@@ -7,7 +7,7 @@ export XDG_CONFIG_HOME=$HOME/.config
 export PATH="$HOME/.myscript/bin:$PATH"
 
 # Installed zsh plugins
-export PATH="$HOME/.local/bin"
+export PATH="$HOME/.local/bin:$PATH"
 eval "$(sheldon source)"
 
 # Added by the Heroku Toolbelt
