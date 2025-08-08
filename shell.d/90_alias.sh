@@ -38,3 +38,5 @@ abbrev-alias gg='ghq-git'
 abbrev-alias ggi='ghq-git localinfo'
 
 abbrev-alias sw='split-window'
+
+abbrev-alias edit='tmux split-window -hb $EDITOR'
