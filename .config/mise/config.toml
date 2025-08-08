@@ -26,6 +26,7 @@ yarn = "latest"
 "npm:@anthropic-ai/claude-code" = "latest"
 "npm:@antfu/ni" = "latest" # npm/pnpm/yarn package manager
 "npm:@sasazame/ccresume" = "latest" # claude-code resume
+"npm:zenn-cli" = "latest"
 
 # python
 python = "latest"
