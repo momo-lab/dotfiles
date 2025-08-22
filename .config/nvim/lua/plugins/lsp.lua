@@ -73,13 +73,16 @@ return {
     "hrsh7th/nvim-cmp",
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
+      "zbirenbaum/copilot-cmp",
     },
     event = { "InsertEnter", "CmdlineEnter" },
     config = function()
       local cmp = require("cmp")
       cmp.setup({
         sources = {
+          { name = "copilot" },
           { name = "nvim_lsp" },
+          { name = "buffer" },
         },
         formatting = {
           format = require("lspkind").cmp_format({
@@ -98,15 +101,68 @@ return {
           ["<C-j>"] = cmp.mapping.select_next_item(),
           ["<C-Space>"] = cmp.mapping.complete(),
           ["<CR>"] = cmp.mapping.confirm({ select = true }),
+          ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+          ["<C-f>"] = cmp.mapping.scroll_docs(4),
         }),
+        sorting = {
+          priority_weight = 2,
+          comparators = {
+            require("copilot_cmp.comparators").prioritize,
+            cmp.config.compare.offset,
+            cmp.config.compare.exact,
+            cmp.config.compare.score,
+            cmp.config.compare.recently_used,
+            cmp.config.compare.locality,
+            cmp.config.compare.kind,
+            cmp.config.compare.sort_text,
+            cmp.config.compare.length,
+            cmp.config.compare.order,
+          },
+        },
       })
     end,
+  },
+  -- github copilotの補完
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = { "InsertEnter" },
+    config = function()
+      require("copilot").setup({
+        suggestion = { enabled = false },
+        panel = { enabled = false },
+        copilot_node_command = "node",
+      })
+    end,
+  },
+  {
+    "zbirenbaum/copilot-cmp",
+    config = function()
+      require("copilot_cmp").setup()
+    end,
+  },
+  -- copilot chat
+  {
+    {
+      "CopilotC-Nvim/CopilotChat.nvim",
+      dependencies = {
+        { "nvim-lua/plenary.nvim", branch = "master" },
+      },
+      build = "make tiktoken",
+      opts = {
+        language = "Japanese",
+      },
+    },
   },
   -- LSPアイコン
   {
     "onsails/lspkind.nvim",
     event = "InsertEnter",
-    opts = {},
+    opts = {
+      symbol_map = {
+        Copilot = "",
+      },
+    },
   },
   -- 見た目の改善
   {
@@ -136,8 +192,8 @@ return {
     opts = {
       modes = {
         diagnostics = {
-          auto_close = true,
-          auto_open = true,
+          auto_close = false,
+          auto_open = false,
         },
       },
     },

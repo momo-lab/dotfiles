@@ -2,6 +2,11 @@
 
 # XDG configuration
 export XDG_CONFIG_HOME=$HOME/.config
+export XDG_RUNTIME_DIR=$HOME/.run
+if [ ! -d "$XDG_RUNTIME_DIR" ]; then
+  mkdir -p "$XDG_RUNTIME_DIR"
+  chmod 700 "$XDG_RUNTIME_DIR"
+fi
 
 # My Tools
 export PATH="$HOME/.myscript/bin:$PATH"
