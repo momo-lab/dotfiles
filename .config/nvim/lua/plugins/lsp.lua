@@ -29,41 +29,48 @@ return {
     },
   },
   -- Linter/Formatter
-  -- * biomeの設定があればそれを優先。無ければprettierを使う。
+  -- * oxfmt, biome, prettierは見つかったものを使う
+  -- * biome-organize-importsは動くか微妙
   {
     "stevearc/conform.nvim",
     event = { "BufReadPre", "BufNewFile" },
     cmd = "ConformInfo",
     config = function()
-      local biome_root_file = require("conform.util").root_file({
-        "biome.json",
-        "biome.jsonc",
-      })
+      local js_formatter = {
+        "oxfmt",
+        "biome-organize-imports",
+        "biome",
+        "prettier",
+        stop_after_first = true,
+      }
+      vim.api.nvim_create_user_command("FormatDisable", function()
+        vim.b.disable_autoformat = true
+      end, { desc = "Disable format_on_save for current buffer" })
+      vim.api.nvim_create_user_command("FormatEnable", function()
+        vim.b.disable_autoformat = false
+      end, { desc = "Enable format_on_save for current buffer" })
       require("conform").setup({
-        format_on_save = {
-          timeout_ms = 1000,
-          lsp_fallback = true,
-        },
+        format_on_save = function(bufnr)
+          if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+            return
+          end
+          return {
+            timeout_ms = 1000,
+            lsp_fallback = true,
+          }
+        end,
         formatters_by_ft = {
           lua = { "stylua" },
-          json = { "biome", "prettier" },
-          javascript = { "biome-organize-imports", "biome", "prettier" },
-          typescript = { "biome-organize-imports", "biome", "prettier" },
-          yaml = { "biome", "prettier" },
-          css = { "biome", "prettier" },
-          markdown = { "biome", "prettier" },
-        },
-        formatters = {
-          biome = {
-            cwd = biome_root_file,
-            require_cwd = true,
-          },
-          prettier = {
-            condition = function(self, ctx)
-              local root = biome_root_file(self, ctx)
-              return root == nil
-            end,
-          },
+          json = js_formatter,
+          jsonc = js_formatter,
+          javascript = js_formatter,
+          typescript = js_formatter,
+          javasjavascript = js_formatter,
+          typescriptreact = js_formatter,
+          ycss = js_formatter,
+          css = js_formatter,
+          hcss = js_formatter,
+          markdcss = js_formatter,
         },
       })
     end,
