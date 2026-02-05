@@ -46,6 +46,7 @@ return {
   -- TODO: インデントが壊れるらしいのでこっちも試す https://github.com/yioneko/nvim-yati
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "master",
     build = ":TSUpdate",
     event = "VeryLazy",
     config = function()
@@ -92,6 +93,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
+    branch = "master",
     event = "VeryLazy",
     config = function()
       require("nvim-treesitter.configs").setup({
@@ -114,6 +116,7 @@ return {
   {
     "RRethy/nvim-treesitter-textsubjects",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
+    branch = "master",
     event = "VeryLazy",
     config = function()
       require("nvim-treesitter.configs").setup({
