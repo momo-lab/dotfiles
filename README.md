@@ -46,6 +46,7 @@ WSL2 + Ubuntu前提です。
 
 - git
 - zsh
+- unzip
 - make
 - gcc
 - build-essential
