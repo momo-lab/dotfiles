@@ -103,6 +103,8 @@ return {
             keymaps = {
               ["i,"] = "@parameter.inner",
               ["a,"] = "@parameter.outer",
+              ["ia"] = "@attribute.inner",
+              ["aa"] = "@attribute.outer",
             },
           },
         },
