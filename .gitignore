@@ -1,6 +1,7 @@
 *.zwc
 .config/coc/
 .config/vim/
+.config/nvim/lazy-lock.json
 .config/wslu/
 .config/yarn/
 .config/asciinema/
