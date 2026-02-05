@@ -20,6 +20,10 @@ cd $dotfiles_path
 
 WSL2 + Ubuntu前提です。
 
+## 初期設定
+
+`sample.gitconfig_local`を`~/.gitconfig_local`へコピーし、内容を適宜変更してください。
+
 ## 構成
 
 このdotfilesは、以下のツールによって構成管理されています。
@@ -39,7 +43,10 @@ WSL2 + Ubuntu前提です。
 
 - git
 - zsh
-- win32yank.exe(手動導入の場合 chmod +x が必要)
+- make
+- gcc
+- build-essential
+- [win32yank.exe](https://github.com/equalsraf/win32yank) (手動導入の場合 chmod +x が必要)
 
 その他、mise install時に必要なライブラリあり(未整理)
 
