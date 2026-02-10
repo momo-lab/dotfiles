@@ -74,7 +74,7 @@
 	diffFilter = delta --color-only
 [delta]
 	line-numbers = true
-	side-by-side = true
+	side-by-side = false
 [credential "https://github.com"]
 	helper = 
 	helper = !gh auth git-credential
