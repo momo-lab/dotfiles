@@ -1,0 +1,10 @@
+#! /usr/bin/env zsh
+
+session_name=$1
+repo_path=$2
+
+if ! tmux has-session -t "$session_name" 2>/dev/null; then
+  tmux new-session -d -s "$session_name" -c "$repo_path"
+fi
+
+tmux switch-client -t "$session_name"

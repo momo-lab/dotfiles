@@ -1,0 +1,27 @@
+#! /usr/bin/env zsh
+
+session_name=$1
+if [ -z "$session_name" ]; then
+  session_name=$(tmux display-message -pF "#S")
+fi
+
+if ! tmux has-session -t $session_name 2>/dev/null; then
+  tmux display-message -F "can't find session: $session_name"
+  exit 0
+fi
+
+switch_session=main
+if [ "$session_name" = "main" ]; then
+  switch_session=main-temp
+fi
+
+tmux confirm-before -p "kill-session '$session_name'? (y/N)" \
+  "run-shell '
+    $HOME/.config/tmux/switch-session $switch_session $HOME
+    tmux kill-session -t $session_name
+    if [ $switch_session = main-temp ]; then
+      tmux rename-session main
+    fi
+  '"
+
+exit 0

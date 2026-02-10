@@ -1,0 +1,39 @@
+#! /usr/bin/env zsh
+
+ghq_root=$(ghq root)
+ghq_list=$(ghq list --full-path | sed "s:$ghq_root/::")
+
+result=$(echo $ghq_list |
+  fzf --prompt="ghq repo: " \
+    --no-select-1 \
+    --tmux=center,80%,60% \
+    --preview "$HOME/.config/tmux/preview-session '{}'" \
+    --expect=ctrl-n,ctrl-q \
+    --header='Enter: switch | ^N: switch main | ^Q: kill')
+
+# 選択されていなければ終了
+if [ -z "$result" ]; then
+  exit 0
+fi
+
+key=$(echo "$result" | sed -n '1p')
+repo=$(echo "$result" | sed -n '2p')
+session_name=${repo//./_} # .は使えないので置換
+
+case "$key" in
+  ctrl-n)
+    # mainセッションに切替
+    $HOME/.config/tmux/switch-session main "$HOME"
+    ;;
+
+  ctrl-q)
+    # 選択セッションを消す
+    $HOME/.config/tmux/kill-session "$session_name"
+    ;;
+
+  *)
+    # 選択セッションに切替
+    repo_path=$(readlink -f $ghq_root/$repo)
+    $HOME/.config/tmux/switch-session "$session_name" "$repo_path"
+    ;;
+esac
