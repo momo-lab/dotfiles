@@ -4,6 +4,6 @@ repo=$1
 session_name=${repo//./_} # .は使えないので置換
 
 tmux list-panes -st "$session_name"
-echo -----momo-----
+echo ----------
 cd $(ghq root)/$repo
 git localinfo
