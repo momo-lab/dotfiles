@@ -22,5 +22,11 @@ done
 
 if [[ -x "$(which tmux 2> /dev/null)" && -z $TMUX && -z $NOTMUX ]]; then
   ### tmux起動
-  tmux -2 new-session -A -s main ; exit
+  echo "XDG_DATA_HOME=$XDG_DATA_HOME" >> ~/check.txt
+  if ! tmux info &>/dev/null; then
+    tmux -2 new-session -A -s main
+  else
+    tmux attach-session -t main
+  fi
+  exit
 fi
