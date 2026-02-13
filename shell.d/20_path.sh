@@ -11,9 +11,8 @@ fi
 # My Tools
 export PATH="$HOME/.myscript/bin:$PATH"
 
-# Installed zsh plugins
+# External Tools(mise, sheldon, etc...)
 export PATH="$HOME/.local/bin:$PATH"
-eval "$(sheldon source)"
 
 # Added by the Heroku Toolbelt
 if [[ -d "${HOME}/.heroku/bin" ]]; then
