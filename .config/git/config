@@ -23,19 +23,18 @@
 	based-branch = !git show-branch | grep '*[^[]\\+\\[' | grep -v "$(git rev-parse --abbrev-ref HEAD)" | head -1 | awk -F'[]~^[]' '{print $2}'
 	root = !git rev-parse --show-toplevel 2> /dev/null
 [init]
-	templatedir = ~/.git_template
+	templatedir = ~/.config/git/template
 	defaultBranch = main
 [diff]
 	compactionHeuristic = true
 [commit]
 	verbose = true
-	template = ~/.gitmessage.txt
+	template = ~/.config/git/message.txt
 [color]
 	ui = auto
 [core]
 	autocrlf = false
 	editor = nvim
-	excludesfile = ~/.gitignore_global
 	symlinks = true
 [fetch]
 	prune = true
@@ -57,7 +56,7 @@
 [pretty]
 	tree-format = format:%C(auto)%h %C(green)%ad%C(auto)%d%C(reset) %s %C(cyan bold)%an%C(reset)
 [include]
-	path = .gitconfig_local
+	path = ~/.config/git/config.local
 [localinfo]
 	stash-pretty = format:%C(auto)%h %C(green)%ad%C(auto)%d%C(reset) %gd %s
 	log-pretty   = format:%C(auto)%h %C(green)%ad%C(auto)%d%C(reset) %s %C(cyan bold)%an%C(reset)

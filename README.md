@@ -24,7 +24,7 @@ WSL2 + Ubuntu前提です。
 
 ## 初期設定
 
-1. `sample.gitconfig_local`を`~/.gitconfig_local`へコピーし、内容を適宜変更してください。
+1. `.config/git/config.local.sample`を`.config/git/config.local`へコピーし、内容を適宜変更してください。
 2. `gh auth login` コマンドを実行し、githubの認証を行ってください。
 
 ## 構成
