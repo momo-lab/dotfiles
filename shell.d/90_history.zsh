@@ -1,7 +1,16 @@
-# History
-HISTFILE=~/.zsh_history
+# zsh history
+export HISTFILE="$XDG_STATE_HOME/zsh/history"
+if [ ! -d "$(dirname "$HISTFILE")" ]; then
+  mkdir -p "$(dirname "$HISTFILE")"
+fi
 HISTSIZE=100000
 SAVEHIST=100000
+
+# less history (XDG)
+export LESSHISTFILE="$XDG_STATE_HOME/less/history"
+if [ ! -d "$(dirname "$LESSHISTFILE")" ]; then
+  mkdir -p "$(dirname "$LESSHISTFILE")"
+fi
 
 # Setting zsh-history-substring-search
 zmodload zsh/terminfo
