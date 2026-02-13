@@ -1,7 +1,7 @@
 #!/bin/bash
 
 tpm_url="https://github.com/tmux-plugins/tpm"
-tpm_root=${HOME}/.tmux/plugins/tpm
+tpm_root=${XDG_DATA_HOME}/tmux/plugins/tpm
 
 echo "Initialize tmux plugins."
 if [[ ! -d "$tpm_root" ]]; then
