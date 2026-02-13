@@ -12,6 +12,8 @@ dotfiles_initialize() {
 
 # deploy
 dotfiles_deploy() {
+    echo "Remove broken dotfile links."
+    find $HOME -maxdepth 1 -xtype l -print -delete
     echo "Deploy dotfiles."
     for file in $WORKDIR/.??*; do
         file=$(basename $file)
