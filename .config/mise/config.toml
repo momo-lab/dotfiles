@@ -19,7 +19,7 @@ neovim = "latest"
 
 # nodejs
 node = "24"
-pnpm = "latest"
+"npm:pnpm" = "latest"
 yarn = "latest"
 "npm:@google/gemini-cli" = "latest"
 "npm:@google/clasp" = "latest"
@@ -33,3 +33,9 @@ python = "latest"
 
 # rust
 rust = "latest"
+java = "21"
+
+[settings]
+
+[settings.aqua]
+baked_registry = false
