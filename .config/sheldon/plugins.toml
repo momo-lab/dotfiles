@@ -52,3 +52,8 @@ apply = ["PATH"]
 github = "iwata/git-now"
 dir = "etc"
 apply = ["fpath"]
+
+[plugins.git-worktree-runner]
+github = "coderabbitai/git-worktree-runner"
+dir = "bin"
+apply = ["PATH"]
