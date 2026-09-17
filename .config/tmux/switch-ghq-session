@@ -8,8 +8,8 @@ result=$(echo $ghq_list |
     --no-select-1 \
     --tmux=center,80%,60% \
     --preview "$HOME/.config/tmux/preview-session '{}'" \
-    --expect=ctrl-n,ctrl-q \
-    --header='Enter: switch | ^N: switch main | ^Q: kill')
+    --expect=ctrl-n,ctrl-q,ctrl-c \
+    --header='Enter: switch | ^N: switch main | ^C: new window | ^Q: kill')
 
 # 選択されていなければ終了
 if [ -z "$result" ]; then
@@ -29,6 +29,12 @@ case "$key" in
   ctrl-q)
     # 選択セッションを消す
     $HOME/.config/tmux/kill-session "$session_name"
+    ;;
+
+  ctrl-c)
+    # 選択ウィンドウを追加
+    repo_path=$(readlink -f $ghq_root/$repo)
+    tmux new-window -c "$repo_path" -n "${session_name##*/}"
     ;;
 
   *)
